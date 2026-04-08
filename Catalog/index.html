@@ -1,0 +1,709 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mr. Cake · Catálogo de Bodas / Wedding Catalog</title>
+<meta name="description" content="Catálogo de bodas Mr. Cake — Wedding cakes diseñados desde tu historia. Santo Domingo, República Dominicana.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@200;300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy:      #0F1F3D;
+    --navy-mid:  #2B4A6B;
+    --gold:      #C4A97D;
+    --gold-light:#E8D5B7;
+    --cream:     #FDF0E3;
+    --white:     #FFFFFF;
+    --font:      'Outfit', sans-serif;
+    --transition: 0.4s cubic-bezier(0.25,0.46,0.45,0.94);
+  }
+
+  *, *::before, *::after { box-sizing:border-box; margin:0; padding:0; }
+  html { scroll-behavior:smooth; }
+  body { font-family:var(--font); background:var(--cream); color:var(--navy); overflow-x:hidden; }
+  img  { display:block; max-width:100%; }
+  a    { color:inherit; text-decoration:none; }
+
+  /* ─── LANG SYSTEM — identical to mrcake.lat ─── */
+  [data-lang]        { display:none; }
+  [data-lang-inline] { display:none; }
+  body.lang-es [data-lang="es"]            { display:block; }
+  body.lang-en [data-lang="en"]            { display:block; }
+  body.lang-es [data-lang-inline="es"]     { display:inline; }
+  body.lang-en [data-lang-inline="en"]     { display:inline; }
+
+  /* ─── NAV — same structure as mrcake.lat ─── */
+  nav {
+    position:fixed; top:0; left:0; right:0; z-index:100;
+    display:grid; grid-template-columns:1fr auto 1fr;
+    align-items:center; padding:1.25rem 2rem;
+    transition:background var(--transition), box-shadow var(--transition);
+  }
+  nav.scrolled {
+    background:rgba(15,31,61,0.96);
+    backdrop-filter:blur(12px);
+    box-shadow:0 1px 0 rgba(196,169,125,0.12);
+  }
+
+  /* home button — left */
+  .nav-home {
+    justify-self:start;
+    display:flex; align-items:center; gap:8px;
+    background:none; border:none; cursor:pointer;
+    color:rgba(255,255,255,0.55);
+    font-family:var(--font); font-size:0.65rem;
+    font-weight:500; letter-spacing:0.12em;
+    text-transform:uppercase;
+    transition:color var(--transition);
+    padding:6px 0;
+    text-decoration:none;
+  }
+  .nav-home:hover { color:var(--gold); }
+  .nav-home svg { width:14px; height:14px; flex-shrink:0; }
+
+  /* logo — center */
+  .nav-logo { justify-self:center; }
+  .nav-logo a { display:block; line-height:0; }
+  .nav-logo svg { width:64px; height:auto; transition:opacity var(--transition); }
+  .nav-logo svg:hover { opacity:0.75; }
+
+  /* lang toggle — right — identical to mrcake.lat */
+  .lang-switcher {
+    display:flex; align-items:center; gap:0.4rem; justify-self:end;
+  }
+  .lang-btn {
+    background:none; border:none; cursor:pointer;
+    color:rgba(255,255,255,0.4);
+    font-family:var(--font); font-size:0.65rem; font-weight:500;
+    letter-spacing:0.12em; text-transform:uppercase;
+    transition:color var(--transition); padding:0.2rem 0.3rem;
+  }
+  .lang-btn.active { color:var(--gold); }
+  .lang-divider { color:rgba(255,255,255,0.2); font-size:0.6rem; }
+
+  /* ─── LAYOUT ─── */
+  .wrap { max-width:860px; margin:0 auto; }
+
+  /* ─── COVER ─── */
+  .cover {
+    min-height:100vh;
+    background:linear-gradient(165deg, rgba(237,230,218,0.25) 0%, rgba(213,202,184,0.35) 100%), url('images/cover.jpg') center/cover no-repeat;
+    display:flex; flex-direction:column; justify-content:space-between;
+    padding:120px 48px 64px;
+  }
+  .cover-logo-mark { width:140px; }
+  .cover-bottom { display:flex; flex-direction:column; gap:10px; }
+  .cover-eyebrow { font-size:11px; letter-spacing:4px; text-transform:uppercase; opacity:.5; font-weight:400; color:var(--navy); }
+  .cover-title { font-size:clamp(42px,8vw,70px); font-weight:300; letter-spacing:-2px; line-height:1; color:var(--navy); }
+
+  /* ─── PAGES ─── */
+  .page { padding:72px 48px; min-height:65vh; display:flex; flex-direction:column; justify-content:center; }
+  .page-cream { background:var(--cream); }
+  .page-dark  { background:var(--navy); color:var(--white); }
+  .page-sand  { background:#e8dece; color:var(--navy); }
+  .page-gold  { background:var(--gold); }
+
+  /* ─── TYPOGRAPHY ─── */
+  .tag { font-size:11px; letter-spacing:4px; text-transform:uppercase; opacity:.5; margin-bottom:16px; font-weight:400; }
+  .tag-gold { color:var(--gold); opacity:1; }
+  .display { font-size:clamp(30px,5vw,50px); font-weight:300; letter-spacing:-1px; line-height:1.08; }
+  .d-white { color:var(--white); }
+  .d-gold  { color:var(--gold); }
+  .d-navy  { color:var(--navy); }
+  .sub  { font-size:15px; font-style:italic; font-weight:300; opacity:.6; margin:16px 0; line-height:1.6; }
+  .body { font-size:15px; font-weight:300; line-height:1.85; max-width:500px; }
+  .body-w { color:rgba(255,255,255,.8); }
+  .divider { width:40px; height:1px; background:var(--gold); margin:24px 0; }
+
+  /* ─── FLAVOR ─── */
+  .flabel { font-size:11px; letter-spacing:3px; text-transform:uppercase; color:var(--gold); font-weight:400; margin-bottom:8px; }
+  .flist  { font-size:15px; font-weight:300; line-height:2.1; margin-bottom:28px; }
+  .fnote  { font-size:13px; font-style:italic; opacity:.55; border-top:1px solid rgba(0,0,0,.1); padding-top:18px; }
+
+  /* ─── TASTING ─── */
+  .tcard { background:rgba(15,31,61,.88); border-radius:3px; padding:44px 40px; }
+  .tcard .body { color:rgba(255,255,255,.8); }
+  .tcard .fnote { color:rgba(255,255,255,.4); border-color:rgba(255,255,255,.15); }
+
+  /* ─── PHOTOS ─── */
+  .ph { border-radius:2px; display:flex; align-items:center; justify-content:center; font-size:10px; letter-spacing:2px; text-transform:uppercase; opacity:.35; font-weight:300; }
+  .ph-full { width:100%; height:300px; background:rgba(0,0,0,.08); margin-bottom:28px; }
+  .ph-half { height:210px; background:rgba(0,0,0,.08); }
+  .ph-dark { background:rgba(255,255,255,.07); color:var(--white); }
+  .grid2 { display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-top:28px; }
+
+  /* ─── PROCESS ─── */
+  .step { display:grid; grid-template-columns:52px 1fr; gap:14px; margin-bottom:28px; align-items:start; }
+  .snum { font-size:30px; font-weight:300; color:var(--gold); line-height:1; }
+  .stitle { font-size:11px; letter-spacing:3px; text-transform:uppercase; color:var(--gold); font-weight:400; margin-bottom:5px; }
+  .sdesc { font-size:14px; font-weight:300; line-height:1.75; color:rgba(255,255,255,.78); }
+  .pnote { font-size:13px; font-style:italic; color:rgba(255,255,255,.42); border-top:1px solid rgba(255,255,255,.12); padding-top:22px; margin-top:8px; line-height:1.7; }
+
+  /* ─── FAQ ─── */
+  .faq { padding:20px 0; border-bottom:1px solid rgba(0,0,0,.09); }
+  .faq:first-of-type { border-top:1px solid rgba(0,0,0,.09); }
+  .fq { font-size:14px; font-weight:500; color:var(--navy); margin-bottom:6px; }
+  .fa { font-size:14px; font-weight:300; line-height:1.75; font-style:italic; color:rgba(0,0,0,.6); }
+
+  /* ─── QUOTE ─── */
+  .qpage { background:var(--gold); min-height:50vh; display:flex; flex-direction:column; justify-content:center; align-items:center; text-align:center; padding:72px 48px; }
+  .qtext { font-size:clamp(20px,3.5vw,30px); font-weight:300; color:var(--white); letter-spacing:-.5px; line-height:1.4; margin-bottom:24px; max-width:540px; }
+  .qbrand { font-size:11px; letter-spacing:3px; text-transform:uppercase; color:rgba(255,255,255,.65); }
+
+  /* ─── CONTACT ─── */
+  .cpage { background:var(--navy); min-height:80vh; display:flex; flex-direction:column; justify-content:center; align-items:center; text-align:center; padding:72px 48px; }
+  .clabel { font-size:11px; letter-spacing:4px; text-transform:uppercase; color:var(--gold); font-weight:400; margin-bottom:40px; }
+  .ch  { font-size:clamp(18px,3vw,24px); font-weight:300; font-style:italic; color:rgba(255,255,255,.85); margin-bottom:10px; line-height:1.5; }
+  .csub { font-size:15px; font-weight:300; font-style:italic; color:rgba(255,255,255,.45); margin-bottom:52px; line-height:1.65; }
+  .citems { display:flex; flex-direction:column; gap:16px; margin-bottom:48px; }
+  .citem { font-size:16px; font-weight:300; color:var(--white); display:flex; align-items:center; justify-content:center; gap:14px; }
+  .clogo { width:200px; opacity:.9; margin-top:48px; }
+
+  /* ─── PAIRINGS ─── */
+  .pairings-intro { margin-bottom:36px; }
+  .pairing-cat-label {
+    font-size:10px; letter-spacing:3px; text-transform:uppercase;
+    color:var(--gold); font-weight:500; opacity:.8;
+    margin:36px 0 16px; padding-bottom:10px;
+    border-bottom:1px solid rgba(196,169,125,0.25);
+  }
+  .pairing-grid {
+    display:grid; grid-template-columns:1fr 1fr; gap:20px;
+  }
+  .pairing-card {
+    background:rgba(196,169,125,0.08);
+    border:1px solid rgba(196,169,125,0.18);
+    border-radius:3px; padding:20px;
+    transition:border-color 0.3s;
+  }
+  .pairing-card:hover { border-color:rgba(196,169,125,0.45); }
+  .pairing-name {
+    font-size:13px; font-weight:600; letter-spacing:.04em;
+    color:var(--navy); margin-bottom:5px; text-transform:uppercase;
+  }
+  .pairing-desc {
+    font-size:13px; font-weight:300; color:rgba(15,31,61,.6); line-height:1.5;
+  }
+  .pairings-note {
+    font-size:13px; font-style:italic; opacity:.5;
+    margin-top:28px; line-height:1.7;
+    border-top:1px solid rgba(0,0,0,.08); padding-top:20px;
+  }
+  @media(max-width:500px){ .pairing-grid { grid-template-columns:1fr; } }
+
+  /* ─── CTA BUTTON ─── */
+  .btn-gold {
+    display:inline-block;
+    background:var(--gold); color:var(--navy);
+    font-family:var(--font); font-size:0.75rem; font-weight:600;
+    letter-spacing:0.15em; text-transform:uppercase;
+    padding:14px 32px; border-radius:2px;
+    transition:opacity var(--transition);
+    margin-top:32px;
+  }
+  .btn-gold:hover { opacity:.85; }
+
+  /* ─── LOGO FOOT ─── */
+  .lfoot { margin-top:52px; }
+  .lfoot svg { width:80px; }
+
+  /* ─── FOOTER ─── */
+  footer {
+    background:var(--navy);
+    padding:40px 48px;
+    display:flex; flex-direction:column; align-items:center; gap:16px;
+    text-align:center;
+  }
+  .footer-brand { font-size:12px; font-weight:300; color:rgba(255,255,255,.35); letter-spacing:.05em; }
+  .footer-quote { font-size:12px; font-style:italic; color:rgba(255,255,255,.2); }
+
+  @media(max-width:600px){
+    .page,.cover,.cpage,.qpage { padding:48px 24px; }
+    .cover { padding-top:100px; }
+    .step { grid-template-columns:38px 1fr; }
+    .grid2 { grid-template-columns:1fr; }
+    nav { padding:1rem 1.25rem; }
+  }
+</style>
+</head>
+<body class="lang-es">
+
+<!-- ══════════════════════════════════════
+     NAV — mismo sistema que mrcake.lat
+══════════════════════════════════════ -->
+<nav id="main-nav">
+  <!-- left: back to home -->
+  <a href="https://mrcake.lat" class="nav-home" aria-label="Volver al inicio">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M19 12H5M5 12l7-7M5 12l7 7"/>
+    </svg>
+    <span data-lang-inline="es">Inicio</span>
+    <span data-lang-inline="en">Home</span>
+  </a>
+
+  <!-- center: logo -->
+  <div class="nav-logo">
+    <a href="https://mrcake.lat" aria-label="Mr. Cake">
+      <svg width="64" height="64" viewBox="794 -6462 2036 2036" xmlns="http://www.w3.org/2000/svg" style="fill:white;">
+        <g transform="matrix(1.01654,0,0,1.01765,-2192,-11573.5)">
+          <path d="M3934.06,5852.2L3987.43,5944.65C3923.58,5981.82 3855.91,6000.88 3793.01,6000.88C3605.25,6000.88 3505.18,5852.2 3505.18,5671.12L3505.18,5453.82L3443.23,5591.06L3434.65,5591.06L3373.66,5453.82L3373.66,5947.51L3266.91,5947.51L3266.91,5280.37L3373.66,5280.37L3439.42,5409.03L3505.18,5280.37L3611.92,5280.37L3611.92,5671.12C3611.92,5788.35 3665.3,5894.14 3793.01,5894.14C3837.8,5894.14 3886.41,5879.84 3934.06,5852.2ZM3908.11,5670.17C3948.14,5670.17 3981.5,5702.57 3981.5,5743.55C3981.5,5783.58 3948.14,5815.99 3908.11,5815.99C3867.13,5815.99 3834.73,5783.58 3834.73,5743.55C3834.73,5702.57 3867.13,5670.17 3908.11,5670.17ZM3666.03,5763.1L3666.03,5393.78C3666.03,5330.88 3717.5,5280.37 3780.4,5280.37L3908.11,5280.37L3889.05,5379.48L3808.04,5379.48C3788.98,5379.48 3772.78,5394.73 3772.78,5414.75L3772.78,5763.1L3772.51,5763.1L3772.51,5763.44C3772.51,5792.48 3748.31,5815.99 3719.27,5815.99C3689.54,5815.99 3666.03,5792.48 3666.03,5763.44L3666.03,5763.1ZM3412.73,6037.77C3493.74,6037.77 3559.51,6102.58 3559.51,6183.59L3559.51,6333.22L3457.53,6353.24L3457.53,6179.78C3457.53,6156.9 3438.47,6138.8 3415.59,6138.8C3392.72,6138.8 3373.66,6156.9 3373.66,6179.78L3373.66,6584.83C3373.66,6607.7 3392.72,6625.81 3415.59,6625.81C3438.47,6625.81 3457.53,6607.7 3457.53,6584.83L3457.53,6408.51L3559.51,6388.5L3559.51,6579.11C3559.51,6660.12 3493.74,6724.93 3412.73,6724.93C3332.68,6724.93 3266.91,6660.12 3266.91,6579.11L3266.91,6183.59C3266.91,6102.58 3332.68,6037.77 3412.73,6037.77ZM3602.39,6185.5C3602.39,6088.28 3673.87,6038.72 3745.35,6038.72C3817.78,6038.72 3890.22,6089.24 3890.22,6193.12L3890.22,6586.74L3720.57,6586.74C3654.81,6586.74 3602.39,6534.32 3602.39,6468.56L3602.39,6327.5L3788.24,6286.52L3788.24,6205.51C3788.24,6156.9 3769.18,6138.8 3746.31,6138.8C3723.43,6138.8 3704.37,6156.9 3704.37,6180.73L3704.37,6252.21L3602.39,6272.23L3602.39,6185.5ZM3788.24,6490.48L3788.24,6383.73L3704.37,6404.7L3704.37,6452.35C3704.37,6473.32 3721.53,6490.48 3742.49,6490.48L3788.24,6490.48ZM3888.31,6715.4L3621.45,6715.4L3621.45,6619.14L3888.31,6619.14L3888.31,6715.4ZM4440.14,6596.27C4360.08,6596.27 4294.32,6530.51 4294.32,6449.49L4294.32,6184.54C4294.32,6104.49 4360.08,6038.72 4440.14,6038.72C4521.15,6038.72 4586.91,6104.49 4586.91,6184.54L4586.91,6334.17L4527.82,6345.61L4401.06,6374.2L4401.06,6455.21C4401.06,6478.09 4420.12,6497.15 4442.99,6497.15C4465.87,6497.15 4484.93,6478.09 4484.93,6455.21L4484.93,6409.47L4586.91,6389.45L4586.91,6449.49C4586.91,6530.51 4521.15,6596.27 4440.14,6596.27ZM4401.06,6181.68L4401.06,6276.99L4484.93,6256.98L4484.93,6181.68C4484.93,6158.81 4465.87,6139.75 4442.99,6139.75C4420.12,6139.75 4401.06,6158.81 4401.06,6181.68ZM4558.32,6620.09L4611.69,6712.54C4552.6,6746.85 4487.79,6764.01 4423.93,6764.01C4267.63,6764.01 4128.48,6655.36 4128.48,6490.48L4129.44,6490.48L4129.44,6459.98C4129.44,6439.01 4113.23,6424.72 4093.22,6424.72C4085.6,6424.72 4077.02,6426.62 4069.39,6431.39L4050.33,6442.82L4050.33,6715.4L3943.59,6715.4L3943.59,6049.21L4050.33,6049.21L4050.33,6337.03L4079.88,6316.07C4102.75,6299.86 4114.19,6285.57 4114.19,6261.74L4114.19,6049.21L4220.93,6049.21L4220.93,6265.55C4220.93,6317.97 4197.1,6355.14 4148.5,6385.64C4199.01,6384.69 4236.18,6414.23 4236.18,6460.93L4236.18,6490.48L4235.23,6490.48C4235.23,6595.31 4328.63,6657.26 4424.89,6657.26C4468.73,6657.26 4515.43,6644.87 4558.32,6620.09Z"/>
+        </g>
+      </svg>
+    </a>
+  </div>
+
+  <!-- right: lang switcher -->
+  <div class="lang-switcher">
+    <button class="lang-btn" id="btn-es" onclick="setLang('es')">ES</button>
+    <span class="lang-divider">·</span>
+    <button class="lang-btn" id="btn-en" onclick="setLang('en')">EN</button>
+  </div>
+</nav>
+
+<!-- ══════════════════════════════════════ COVER -->
+<div class="cover">
+  <div class="cover-logo-mark">
+    <svg viewBox="0 0 2003 2001" xmlns="http://www.w3.org/2000/svg" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;">
+      <g transform="matrix(1,0,0,1,-2896.67,-5055.39)"><g transform="matrix(0.983733,0,0,0.982658,2114.88,11406.1)"><g transform="matrix(1.01654,0,0,1.01765,-2192,-11573.5)">
+        <path d="M3934.06,5852.2L3987.43,5944.65C3923.58,5981.82 3855.91,6000.88 3793.01,6000.88C3605.25,6000.88 3505.18,5852.2 3505.18,5671.12L3505.18,5453.82L3443.23,5591.06L3434.65,5591.06L3373.66,5453.82L3373.66,5947.51L3266.91,5947.51L3266.91,5280.37L3373.66,5280.37L3439.42,5409.03L3505.18,5280.37L3611.92,5280.37L3611.92,5671.12C3611.92,5788.35 3665.3,5894.14 3793.01,5894.14C3837.8,5894.14 3886.41,5879.84 3934.06,5852.2ZM3908.11,5670.17C3948.14,5670.17 3981.5,5702.57 3981.5,5743.55C3981.5,5783.58 3948.14,5815.99 3908.11,5815.99C3867.13,5815.99 3834.73,5783.58 3834.73,5743.55C3834.73,5702.57 3867.13,5670.17 3908.11,5670.17ZM3666.03,5763.1L3666.03,5393.78C3666.03,5330.88 3717.5,5280.37 3780.4,5280.37L3908.11,5280.37L3889.05,5379.48L3808.04,5379.48C3788.98,5379.48 3772.78,5394.73 3772.78,5414.75L3772.78,5763.1L3772.51,5763.1L3772.51,5763.44C3772.51,5792.48 3748.31,5815.99 3719.27,5815.99C3689.54,5815.99 3666.03,5792.48 3666.03,5763.44L3666.03,5763.1ZM3412.73,6037.77C3493.74,6037.77 3559.51,6102.58 3559.51,6183.59L3559.51,6333.22L3457.53,6353.24L3457.53,6179.78C3457.53,6156.9 3438.47,6138.8 3415.59,6138.8C3392.72,6138.8 3373.66,6156.9 3373.66,6179.78L3373.66,6584.83C3373.66,6607.7 3392.72,6625.81 3415.59,6625.81C3438.47,6625.81 3457.53,6607.7 3457.53,6584.83L3457.53,6408.51L3559.51,6388.5L3559.51,6579.11C3559.51,6660.12 3493.74,6724.93 3412.73,6724.93C3332.68,6724.93 3266.91,6660.12 3266.91,6579.11L3266.91,6183.59C3266.91,6102.58 3332.68,6037.77 3412.73,6037.77ZM3602.39,6185.5C3602.39,6088.28 3673.87,6038.72 3745.35,6038.72C3817.78,6038.72 3890.22,6089.24 3890.22,6193.12L3890.22,6586.74L3720.57,6586.74C3654.81,6586.74 3602.39,6534.32 3602.39,6468.56L3602.39,6327.5L3788.24,6286.52L3788.24,6205.51C3788.24,6156.9 3769.18,6138.8 3746.31,6138.8C3723.43,6138.8 3704.37,6156.9 3704.37,6180.73L3704.37,6252.21L3602.39,6272.23L3602.39,6185.5ZM3788.24,6490.48L3788.24,6383.73L3704.37,6404.7L3704.37,6452.35C3704.37,6473.32 3721.53,6490.48 3742.49,6490.48L3788.24,6490.48ZM3888.31,6715.4L3621.45,6715.4L3621.45,6619.14L3888.31,6619.14L3888.31,6715.4ZM4440.14,6596.27C4360.08,6596.27 4294.32,6530.51 4294.32,6449.49L4294.32,6184.54C4294.32,6104.49 4360.08,6038.72 4440.14,6038.72C4521.15,6038.72 4586.91,6104.49 4586.91,6184.54L4586.91,6334.17L4527.82,6345.61L4401.06,6374.2L4401.06,6455.21C4401.06,6478.09 4420.12,6497.15 4442.99,6497.15C4465.87,6497.15 4484.93,6478.09 4484.93,6455.21L4484.93,6409.47L4586.91,6389.45L4586.91,6449.49C4586.91,6530.51 4521.15,6596.27 4440.14,6596.27ZM4401.06,6181.68L4401.06,6276.99L4484.93,6256.98L4484.93,6181.68C4484.93,6158.81 4465.87,6139.75 4442.99,6139.75C4420.12,6139.75 4401.06,6158.81 4401.06,6181.68ZM4558.32,6620.09L4611.69,6712.54C4552.6,6746.85 4487.79,6764.01 4423.93,6764.01C4267.63,6764.01 4128.48,6655.36 4128.48,6490.48L4129.44,6490.48L4129.44,6459.98C4129.44,6439.01 4113.23,6424.72 4093.22,6424.72C4085.6,6424.72 4077.02,6426.62 4069.39,6431.39L4050.33,6442.82L4050.33,6715.4L3943.59,6715.4L3943.59,6049.21L4050.33,6049.21L4050.33,6337.03L4079.88,6316.07C4102.75,6299.86 4114.19,6285.57 4114.19,6261.74L4114.19,6049.21L4220.93,6049.21L4220.93,6265.55C4220.93,6317.97 4197.1,6355.14 4148.5,6385.64C4199.01,6384.69 4236.18,6414.23 4236.18,6460.93L4236.18,6490.48L4235.23,6490.48C4235.23,6595.31 4328.63,6657.26 4424.89,6657.26C4468.73,6657.26 4515.43,6644.87 4558.32,6620.09Z" style="fill:#0F1F3D;"/>
+      </g></g></g>
+    </svg>
+  </div>
+  <div class="cover-bottom">
+    <div class="cover-eyebrow">Mr. Cake Pastelería Creativa</div>
+    <div class="cover-title">
+      <span data-lang-inline="es">Catálogo<br>de Bodas</span>
+      <span data-lang-inline="en">Wedding<br>Catalog</span>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════ INTRO -->
+<div class="page page-cream">
+  <div data-lang="es">
+    <div class="tag" style="color:var(--navy);">El cake de tu boda</div>
+    <div class="display d-navy">Cada cake empieza<br>por dentro.</div>
+    <div class="divider"></div>
+    <p class="body">Elige tu bizcocho, tu relleno y construimos juntos la combinación perfecta para tu boda.</p>
+  </div>
+  <div data-lang="en">
+    <div class="tag" style="color:var(--navy);">Your wedding cake</div>
+    <div class="display d-navy">Every cake starts<br>from the inside.</div>
+    <div class="divider"></div>
+    <p class="body">Choose your cake base and filling — and together we'll build the perfect combination for your wedding.</p>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════ FLAVORS -->
+<div class="page page-cream">
+  <div class="flabel"><span data-lang-inline="es">Bizcochos</span><span data-lang-inline="en">Cake Bases</span></div>
+  <div class="flist">Vainilla · Chocolate · Limón · Coco · Café · Mármol · Zanahoria · Pistacho</div>
+
+  <div class="flabel"><span data-lang-inline="es">Rellenos</span><span data-lang-inline="en">Fillings</span></div>
+  <div class="flist">Dulce de leche · Chocolate · Chocolate Blanco · Caramelo Salado · Nutella · Chinola · Limón · Piña · Guayaba · Mango · Fresa · Cereza</div>
+
+  <div class="flabel"><span data-lang-inline="es">Rellenos Premium</span><span data-lang-inline="en">Premium Fillings</span></div>
+  <div class="flist">Baileys · Pistacho · Frutos Rojos · Queso Crema · Champán</div>
+
+  <p class="fnote">
+    <span data-lang-inline="es">¿Tienes un sabor en mente que no está en la lista? Cuéntanos — nos encanta el reto.</span>
+    <span data-lang-inline="en">Have a flavor in mind that's not on the list? Tell us — we love the challenge.</span>
+  </p>
+
+  <div class="lfoot">
+    <svg viewBox="0 0 1681 524" xmlns="http://www.w3.org/2000/svg" style="fill-rule:evenodd;clip-rule:evenodd;">
+      <g transform="matrix(1,0,0,1,-4195.91,-3643.81)">
+        <path d="M4695.35,4056.15L4735.3,4122.81C4687.5,4149.61 4636.84,4163.36 4589.75,4163.36C4449.2,4163.36 4374.28,4056.15 4374.28,3925.58L4374.28,3768.89L4327.9,3867.85L4321.48,3867.85L4275.82,3768.89L4275.82,4124.88L4195.91,4124.88L4195.91,3643.81L4275.82,3643.81L4325.05,3736.59L4374.28,3643.81L4454.19,3643.81L4454.19,3925.58C4454.19,4010.11 4494.15,4086.39 4589.75,4086.39C4623.28,4086.39 4659.67,4076.08 4695.35,4056.15ZM4675.92,3924.89C4705.89,3924.89 4730.86,3948.26 4730.86,3977.81C4730.86,4006.67 4705.89,4030.04 4675.92,4030.04C4645.24,4030.04 4620.99,4006.67 4620.99,3977.81C4620.99,3948.26 4645.24,3924.89 4675.92,3924.89ZM4494.7,3991.9L4494.7,3725.6C4494.7,3680.24 4533.23,3643.81 4580.32,3643.81L4675.92,3643.81L4661.65,3715.29L4601.01,3715.29C4586.74,3715.29 4574.61,3726.28 4574.61,3740.71L4574.61,3991.9L4574.4,3991.9L4574.41,3992.15C4574.41,4013.09 4556.29,4030.04 4534.55,4030.04C4512.3,4030.04 4494.7,4013.09 4494.7,3992.15L4494.7,3991.9ZM4978.42,3643.81C5039.06,3643.81 5088.29,3690.55 5088.29,3748.96L5088.29,3856.86L5011.95,3871.29L5011.95,3746.21C5011.95,3729.72 4997.68,3716.66 4980.56,3716.66C4963.43,3716.66 4949.16,3729.72 4949.16,3746.21L4949.16,4038.28C4949.16,4054.78 4963.43,4067.84 4980.56,4067.84C4997.68,4067.84 5011.95,4054.78 5011.95,4038.28L5011.95,3911.15L5088.29,3896.72L5088.29,4034.16C5088.29,4092.58 5039.06,4139.31 4978.42,4139.31C4918.48,4139.31 4869.25,4092.58 4869.25,4034.16L4869.25,3748.96C4869.25,3690.55 4918.48,3643.81 4978.42,3643.81ZM5120.4,3750.34C5120.4,3680.24 5173.91,3644.5 5227.42,3644.5C5281.65,3644.5 5335.87,3680.93 5335.87,3755.83L5335.87,4039.66L5208.87,4039.66C5159.64,4039.66 5120.4,4001.86 5120.4,3954.44L5120.4,3852.73L5259.53,3823.18L5259.53,3764.77C5259.53,3729.72 5245.26,3716.66 5228.14,3716.66C5211.01,3716.66 5196.74,3729.72 5196.74,3746.9L5196.74,3798.44L5120.4,3812.87L5120.4,3750.34ZM5259.53,3970.25L5259.53,3893.28L5196.74,3908.4L5196.74,3942.76C5196.74,3957.88 5209.59,3970.25 5225.28,3970.25L5259.53,3970.25ZM5334.44,4132.44L5134.67,4132.44L5134.67,4063.02L5334.44,4063.02L5334.44,4132.44ZM5747.55,4046.53C5687.62,4046.53 5638.39,3999.11 5638.39,3940.7L5638.39,3749.65C5638.39,3691.92 5687.62,3644.5 5747.55,3644.5C5808.2,3644.5 5857.43,3691.92 5857.43,3749.65L5857.43,3857.54L5813.19,3865.79L5718.3,3886.41L5718.3,3944.82C5718.3,3961.31 5732.57,3975.06 5749.69,3975.06C5766.82,3975.06 5781.08,3961.31 5781.08,3944.82L5781.08,3911.83L5857.43,3897.4L5857.43,3940.7C5857.43,3999.11 5808.2,4046.53 5747.55,4046.53ZM5718.3,3747.59L5718.3,3816.31L5781.08,3801.88L5781.08,3747.59C5781.08,3731.09 5766.82,3717.35 5749.69,3717.35C5732.57,3717.35 5718.3,3731.09 5718.3,3747.59ZM5836.02,4063.71L5875.98,4130.37C5831.74,4155.11 5783.23,4167.48 5735.42,4167.48C5618.41,4167.48 5514.24,4089.14 5514.24,3970.25L5514.95,3970.25L5514.95,3948.26C5514.95,3933.14 5502.83,3922.83 5487.84,3922.83C5482.14,3922.83 5475.71,3924.2 5470.01,3927.64L5455.74,3935.89L5455.74,4132.44L5375.83,4132.44L5375.83,3652.06L5455.74,3652.06L5455.74,3859.6L5477.85,3844.49C5494.98,3832.8 5503.54,3822.49 5503.54,3805.31L5503.54,3652.06L5583.45,3652.06L5583.45,3808.06C5583.45,3845.86 5565.61,3872.66 5529.23,3894.65C5567.04,3893.97 5594.86,3915.27 5594.86,3948.94L5594.86,3970.25L5594.15,3970.25C5594.15,4045.84 5664.07,4090.51 5736.14,4090.51C5768.95,4090.51 5803.92,4081.58 5836.02,4063.71Z" style="fill:#0F1F3D;"/>
+      </g>
+    </svg>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════ PAIRINGS -->
+<div class="page page-cream">
+
+  <div data-lang="es">
+    <div class="pairings-intro">
+      <div class="tag" style="color:var(--navy);">Combinaciones que recomiendo</div>
+      <div class="display d-navy">Curadas por Frank.</div>
+      <div class="divider"></div>
+      <p class="body">El catálogo de sabores es el punto de partida. Estas combinaciones las desarrollé con criterio de chef pastelero — equilibrio de texturas, acidez, dulzor y estructura. Son mis recomendaciones personales para tu boda.</p>
+    </div>
+
+    <div class="pairing-cat-label">Clásicos</div>
+    <div class="pairing-grid">
+      <div class="pairing-card">
+        <div class="pairing-name">Milky Way</div>
+        <div class="pairing-desc">Chocolate &amp; Dulce de leche</div>
+      </div>
+      <div class="pairing-card">
+        <div class="pairing-name">Carroto Mio</div>
+        <div class="pairing-desc">Zanahoria &amp; Queso crema con nueces</div>
+      </div>
+    </div>
+
+    <div class="pairing-cat-label">Cítricos</div>
+    <div class="pairing-grid">
+      <div class="pairing-card">
+        <div class="pairing-name">Summer Crush</div>
+        <div class="pairing-desc">Limón &amp; Blueberry</div>
+      </div>
+      <div class="pairing-card">
+        <div class="pairing-name">Royal Wedding</div>
+        <div class="pairing-desc">Toronja &amp; Chinola</div>
+      </div>
+    </div>
+
+    <div class="pairing-cat-label">Frutales</div>
+    <div class="pairing-grid">
+      <div class="pairing-card">
+        <div class="pairing-name">Tropical Sweet</div>
+        <div class="pairing-desc">Coco &amp; Guayaba</div>
+      </div>
+      <div class="pairing-card">
+        <div class="pairing-name">Caribbean Love</div>
+        <div class="pairing-desc">Coco &amp; Mango</div>
+      </div>
+      <div class="pairing-card">
+        <div class="pairing-name">Strawberry Milkshake</div>
+        <div class="pairing-desc">Vainilla, Chocolate blanco &amp; Fresa</div>
+      </div>
+    </div>
+
+    <div class="pairing-cat-label">Gourmet</div>
+    <div class="pairing-grid">
+      <div class="pairing-card">
+        <div class="pairing-name">Choco Dubai</div>
+        <div class="pairing-desc">Chocolate &amp; Pistacho</div>
+      </div>
+      <div class="pairing-card">
+        <div class="pairing-name">Selva Negra</div>
+        <div class="pairing-desc">Chocolate &amp; Cereza</div>
+      </div>
+      <div class="pairing-card">
+        <div class="pairing-name">Realeza Imperial</div>
+        <div class="pairing-desc">Champán &amp; Fresas</div>
+      </div>
+    </div>
+
+    <p class="pairings-note">Estas son mis combinaciones favoritas — pero cada cake se construye desde tu historia. Si tienes otro sabor en mente, lo trabajamos juntos.</p>
+  </div>
+
+  <div data-lang="en">
+    <div class="pairings-intro">
+      <div class="tag" style="color:var(--navy);">Combinations I recommend</div>
+      <div class="display d-navy">Curated by Frank.</div>
+      <div class="divider"></div>
+      <p class="body">The flavor list is just the starting point. These combinations were developed with a pastry chef's eye — balancing texture, acidity, sweetness and structure. These are Frank's personal recommendations for your wedding cake.</p>
+    </div>
+
+    <div class="pairing-cat-label">Classics</div>
+    <div class="pairing-grid">
+      <div class="pairing-card">
+        <div class="pairing-name">Milky Way</div>
+        <div class="pairing-desc">Chocolate &amp; Dulce de leche</div>
+      </div>
+      <div class="pairing-card">
+        <div class="pairing-name">Carroto Mio</div>
+        <div class="pairing-desc">Carrot &amp; Cream cheese with walnuts</div>
+      </div>
+    </div>
+
+    <div class="pairing-cat-label">Citrus</div>
+    <div class="pairing-grid">
+      <div class="pairing-card">
+        <div class="pairing-name">Summer Crush</div>
+        <div class="pairing-desc">Lemon &amp; Blueberry</div>
+      </div>
+      <div class="pairing-card">
+        <div class="pairing-name">Royal Wedding</div>
+        <div class="pairing-desc">Grapefruit &amp; Passion fruit</div>
+      </div>
+    </div>
+
+    <div class="pairing-cat-label">Fruity</div>
+    <div class="pairing-grid">
+      <div class="pairing-card">
+        <div class="pairing-name">Tropical Sweet</div>
+        <div class="pairing-desc">Coconut &amp; Guava</div>
+      </div>
+      <div class="pairing-card">
+        <div class="pairing-name">Caribbean Love</div>
+        <div class="pairing-desc">Coconut &amp; Mango</div>
+      </div>
+      <div class="pairing-card">
+        <div class="pairing-name">Strawberry Milkshake</div>
+        <div class="pairing-desc">Vanilla, White chocolate &amp; Strawberry</div>
+      </div>
+    </div>
+
+    <div class="pairing-cat-label">Gourmet</div>
+    <div class="pairing-grid">
+      <div class="pairing-card">
+        <div class="pairing-name">Choco Dubai</div>
+        <div class="pairing-desc">Chocolate &amp; Pistachio</div>
+      </div>
+      <div class="pairing-card">
+        <div class="pairing-name">Selva Negra</div>
+        <div class="pairing-desc">Chocolate &amp; Cherry</div>
+      </div>
+      <div class="pairing-card">
+        <div class="pairing-name">Realeza Imperial</div>
+        <div class="pairing-desc">Champagne &amp; Strawberries</div>
+      </div>
+    </div>
+
+    <p class="pairings-note">These are Frank's favorite combinations — but every cake is built from your story. If you have something else in mind, we'll work it out together.</p>
+  </div>
+
+</div>
+
+    <p class="pairings-note">These are Frank's favorite combinations — but every cake is built from your story. If you have something else in mind, we'll work it out together.</p>
+  </div>
+
+</div>
+
+<!-- ══════════════════════════════════════ TASTING BOX -->
+<div class="page page-sand">
+  <img src="images/tasting-box.jpg" style="width:100%;height:420px;object-fit:cover;object-position:center top;border-radius:2px;margin-bottom:28px;" alt="Tasting Box Mr. Cake" />
+  <div class="tcard">
+    <div class="flabel">Tasting Box</div>
+    <div data-lang="es">
+      <div class="display d-white" style="margin-bottom:18px;font-size:clamp(24px,4vw,38px);">Croce los sabores<br>antes de decidir.</div>
+      <div class="divider"></div>
+      <p class="body body-w">El Tasting Box es nuestra forma de que llegues al día de tu boda con la certeza de que cada bocado va a deleitar a tus invitados — una selección personalizada de bizcochos y rellenos que llega directamente a ti.<br><br>Al reservar tu cake con nosotros, tu Tasting Box es nuestro regalo para ti. Escríbenos por WhatsApp para coordinar el envío.</p>
+      <p class="fnote" style="color:rgba(255,255,255,.4);border-color:rgba(255,255,255,.15);">Los Tasting Box se reservan con al menos una semana de anticipación</p>
+    </div>
+    <div data-lang="en">
+      <div class="display d-white" style="margin-bottom:18px;font-size:clamp(24px,4vw,38px);">Taste before<br>you decide.</div>
+      <div class="divider"></div>
+      <p class="body body-w">The Tasting Box is our way of making sure you arrive at your wedding day knowing that every bite will delight your guests — a curated selection of cake bases and fillings delivered directly to you.<br><br>When you book your cake with us, your Tasting Box is our gift to you. Message us on WhatsApp to coordinate delivery.</p>
+      <p class="fnote" style="color:rgba(255,255,255,.4);border-color:rgba(255,255,255,.15);">Tasting Boxes require at least one week's notice</p>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════ FLORALES -->
+<div class="page page-sand">
+  <div class="tag" style="color:var(--navy-mid);"><span data-lang-inline="es">Estilo</span><span data-lang-inline="en">Style</span></div>
+  <div data-lang="es">
+    <div class="display d-navy">Florales &amp;<br>Botánicos</div>
+    <p class="sub" style="color:rgba(15,31,61,.6);">Para la novia que quiere naturaleza en cada detalle.</p>
+    <div class="divider"></div>
+    <p class="body">Flores de wafer paper elaboradas a mano, composiciones botánicas y acabados orgánicos que hacen de tu cake una pieza viva. Cada pétalo es único — porque está hecho a mano, uno por uno.</p>
+  </div>
+  <div data-lang="en">
+    <div class="display d-navy">Floral &amp;<br>Botanical</div>
+    <p class="sub" style="color:rgba(15,31,61,.6);">For the bride who wants nature in every detail.</p>
+    <div class="divider"></div>
+    <p class="body">Hand-crafted wafer paper flowers, botanical compositions and organic finishes that turn your cake into a living piece. Every petal is one of a kind — because each one is made by hand.</p>
+  </div>
+  <div class="grid2">
+    <img src="images/florales-01.jpg" style="width:100%;height:480px;object-fit:cover;object-position:center 15%;border-radius:2px;" alt="Floral cake Mr. Cake">
+    <img src="images/florales-02.jpg" style="width:100%;height:480px;object-fit:cover;object-position:center 15%;border-radius:2px;" alt="Floral cake wafer paper Mr. Cake">
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════ ROMÁNTICOS -->
+<div class="page page-dark">
+  <div class="tag tag-gold"><span data-lang-inline="es">Estilo</span><span data-lang-inline="en">Style</span></div>
+  <div data-lang="es">
+    <div class="display d-white">Románticos &amp;<br>Clásicos</div>
+    <p class="sub" style="color:rgba(255,255,255,.5);">Elegancia atemporal para el día más importante.</p>
+    <div class="divider"></div>
+    <p class="body body-w">Texturas suaves, paletas neutras y detalles que no gritan — que susurran. Desde el naked cake más delicado hasta el fondant más refinado, estos diseños envejecen tan bien como tu historia de amor.</p>
+  </div>
+  <div data-lang="en">
+    <div class="display d-white">Romantic &amp;<br>Classic</div>
+    <p class="sub" style="color:rgba(255,255,255,.5);">Timeless elegance for the most important day.</p>
+    <div class="divider"></div>
+    <p class="body body-w">Soft textures, neutral palettes and details that don't shout — they whisper. From the most delicate naked cake to the most refined fondant, these designs age as well as your love story.</p>
+  </div>
+  <div class="grid2">
+    <img src="images/romanticos-01.jpg" style="width:100%;height:480px;object-fit:cover;object-position:center 15%;border-radius:2px;" alt="Romantic wedding cake Mr. Cake">
+    <img src="images/romanticos-02.jpg" style="width:100%;height:480px;object-fit:cover;object-position:center 15%;border-radius:2px;" alt="Classic wedding cake Mr. Cake">
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════ ÚNICOS -->
+<div class="page page-dark">
+  <div class="tag tag-gold"><span data-lang-inline="es">Estilo</span><span data-lang-inline="en">Style</span></div>
+  <div data-lang="es">
+    <div class="display d-gold">Únicos &amp;<br>Especiales</div>
+    <p class="sub" style="color:rgba(255,255,255,.5);">Para la pareja que quiere algo que nadie ha visto antes.</p>
+    <div class="divider"></div>
+    <p class="body body-w">Conchas en chocolate blanco, bases de donas, cakes temáticos con identidad propia. Si lo imaginaste, lo diseñamos juntos.</p>
+  </div>
+  <div data-lang="en">
+    <div class="display d-gold">Unique &amp;<br>Special</div>
+    <p class="sub" style="color:rgba(255,255,255,.5);">For the couple who wants something no one has seen before.</p>
+    <div class="divider"></div>
+    <p class="body body-w">White chocolate seashells, donut towers, themed cakes with their own identity. If you imagined it, we'll design it together.</p>
+  </div>
+  <div class="grid2">
+    <img src="images/unicos-01.jpg" style="width:100%;height:480px;object-fit:cover;object-position:center 15%;border-radius:2px;" alt="Unique wedding cake Mr. Cake">
+    <img src="images/modernos-02.jpg" style="width:100%;height:480px;object-fit:cover;object-position:center 15%;border-radius:2px;" alt="Artistic wedding cake Mr. Cake">
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════ MODERNOS -->
+<div class="page page-cream">
+  <div class="tag" style="color:var(--navy);"><span data-lang-inline="es">Estilo</span><span data-lang-inline="en">Style</span></div>
+  <div data-lang="es">
+    <div class="display d-navy">Modernos &amp;<br>Artísticos</div>
+    <p class="sub" style="color:rgba(15,31,61,.6);">Arquitectura comestible para bodas con personalidad.</p>
+    <div class="divider"></div>
+    <p class="body">Líneas limpias, texturas talladas, pintura a mano y estructuras que desafían lo convencional. Para la pareja que entiende que un cake puede ser arte.</p>
+  </div>
+  <div data-lang="en">
+    <div class="display d-navy">Modern &amp;<br>Artistic</div>
+    <p class="sub" style="color:rgba(15,31,61,.6);">Edible architecture for weddings with personality.</p>
+    <div class="divider"></div>
+    <p class="body">Clean lines, sculpted textures, hand-painting and structures that challenge convention. For the couple who understands that a cake can be art.</p>
+  </div>
+  <div class="grid2">
+    <img src="images/modernos-01.jpg" style="width:100%;height:480px;object-fit:cover;object-position:center 15%;border-radius:2px;" alt="Modern artistic wedding cake Mr. Cake">
+    <img src="images/modernos-02.jpg" style="width:100%;height:480px;object-fit:cover;object-position:center 15%;border-radius:2px;" alt="Artistic wedding cake Mr. Cake">
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════ PROCESO -->
+<div class="page page-dark">
+  <div class="tag tag-gold"><span data-lang-inline="es">Cómo trabajamos</span><span data-lang-inline="en">How it works</span></div>
+  <div data-lang="es">
+    <div class="display d-white" style="font-size:clamp(22px,4vw,36px);margin-bottom:10px;">De tu idea al cake<br>de tu boda.</div>
+  </div>
+  <div data-lang="en">
+    <div class="display d-white" style="font-size:clamp(22px,4vw,36px);margin-bottom:10px;">From your idea to<br>your wedding cake.</div>
+  </div>
+  <div class="divider"></div>
+
+  <div class="step"><div class="snum">01</div><div>
+    <div class="stitle"><span data-lang-inline="es">Consulta Inicial</span><span data-lang-inline="en">Initial Consultation</span></div>
+    <p class="sdesc"><span data-lang-inline="es">Escríbenos por WhatsApp o agenda una videollamada — cuéntanos tu visión, fecha, venue, estilo y número de invitados.</span><span data-lang-inline="en">Message us on WhatsApp or schedule a video call — tell us your vision, date, venue, style and guest count.</span></p>
+  </div></div>
+
+  <div class="step"><div class="snum">02</div><div>
+    <div class="stitle"><span data-lang-inline="es">Cotización Personalizada</span><span data-lang-inline="en">Custom Quote</span></div>
+    <p class="sdesc"><span data-lang-inline="es">Basada en tu consulta, preparamos una propuesta a la medida de tu boda.</span><span data-lang-inline="en">Based on your consultation, we prepare a proposal tailored to your wedding.</span></p>
+  </div></div>
+
+  <div class="step"><div class="snum">03</div><div>
+    <div class="stitle"><span data-lang-inline="es">Reserva</span><span data-lang-inline="en">Booking</span></div>
+    <p class="sdesc"><span data-lang-inline="es">Con el 50% del total confirmamos tu fecha — y te regalamos tu Tasting Box.</span><span data-lang-inline="en">With 50% of the total we confirm your date — and gift you your Tasting Box.</span></p>
+  </div></div>
+
+  <div class="step"><div class="snum">04</div><div>
+    <div class="stitle"><span data-lang-inline="es">Diseño en Procreate</span><span data-lang-inline="en">Design in Procreate</span></div>
+    <p class="sdesc"><span data-lang-inline="es">Creamos el diseño digital de tu cake juntos. No producimos nada sin tu aprobación.</span><span data-lang-inline="en">We create your cake's digital design together. Nothing goes into production without your approval.</span></p>
+  </div></div>
+
+  <div class="step"><div class="snum">05</div><div>
+    <div class="stitle"><span data-lang-inline="es">Producción</span><span data-lang-inline="en">Production</span></div>
+    <p class="sdesc"><span data-lang-inline="es">Elaboramos tu cake bajo estándares ServSafe. Algunos elementos requieren hasta 8 días de secado.</span><span data-lang-inline="en">We craft your cake under ServSafe standards. Some elements require up to 8 days of drying time.</span></p>
+  </div></div>
+
+  <div class="step"><div class="snum">06</div><div>
+    <div class="stitle"><span data-lang-inline="es">Pago Final &amp; Entrega</span><span data-lang-inline="en">Final Payment &amp; Delivery</span></div>
+    <p class="sdesc"><span data-lang-inline="es">El saldo restante se liquida 15 días antes de tu boda. El transporte e instalación están incluidos — nadie más le pone las manos encima.</span><span data-lang-inline="en">The remaining balance is due 15 days before your wedding. Transport and installation are included — no one else handles your cake.</span></p>
+  </div></div>
+
+  <p class="pnote">
+    <span data-lang-inline="es">La degustación sin reserva tiene un costo de RD$2,500, descontable del total al confirmar tu pedido.</span>
+    <span data-lang-inline="en">A tasting without a booking has a cost of RD$2,500, deductible from your total when you confirm.</span>
+  </p>
+</div>
+
+<!-- ══════════════════════════════════════ FAQ -->
+<div class="page page-cream">
+  <div class="tag" style="color:var(--navy);"><span data-lang-inline="es">Todo lo que necesitas saber</span><span data-lang-inline="en">Everything you need to know</span></div>
+  <div data-lang="es"><div class="display d-navy" style="margin-bottom:8px;">Preguntas<br>Frecuentes</div></div>
+  <div data-lang="en"><div class="display d-navy" style="margin-bottom:8px;">Frequently Asked<br>Questions</div></div>
+  <div class="divider"></div>
+
+  <div class="faq"><div class="fq"><span data-lang-inline="es">¿Con cuánta anticipación debo reservar?</span><span data-lang-inline="en">How far in advance should I book?</span></div><div class="fa"><span data-lang-inline="es">Recomendamos reservar con al menos 3 meses de anticipación. Para temporada alta, entre más antes mejor.</span><span data-lang-inline="en">We recommend booking at least 3 months in advance. For peak season, the earlier the better.</span></div></div>
+
+  <div class="faq"><div class="fq"><span data-lang-inline="es">¿Puedo ver el diseño antes de que lo produzcan?</span><span data-lang-inline="en">Can I see the design before production?</span></div><div class="fa"><span data-lang-inline="es">Siempre. Cada cake se diseña en Procreate y no comenzamos hasta que apruebes cada detalle.</span><span data-lang-inline="en">Always. Every cake is designed in Procreate and we don't start production until you approve every detail.</span></div></div>
+
+  <div class="faq"><div class="fq"><span data-lang-inline="es">¿Qué coberturas ofrecen?</span><span data-lang-inline="en">What finishes do you offer?</span></div><div class="fa"><span data-lang-inline="es">Trabajamos con ganache blanco, fondant y buttercream suizo — te asesoramos sobre cuál es la mejor opción para tu boda.</span><span data-lang-inline="en">We work with white ganache, fondant and Swiss buttercream — we'll advise on the best option for your wedding.</span></div></div>
+
+  <div class="faq"><div class="fq"><span data-lang-inline="es">¿Puedo elegir más de un sabor?</span><span data-lang-inline="en">Can I choose more than one flavor?</span></div><div class="fa"><span data-lang-inline="es">Sí — cada piso puede tener un bizcocho y relleno diferente.</span><span data-lang-inline="en">Yes — each tier can have a different cake base and filling.</span></div></div>
+
+  <div class="faq"><div class="fq"><span data-lang-inline="es">¿Tienen opciones veganas y sin gluten?</span><span data-lang-inline="en">Do you offer vegan and gluten-free options?</span></div><div class="fa"><span data-lang-inline="es">Sí. Consúltanos al momento de tu cotización.</span><span data-lang-inline="en">Yes. Let us know at the time of your quote.</span></div></div>
+
+  <div class="faq"><div class="fq"><span data-lang-inline="es">¿Qué es un cake escenográfico?</span><span data-lang-inline="en">What is a display cake?</span></div><div class="fa"><span data-lang-inline="es">Es un cake idéntico al real pero diseñado para lucir durante horas sin perder su forma. Ideal para bodas en playa o exteriores.</span><span data-lang-inline="en">A display cake is visually identical to your real cake but designed to hold its shape for hours — ideal for beach or outdoor weddings.</span></div></div>
+
+  <div class="faq"><div class="fq"><span data-lang-inline="es">¿El transporte está incluido?</span><span data-lang-inline="en">Is transport included?</span></div><div class="fa"><span data-lang-inline="es">Sí — transporte e instalación en el venue están incluidos. Tu cake llega en nuestras manos, no en las de nadie más.</span><span data-lang-inline="en">Yes — transport and installation at the venue are included. Your cake arrives in our hands, no one else's.</span></div></div>
+
+  <div class="faq"><div class="fq"><span data-lang-inline="es">¿Pueden entregar fuera de Santo Domingo?</span><span data-lang-inline="en">Do you deliver outside Santo Domingo?</span></div><div class="fa"><span data-lang-inline="es">Sí — hemos llevado cakes a Santiago, La Romana, Punta Cana y más. Coordinamos el transporte sin importar el destino.</span><span data-lang-inline="en">Yes — we've delivered to Santiago, La Romana, Punta Cana and beyond. We coordinate transport regardless of destination.</span></div></div>
+
+  <div class="faq"><div class="fq"><span data-lang-inline="es">Quiero un cake igual a una foto — ¿pueden replicarlo?</span><span data-lang-inline="en">I found a cake I love — can you replicate it?</span></div><div class="fa"><span data-lang-inline="es">Podemos inspirarnos en referencias, pero nunca copiamos diseños de otros. Cada Mr. Cake es una pieza original — garantizamos que el resultado estará a la altura de tu visión.</span><span data-lang-inline="en">We can draw inspiration from references you bring, but every Mr. Cake is an original. We guarantee the result will be at the level of your vision — or beyond it.</span></div></div>
+</div>
+
+<!-- ══════════════════════════════════════ QUOTE -->
+<div class="qpage">
+  <div class="qtext">
+    <span data-lang-inline="es">"Cada boda merece un cake<br>que cuente su historia."</span>
+    <span data-lang-inline="en">"Every wedding deserves a cake<br>that tells its story."</span>
+  </div>
+  <div class="qbrand">Mr. Cake · Pastelería Creativa · Santo Domingo, RD</div>
+</div>
+
+<!-- ══════════════════════════════════════ CONTACT -->
+<div class="cpage">
+  <div class="clabel"><span data-lang-inline="es">Contacto</span><span data-lang-inline="en">Get in Touch</span></div>
+
+  <div data-lang="es">
+    <p class="ch">Tu cake de boda empieza con un mensaje.</p>
+    <p class="csub">Escríbenos y cuéntanos tu historia —<br>con gusto te acompañamos en el proceso.</p>
+  </div>
+  <div data-lang="en">
+    <p class="ch">Your wedding cake starts with a message.</p>
+    <p class="csub">Tell us about your wedding and your vision.<br>We'll take it from there.</p>
+  </div>
+
+  <div class="citems">
+    <div class="citem"><span>📱</span> WhatsApp: +1 829 368 4150</div>
+    <div class="citem"><span>📸</span> @mrcake.lat</div>
+    <div class="citem"><span>✉️</span> <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="8ceafeede2e7cce1feefede7e9a2e0edf8">[email&#160;protected]</a></div>
+  </div>
+
+  <a href="https://bodas.mrcake.lat" id="cta-es" class="btn-gold" data-lang="es">Planifica tu Wedding Cake</a>
+  <a href="https://weddings.mrcake.lat" id="cta-en" class="btn-gold" data-lang="en">Start Planning Your Cake</a>
+
+  <div class="clogo">
+    <svg viewBox="0 0 1681 524" xmlns="http://www.w3.org/2000/svg" style="fill-rule:evenodd;clip-rule:evenodd;">
+      <g transform="matrix(1,0,0,1,-4195.91,-3643.81)">
+        <path d="M4695.35,4056.15L4735.3,4122.81C4687.5,4149.61 4636.84,4163.36 4589.75,4163.36C4449.2,4163.36 4374.28,4056.15 4374.28,3925.58L4374.28,3768.89L4327.9,3867.85L4321.48,3867.85L4275.82,3768.89L4275.82,4124.88L4195.91,4124.88L4195.91,3643.81L4275.82,3643.81L4325.05,3736.59L4374.28,3643.81L4454.19,3643.81L4454.19,3925.58C4454.19,4010.11 4494.15,4086.39 4589.75,4086.39C4623.28,4086.39 4659.67,4076.08 4695.35,4056.15ZM4675.92,3924.89C4705.89,3924.89 4730.86,3948.26 4730.86,3977.81C4730.86,4006.67 4705.89,4030.04 4675.92,4030.04C4645.24,4030.04 4620.99,4006.67 4620.99,3977.81C4620.99,3948.26 4645.24,3924.89 4675.92,3924.89ZM4494.7,3991.9L4494.7,3725.6C4494.7,3680.24 4533.23,3643.81 4580.32,3643.81L4675.92,3643.81L4661.65,3715.29L4601.01,3715.29C4586.74,3715.29 4574.61,3726.28 4574.61,3740.71L4574.61,3991.9L4574.4,3991.9L4574.41,3992.15C4574.41,4013.09 4556.29,4030.04 4534.55,4030.04C4512.3,4030.04 4494.7,4013.09 4494.7,3992.15L4494.7,3991.9ZM4978.42,3643.81C5039.06,3643.81 5088.29,3690.55 5088.29,3748.96L5088.29,3856.86L5011.95,3871.29L5011.95,3746.21C5011.95,3729.72 4997.68,3716.66 4980.56,3716.66C4963.43,3716.66 4949.16,3729.72 4949.16,3746.21L4949.16,4038.28C4949.16,4054.78 4963.43,4067.84 4980.56,4067.84C4997.68,4067.84 5011.95,4054.78 5011.95,4038.28L5011.95,3911.15L5088.29,3896.72L5088.29,4034.16C5088.29,4092.58 5039.06,4139.31 4978.42,4139.31C4918.48,4139.31 4869.25,4092.58 4869.25,4034.16L4869.25,3748.96C4869.25,3690.55 4918.48,3643.81 4978.42,3643.81ZM5120.4,3750.34C5120.4,3680.24 5173.91,3644.5 5227.42,3644.5C5281.65,3644.5 5335.87,3680.93 5335.87,3755.83L5335.87,4039.66L5208.87,4039.66C5159.64,4039.66 5120.4,4001.86 5120.4,3954.44L5120.4,3852.73L5259.53,3823.18L5259.53,3764.77C5259.53,3729.72 5245.26,3716.66 5228.14,3716.66C5211.01,3716.66 5196.74,3729.72 5196.74,3746.9L5196.74,3798.44L5120.4,3812.87L5120.4,3750.34ZM5259.53,3970.25L5259.53,3893.28L5196.74,3908.4L5196.74,3942.76C5196.74,3957.88 5209.59,3970.25 5225.28,3970.25L5259.53,3970.25ZM5334.44,4132.44L5134.67,4132.44L5134.67,4063.02L5334.44,4063.02L5334.44,4132.44ZM5747.55,4046.53C5687.62,4046.53 5638.39,3999.11 5638.39,3940.7L5638.39,3749.65C5638.39,3691.92 5687.62,3644.5 5747.55,3644.5C5808.2,3644.5 5857.43,3691.92 5857.43,3749.65L5857.43,3857.54L5813.19,3865.79L5718.3,3886.41L5718.3,3944.82C5718.3,3961.31 5732.57,3975.06 5749.69,3975.06C5766.82,3975.06 5781.08,3961.31 5781.08,3944.82L5781.08,3911.83L5857.43,3897.4L5857.43,3940.7C5857.43,3999.11 5808.2,4046.53 5747.55,4046.53ZM5718.3,3747.59L5718.3,3816.31L5781.08,3801.88L5781.08,3747.59C5781.08,3731.09 5766.82,3717.35 5749.69,3717.35C5732.57,3717.35 5718.3,3731.09 5718.3,3747.59ZM5836.02,4063.71L5875.98,4130.37C5831.74,4155.11 5783.23,4167.48 5735.42,4167.48C5618.41,4167.48 5514.24,4089.14 5514.24,3970.25L5514.95,3970.25L5514.95,3948.26C5514.95,3933.14 5502.83,3922.83 5487.84,3922.83C5482.14,3922.83 5475.71,3924.2 5470.01,3927.64L5455.74,3935.89L5455.74,4132.44L5375.83,4132.44L5375.83,3652.06L5455.74,3652.06L5455.74,3859.6L5477.85,3844.49C5494.98,3832.8 5503.54,3822.49 5503.54,3805.31L5503.54,3652.06L5583.45,3652.06L5583.45,3808.06C5583.45,3845.86 5565.61,3872.66 5529.23,3894.65C5567.04,3893.97 5594.86,3915.27 5594.86,3948.94L5594.86,3970.25L5594.15,3970.25C5594.15,4045.84 5664.07,4090.51 5736.14,4090.51C5768.95,4090.51 5803.92,4081.58 5836.02,4063.71Z" style="fill:white;"/>
+      </g>
+    </svg>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════ FOOTER -->
+<footer>
+  <svg width="40" height="40" viewBox="794 -6462 2036 2036" xmlns="http://www.w3.org/2000/svg" style="fill:rgba(255,255,255,0.2);flex-shrink:0;">
+    <g transform="matrix(1.01654,0,0,1.01765,-2192,-11573.5)">
+      <path d="M3934.06,5852.2L3987.43,5944.65C3923.58,5981.82 3855.91,6000.88 3793.01,6000.88C3605.25,6000.88 3505.18,5852.2 3505.18,5671.12L3505.18,5453.82L3443.23,5591.06L3434.65,5591.06L3373.66,5453.82L3373.66,5947.51L3266.91,5947.51L3266.91,5280.37L3373.66,5280.37L3439.42,5409.03L3505.18,5280.37L3611.92,5280.37L3611.92,5671.12C3611.92,5788.35 3665.3,5894.14 3793.01,5894.14C3837.8,5894.14 3886.41,5879.84 3934.06,5852.2ZM3908.11,5670.17C3948.14,5670.17 3981.5,5702.57 3981.5,5743.55C3981.5,5783.58 3948.14,5815.99 3908.11,5815.99C3867.13,5815.99 3834.73,5783.58 3834.73,5743.55C3834.73,5702.57 3867.13,5670.17 3908.11,5670.17ZM3666.03,5763.1L3666.03,5393.78C3666.03,5330.88 3717.5,5280.37 3780.4,5280.37L3908.11,5280.37L3889.05,5379.48L3808.04,5379.48C3788.98,5379.48 3772.78,5394.73 3772.78,5414.75L3772.78,5763.1L3772.51,5763.1L3772.51,5763.44C3772.51,5792.48 3748.31,5815.99 3719.27,5815.99C3689.54,5815.99 3666.03,5792.48 3666.03,5763.44L3666.03,5763.1ZM3412.73,6037.77C3493.74,6037.77 3559.51,6102.58 3559.51,6183.59L3559.51,6333.22L3457.53,6353.24L3457.53,6179.78C3457.53,6156.9 3438.47,6138.8 3415.59,6138.8C3392.72,6138.8 3373.66,6156.9 3373.66,6179.78L3373.66,6584.83C3373.66,6607.7 3392.72,6625.81 3415.59,6625.81C3438.47,6625.81 3457.53,6607.7 3457.53,6584.83L3457.53,6408.51L3559.51,6388.5L3559.51,6579.11C3559.51,6660.12 3493.74,6724.93 3412.73,6724.93C3332.68,6724.93 3266.91,6660.12 3266.91,6579.11L3266.91,6183.59C3266.91,6102.58 3332.68,6037.77 3412.73,6037.77ZM3602.39,6185.5C3602.39,6088.28 3673.87,6038.72 3745.35,6038.72C3817.78,6038.72 3890.22,6089.24 3890.22,6193.12L3890.22,6586.74L3720.57,6586.74C3654.81,6586.74 3602.39,6534.32 3602.39,6468.56L3602.39,6327.5L3788.24,6286.52L3788.24,6205.51C3788.24,6156.9 3769.18,6138.8 3746.31,6138.8C3723.43,6138.8 3704.37,6156.9 3704.37,6180.73L3704.37,6252.21L3602.39,6272.23L3602.39,6185.5ZM3788.24,6490.48L3788.24,6383.73L3704.37,6404.7L3704.37,6452.35C3704.37,6473.32 3721.53,6490.48 3742.49,6490.48L3788.24,6490.48ZM3888.31,6715.4L3621.45,6715.4L3621.45,6619.14L3888.31,6619.14L3888.31,6715.4ZM4440.14,6596.27C4360.08,6596.27 4294.32,6530.51 4294.32,6449.49L4294.32,6184.54C4294.32,6104.49 4360.08,6038.72 4440.14,6038.72C4521.15,6038.72 4586.91,6104.49 4586.91,6184.54L4586.91,6334.17L4527.82,6345.61L4401.06,6374.2L4401.06,6455.21C4401.06,6478.09 4420.12,6497.15 4442.99,6497.15C4465.87,6497.15 4484.93,6478.09 4484.93,6455.21L4484.93,6409.47L4586.91,6389.45L4586.91,6449.49C4586.91,6530.51 4521.15,6596.27 4440.14,6596.27ZM4401.06,6181.68L4401.06,6276.99L4484.93,6256.98L4484.93,6181.68C4484.93,6158.81 4465.87,6139.75 4442.99,6139.75C4420.12,6139.75 4401.06,6158.81 4401.06,6181.68ZM4558.32,6620.09L4611.69,6712.54C4552.6,6746.85 4487.79,6764.01 4423.93,6764.01C4267.63,6764.01 4128.48,6655.36 4128.48,6490.48L4129.44,6490.48L4129.44,6459.98C4129.44,6439.01 4113.23,6424.72 4093.22,6424.72C4085.6,6424.72 4077.02,6426.62 4069.39,6431.39L4050.33,6442.82L4050.33,6715.4L3943.59,6715.4L3943.59,6049.21L4050.33,6049.21L4050.33,6337.03L4079.88,6316.07C4102.75,6299.86 4114.19,6285.57 4114.19,6261.74L4114.19,6049.21L4220.93,6049.21L4220.93,6265.55C4220.93,6317.97 4197.1,6355.14 4148.5,6385.64C4199.01,6384.69 4236.18,6414.23 4236.18,6460.93L4236.18,6490.48L4235.23,6490.48C4235.23,6595.31 4328.63,6657.26 4424.89,6657.26C4468.73,6657.26 4515.43,6644.87 4558.32,6620.09Z"/>
+    </g>
+  </svg>
+  <div class="footer-brand">Mr. Cake · Pastelería Creativa · Santo Domingo, Dominican Republic</div>
+  <div class="footer-quote">
+    <span data-lang-inline="es">"Cada boda merece un cake que cuente su historia."</span>
+    <span data-lang-inline="en">"Every wedding deserves a cake that tells its story."</span>
+  </div>
+</footer>
+
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+  // ─── LANG TOGGLE — mismo sistema que mrcake.lat ───
+  function setLang(lang) {
+    document.body.className = 'lang-' + lang;
+    document.getElementById('btn-es').classList.toggle('active', lang === 'es');
+    document.getElementById('btn-en').classList.toggle('active', lang === 'en');
+    document.documentElement.lang = lang;
+  }
+
+  // ─── NAV SCROLL ───
+  cons
