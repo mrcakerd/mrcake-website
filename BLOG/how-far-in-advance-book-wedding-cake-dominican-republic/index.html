@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title data-en="How Far in Advance Should You Book Your Wedding Cake in the DR? — Mr. Cake" data-es="¿Con Cuánto Tiempo Debes Apartar tu Wedding Cake en RD? — Mr. Cake">How Far in Advance Should You Book Your Wedding Cake in the DR? — Mr. Cake</title>
+  <meta name="description" content="The honest answer from a Dominican cake designer — how much lead time you actually need, what changes during peak season, and what to do if you're running late."/>
+  <link rel="canonical" href="https://mrcake.lat/blog/how-far-in-advance-book-wedding-cake-dominican-republic/"/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@200;300;400;500;600&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --navy: #0F1F3D; --navy-mid: #2B4A6B;
+      --gold: #C4A97D; --gold-light: #E8D5B0;
+      --cream: #FDF0E3; --cream-mid: #F0E0C8;
+      --white: #FFFFFF; --gray: #6B6B6B; --text: #1A1A1A;
+    }
+
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Outfit', sans-serif; background: var(--white); color: var(--text); line-height: 1.7; }
+    a { color: inherit; text-decoration: none; }
+
+    /* ── Nav ── */
+    nav {
+      position: sticky; top: 0; z-index: 100;
+      background: var(--navy); padding: 0 32px;
+      display: flex; align-items: center; justify-content: space-between; height: 60px;
+    }
+    .nav-logo svg { height: 28px; width: auto; display: block; }
+    .nav-links { display: flex; gap: 28px; list-style: none; }
+    .nav-links a { font-size: 13px; font-weight: 400; color: rgba(253,240,227,0.7); transition: color 0.2s; }
+    .nav-links a:hover { color: var(--cream); }
+
+    .nav-right { display: flex; align-items: center; gap: 14px; }
+
+    /* ── Language toggle ── */
+    .lang-toggle {
+      display: flex;
+      align-items: center;
+      background: rgba(255,255,255,0.08);
+      border-radius: 20px;
+      padding: 3px;
+      gap: 2px;
+    }
+    .lang-btn {
+      padding: 4px 10px;
+      border-radius: 16px;
+      border: none;
+      background: none;
+      font-family: 'Outfit', sans-serif;
+      font-size: 12px;
+      font-weight: 500;
+      color: rgba(253,240,227,0.5);
+      cursor: pointer;
+      transition: all 0.2s;
+      letter-spacing: 0.05em;
+    }
+    .lang-btn.active {
+      background: var(--gold);
+      color: var(--navy);
+    }
+    .lang-btn:hover:not(.active) { color: var(--cream); }
+
+    .nav-cta {
+      padding: 8px 18px; background: var(--gold); color: var(--navy);
+      border-radius: 4px; font-size: 13px; font-weight: 500; transition: background 0.2s;
+    }
+    .nav-cta:hover { background: var(--gold-light); }
+
+    @media (max-width: 768px) {
+      .nav-links { display: none; }
+      nav { padding: 0 20px; }
+      .nav-cta { display: none; }
+    }
+
+    /* ── Hero ── */
+    .article-hero { background: var(--navy); color: var(--cream); padding: 64px 24px 56px; text-align: center; }
+    .article-label { font-size: 11px; font-weight: 500; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); margin-bottom: 20px; }
+    .article-hero h1 { font-size: clamp(28px, 5vw, 52px); font-weight: 300; line-height: 1.15; max-width: 760px; margin: 0 auto 20px; }
+    .article-hero h1 em { font-style: italic; color: var(--gold-light); }
+    .article-hero .deck { font-size: clamp(15px, 2vw, 18px); font-weight: 300; color: rgba(253,240,227,0.7); max-width: 560px; margin: 0 auto 32px; line-height: 1.6; }
+    .article-meta { display: flex; align-items: center; justify-content: center; gap: 20px; font-size: 12px; color: rgba(253,240,227,0.45); flex-wrap: wrap; }
+
+    /* ── Article body ── */
+    .article-body { max-width: 720px; margin: 0 auto; padding: 64px 24px 80px; }
+    .article-body p { font-size: 17px; font-weight: 300; color: #2A2A2A; margin-bottom: 24px; line-height: 1.8; }
+    .article-body h2 { font-size: clamp(22px, 3vw, 30px); font-weight: 400; color: var(--navy); margin: 56px 0 20px; line-height: 1.25; }
+    .article-body h3 { font-size: 18px; font-weight: 500; color: var(--navy); margin: 36px 0 14px; }
+    .article-body strong { font-weight: 500; color: var(--navy); }
+
+    .section-divider { text-align: center; color: var(--gold); font-size: 18px; letter-spacing: 0.3em; margin: 52px 0; user-select: none; }
+
+    .pullquote { border-left: 3px solid var(--gold); padding: 20px 28px; margin: 40px 0; background: rgba(196,169,125,0.06); border-radius: 0 8px 8px 0; }
+    .pullquote p { font-size: 20px !important; font-weight: 300 !important; font-style: italic; color: var(--navy) !important; margin: 0 !important; line-height: 1.5 !important; }
+
+    .callout { background: var(--cream); border: 1px solid var(--cream-mid); border-radius: 10px; padding: 28px 32px; margin: 40px 0; }
+    .callout-icon { font-size: 24px; margin-bottom: 10px; }
+    .callout h3 { margin: 0 0 10px !important; font-size: 16px !important; color: var(--navy) !important; }
+    .callout p { font-size: 15px !important; margin: 0 !important; color: var(--gray) !important; line-height: 1.65 !important; }
+
+    .callout-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin: 40px 0; }
+    @media (max-width: 600px) { .callout-grid { grid-template-columns: 1fr; } }
+    .callout-grid .callout { margin: 0; }
+
+    .timeline { margin: 40px 0; border-left: 2px solid var(--cream-mid); padding-left: 28px; }
+    .timeline-item { position: relative; margin-bottom: 32px; }
+    .timeline-item::before { content: ''; position: absolute; left: -36px; top: 6px; width: 14px; height: 14px; border-radius: 50%; background: var(--gold); border: 2px solid var(--white); }
+    .timeline-item .timeline-label { font-size: 11px; font-weight: 600; letter-spacing: 0.15em; text-transform: uppercase; color: var(--gold); margin-bottom: 6px; }
+    .timeline-item h3 { margin: 0 0 8px !important; font-size: 17px !important; }
+    .timeline-item p { font-size: 15px !important; margin: 0 !important; color: var(--gray) !important; line-height: 1.65 !important; }
+
+    .cta-block { background: var(--navy); color: var(--cream); border-radius: 12px; padding: 48px 40px; text-align: center; margin: 60px 0 0; }
+    .cta-block .cta-label { font-size: 11px; font-weight: 500; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); margin-bottom: 14px; }
+    .cta-block h2 { font-size: clamp(22px, 3vw, 32px); font-weight: 300; margin: 0 0 12px !important; color: var(--cream) !important; line-height: 1.25 !important; }
+    .cta-block h2 em { font-style: italic; color: var(--gold-light); }
+    .cta-block p { font-size: 15px !important; color: rgba(253,240,227,0.65) !important; margin: 0 0 28px !important; max-width: 420px; margin-left: auto; margin-right: auto; }
+    .cta-btn { display: inline-block; padding: 14px 32px; background: var(--gold); color: var(--navy); border-radius: 6px; font-size: 15px; font-weight: 500; transition: background 0.2s; }
+    .cta-btn:hover { background: var(--gold-light); }
+
+    footer { background: var(--navy); color: rgba(253,240,227,0.55); text-align: center; padding: 36px 24px; font-size: 13px; font-weight: 300; }
+    footer strong { color: var(--cream); font-weight: 500; }
+    .footer-links { display: flex; justify-content: center; gap: 24px; margin-top: 12px; flex-wrap: wrap; }
+    .footer-links a { color: rgba(253,240,227,0.5); font-size: 13px; transition: color 0.2s; }
+    .footer-links a:hover { color: var(--gold); }
+
+    /* ── Language switching ── */
+    [data-lang] { display: none; }
+    .lang-en [data-lang="en"] { display: block; }
+    .lang-es [data-lang="es"] { display: block; }
+    /* Inline elements */
+    span[data-lang] { display: none; }
+    .lang-en span[data-lang="en"] { display: inline; }
+    .lang-es span[data-lang="es"] { display: inline; }
+    /* Flex containers that need to stay flex */
+    .lang-en .article-meta[data-lang="en"],
+    .lang-es .article-meta[data-lang="es"] { display: flex; }
+    /* Timeline items stay block */
+    .lang-en .timeline[data-lang="en"],
+    .lang-es .timeline[data-lang="es"] { display: block; }
+    /* Callout grid stays grid */
+    .lang-en .callout-grid[data-lang="en"],
+    .lang-es .callout-grid[data-lang="es"] { display: grid; }
+  </style>
+</head>
+<body class="lang-en">
+
+<!-- Nav -->
+<nav>
+  <a href="https://mrcake.lat" class="nav-logo">
+    <svg width="100" height="32" viewBox="0 0 1681 524" xmlns="http://www.w3.org/2000/svg" style="fill-rule:evenodd;clip-rule:evenodd;">
+      <g transform="matrix(1,0,0,1,-4195.91,-3643.81)">
+        <path d="M4695.35,4056.15L4735.3,4122.81C4687.5,4149.61 4636.84,4163.36 4589.75,4163.36C4449.2,4163.36 4374.28,4056.15 4374.28,3925.58L4374.28,3768.89L4327.9,3867.85L4321.48,3867.85L4275.82,3768.89L4275.82,4124.88L4195.91,4124.88L4195.91,3643.81L4275.82,3643.81L4325.05,3736.59L4374.28,3643.81L4454.19,3643.81L4454.19,3925.58C4454.19,4010.11 4494.15,4086.39 4589.75,4086.39C4623.28,4086.39 4659.67,4076.08 4695.35,4056.15ZM4675.92,3924.89C4705.89,3924.89 4730.86,3948.26 4730.86,3977.81C4730.86,4006.67 4705.89,4030.04 4675.92,4030.04C4645.24,4030.04 4620.99,4006.67 4620.99,3977.81C4620.99,3948.26 4645.24,3924.89 4675.92,3924.89ZM4494.7,3991.9L4494.7,3725.6C4494.7,3680.24 4533.23,3643.81 4580.32,3643.81L4675.92,3643.81L4661.65,3715.29L4601.01,3715.29C4586.74,3715.29 4574.61,3726.28 4574.61,3740.71L4574.61,3991.9L4574.4,3991.9L4574.41,3992.15C4574.41,4013.09 4556.29,4030.04 4534.55,4030.04C4512.3,4030.04 4494.7,4013.09 4494.7,3992.15L4494.7,3991.9ZM4978.42,3643.81C5039.06,3643.81 5088.29,3690.55 5088.29,3748.96L5088.29,3856.86L5011.95,3871.29L5011.95,3746.21C5011.95,3729.72 4997.68,3716.66 4980.56,3716.66C4963.43,3716.66 4949.16,3729.72 4949.16,3746.21L4949.16,4038.28C4949.16,4054.78 4963.43,4067.84 4980.56,4067.84C4997.68,4067.84 5011.95,4054.78 5011.95,4038.28L5011.95,3911.15L5088.29,3896.72L5088.29,4034.16C5088.29,4092.58 5039.06,4139.31 4978.42,4139.31C4918.48,4139.31 4869.25,4092.58 4869.25,4034.16L4869.25,3748.96C4869.25,3690.55 4918.48,3643.81 4978.42,3643.81ZM5120.4,3750.34C5120.4,3680.24 5173.91,3644.5 5227.42,3644.5C5281.65,3644.5 5335.87,3680.93 5335.87,3755.83L5335.87,4039.66L5208.87,4039.66C5159.64,4039.66 5120.4,4001.86 5120.4,3954.44L5120.4,3852.73L5259.53,3823.18L5259.53,3764.77C5259.53,3729.72 5245.26,3716.66 5228.14,3716.66C5211.01,3716.66 5196.74,3729.72 5196.74,3746.9L5196.74,3798.44L5120.4,3812.87L5120.4,3750.34ZM5259.53,3970.25L5259.53,3893.28L5196.74,3908.4L5196.74,3942.76C5196.74,3957.88 5209.59,3970.25 5225.28,3970.25L5259.53,3970.25ZM5334.44,4132.44L5134.67,4132.44L5134.67,4063.02L5334.44,4063.02L5334.44,4132.44ZM5747.55,4046.53C5687.62,4046.53 5638.39,3999.11 5638.39,3940.7L5638.39,3749.65C5638.39,3691.92 5687.62,3644.5 5747.55,3644.5C5808.2,3644.5 5857.43,3691.92 5857.43,3749.65L5857.43,3857.54L5813.19,3865.79L5718.3,3886.41L5718.3,3944.82C5718.3,3961.31 5732.57,3975.06 5749.69,3975.06C5766.82,3975.06 5781.08,3961.31 5781.08,3944.82L5781.08,3911.83L5857.43,3897.4L5857.43,3940.7C5857.43,3999.11 5808.2,4046.53 5747.55,4046.53ZM5718.3,3747.59L5718.3,3816.31L5781.08,3801.88L5781.08,3747.59C5781.08,3731.09 5766.82,3717.35 5749.69,3717.35C5732.57,3717.35 5718.3,3731.09 5718.3,3747.59ZM5836.02,4063.71L5875.98,4130.37C5831.74,4155.11 5783.23,4167.48 5735.42,4167.48C5618.41,4167.48 5514.24,4089.14 5514.24,3970.25L5514.95,3970.25L5514.95,3948.26C5514.95,3933.14 5502.83,3922.83 5487.84,3922.83C5482.14,3922.83 5475.71,3924.2 5470.01,3927.64L5455.74,3935.89L5455.74,4132.44L5375.83,4132.44L5375.83,3652.06L5455.74,3652.06L5455.74,3859.6L5477.85,3844.49C5494.98,3832.8 5503.54,3822.49 5503.54,3805.31L5503.54,3652.06L5583.45,3652.06L5583.45,3808.06C5583.45,3845.86 5565.61,3872.66 5529.23,3894.65C5567.04,3893.97 5594.86,3915.27 5594.86,3948.94L5594.86,3970.25L5594.15,3970.25C5594.15,4045.84 5664.07,4090.51 5736.14,4090.51C5768.95,4090.51 5803.92,4081.58 5836.02,4063.71Z" style="fill:white;"/>
+      </g>
+    </svg>
+  </a>
+
+  <ul class="nav-links">
+    <li><a href="https://mrcake.lat/#wedding-cakes"><span data-lang="en">Wedding Cakes</span><span data-lang="es">Wedding Cakes</span></a></li>
+    <li><a href="https://mrcake.lat/celebration"><span data-lang="en">Celebration Cakes</span><span data-lang="es">Celebration Cakes</span></a></li>
+    <li><a href="https://mrcake.lat/#about"><span data-lang="en">About</span><span data-lang="es">Nosotros</span></a></li>
+  </ul>
+
+  <div class="nav-right">
+    <div class="lang-toggle">
+      <button class="lang-btn active" id="btn-en" onclick="setLang('en')">EN</button>
+      <button class="lang-btn" id="btn-es" onclick="setLang('es')">ES</button>
+    </div>
+    <a href="https://weddings.mrcake.lat" class="nav-cta">
+      <span data-lang="en">Start Your Inquiry</span>
+      <span data-lang="es">Comienza tu Consulta</span>
+    </a>
+  </div>
+</nav>
+
+<!-- ══════════════════════════════════════════ -->
+<!--  ENGLISH VERSION                          -->
+<!-- ══════════════════════════════════════════ -->
+
+<div data-lang="en">
+
+  <div class="article-hero">
+    <div class="article-label">Wedding Planning · Dominican Republic</div>
+    <h1>How Far in Advance Should You Book Your<br/><em>Wedding Cake in the DR?</em></h1>
+    <p class="deck">The honest answer — including what changes during peak season, what's actually possible last-minute, and what to do if you're already running late.</p>
+    <div class="article-meta">
+      <span>By Frank González · Mr. Cake</span>
+      <span>·</span>
+      <span>6 min read</span>
+    </div>
+  </div>
+
+  <div class="article-body">
+
+    <p>The second question international couples almost always ask me — right after "how much does it cost?" — is some version of <em>how early do I need to reach out?</em> And the honest answer is: it depends. But not in a vague, unhelpful way. There are specific factors that change the number, and once you understand them, you'll know exactly where you stand.</p>
+
+    <p>Most cake designers will give you a generic number — six months, a year. I'm going to give you the real answer instead.</p>
+
+    <div class="section-divider">✦</div>
+
+    <h2>The Real Minimum: Two Months</h2>
+
+    <p>Two months is the minimum I'll work with — and that's not a comfortable two months. It's a focused, fast-moving process where the concept needs to be clear from the start and there's no room to change direction midway. It works, but it's not the experience I want to give you.</p>
+
+    <p>Three months is where the process starts to feel right. Enough time to develop the design properly, go through revisions, source materials, and produce without rushing. That's the healthy minimum — the one I recommend to most couples who reach out once they've confirmed their venue.</p>
+
+    <div class="callout">
+      <div class="callout-icon">⏱</div>
+      <h3>The real variables</h3>
+      <p>Lead time isn't just about the calendar. It's about design complexity, whether your cake includes wafer paper floristry or sculpted elements, and whether I have availability. The earlier you reach out, the more we can build together — instead of working around constraints.</p>
+    </div>
+
+    <div class="section-divider">✦</div>
+
+    <h2>The Challenge I Never Walk Away From</h2>
+
+    <p>I trained as a competition chef. Pressure, precision, and impossible timelines are part of how I learned to work. There's a three-tier cake that was requested the day before it was needed — and it was done. On time. Exactly as designed.</p>
+
+    <p>I'm not sharing that to make you think last-minute is fine. I'm sharing it because it's honest context: the limitation is never my capability. It's my calendar. If I have space, I'll find a way. If I don't, I'll tell you directly — and point you toward the right alternative.</p>
+
+    <div class="pullquote">
+      <p>"The limitation is never capability. It's availability. Reach out before the date is gone."</p>
+    </div>
+
+    <div class="section-divider">✦</div>
+
+    <h2>Peak Season in the Dominican Republic</h2>
+
+    <p>If your wedding falls between November and January, the timeline changes significantly. That window is peak season in the DR — beach weddings in Punta Cana, Cap Cana, La Romana, and Samaná fill up fast, and so does my calendar.</p>
+
+    <p>December specifically starts booking as early as April and May of the same year. That's not an exaggeration — it's what actually happens every year. January beach weddings follow the same pattern.</p>
+
+    <div class="timeline">
+      <div class="timeline-item">
+        <div class="timeline-label">The Advantage</div>
+        <h3>1 year or more</h3>
+        <p>When you book this far out, I lock in your price at the time of deposit — no adjustments for inflation or market changes between now and your wedding day. In an economy like the Dominican Republic's, that's a real financial advantage worth planning around.</p>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-label">Ideal</div>
+        <h3>6 months out</h3>
+        <p>Full design freedom. Wafer paper floristry, sculpted elements, complex structures — everything is possible with this lead time. This is where we build something with no constraints and no pressure.</p>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-label">Recommended</div>
+        <h3>3 months out</h3>
+        <p>The healthy minimum. Enough time to develop the concept properly, go through design revisions, and produce without rushing. Most couples who book at this stage have a clear vision — and we execute it well.</p>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-label">Minimum</div>
+        <h3>2 months out</h3>
+        <p>Possible — but focused. The concept needs to be defined from day one and there's no room to change direction. If this is your window, reach out immediately and be ready to move fast.</p>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-label">Peak Season</div>
+        <h3>November – January</h3>
+        <p>Book 4 – 6 months in advance minimum. December and January dates fill starting in spring of the same year. If this is your window, don't wait.</p>
+      </div>
+    </div>
+
+    <div class="section-divider">✦</div>
+
+    <h2>What Happens If You Reach Out Late?</h2>
+
+    <p>First: reach out anyway. The worst I can say is that the date is taken. The best case is that we still have room and we make it work.</p>
+
+    <p>If the timeline is tight, there are real options. Simplifying the design without simplifying the quality — a cleaner execution that still carries your aesthetic. Replacing wafer paper flowers with real flowers to save production days. Or, if the design you have in mind is more straightforward, the express line — <a href="https://jr.mrcake.lat" style="color:var(--gold);text-decoration:underline;">Jr. by Mr. Cake</a> — exists exactly for that. No compromise on quality, just a different range of styles and a faster turnaround.</p>
+
+    <p>What I won't do is take a date I can't serve well. If the answer is no, I'll tell you directly — and I'll try to point you toward someone who can actually deliver what you need.</p>
+
+    <div class="callout-grid">
+      <div class="callout">
+        <div class="callout-icon">🌺</div>
+        <h3>Tight timeline, real flowers</h3>
+        <p>When production time is limited, real flowers can replace wafer paper arrangements — recovering days without changing the aesthetic direction of the design.</p>
+      </div>
+      <div class="callout">
+        <div class="callout-icon">⚡</div>
+        <h3>Jr. by Mr. Cake</h3>
+        <p>The express line — same standards, a focused style range, faster production. For couples who need quality without the lead time of a fully custom piece.</p>
+      </div>
+    </div>
+
+    <div class="section-divider">✦</div>
+
+    <h2>The Short Answer</h2>
+
+    <p><strong>1 year or more</strong> locks in your price — a real advantage in a fluctuating economy. <strong>6 months</strong> is the ideal — full creative freedom, no constraints. <strong>3 months</strong> is the healthy minimum for most couples. <strong>2 months</strong> is the floor — possible, but it requires a clear concept from day one and no hesitation.</p>
+
+    <p><strong>Peak season (Nov – Jan)?</strong> Reach out in the spring — seriously. Those dates go faster than any other window in the year.</p>
+
+    <p>The real variable isn't the number of months. It's whether we have time to build something together — not just execute something under pressure. The earlier you reach out, the more that's possible.</p>
+
+    <div class="cta-block">
+      <div class="cta-label">Ready to start?</div>
+      <h2>Check your date<br/><em>before it's gone.</em></h2>
+      <p>Tell me your wedding date, venue, and a little about your vision. I'll let you know what's possible — and we'll go from there.</p>
+      <a href="https://weddings.mrcake.lat" class="cta-btn">Begin Your Wedding Inquiry</a>
+    </div>
+
+  </div>
+
+</div><!-- /EN -->
+
+
+<!-- ══════════════════════════════════════════ -->
+<!--  SPANISH VERSION                          -->
+<!-- ══════════════════════════════════════════ -->
+
+<div data-lang="es">
+
+  <div class="article-hero">
+    <div class="article-label">Planificación de Boda · República Dominicana</div>
+    <h1>¿Con Cuánto Tiempo Debes<br/>Apartar tu <em>Wedding Cake en RD?</em></h1>
+    <p class="deck">La respuesta honesta — qué cambia en temporada alta, qué es posible a último momento, y qué hacer si ya llegas tarde.</p>
+    <div class="article-meta">
+      <span>Por Frank González · Mr. Cake</span>
+      <span>·</span>
+      <span>6 min de lectura</span>
+    </div>
+  </div>
+
+  <div class="article-body">
+
+    <p>La segunda pregunta que casi siempre me hacen las parejas — justo después de "¿cuánto cuesta?" — es alguna versión de <em>¿con cuánto tiempo tengo que contactarte?</em> Y la respuesta honesta es: depende. Pero no de forma vaga e inútil. Hay factores específicos que cambian el número, y una vez que los entiendes, sabes exactamente dónde estás parado.</p>
+
+    <p>La mayoría de los cake designers te darán un número genérico — seis meses, un año. Yo te voy a dar la respuesta real.</p>
+
+    <div class="section-divider">✦</div>
+
+    <h2>El Mínimo Real: Dos Meses</h2>
+
+    <p>Dos meses es el mínimo con el que trabajo — y no son dos meses cómodos. Es un proceso enfocado y rápido donde el concepto tiene que estar claro desde el primer día y no hay espacio para cambiar de dirección a mitad. Funciona, pero no es la experiencia que quiero darte.</p>
+
+    <p>Tres meses es donde el proceso empieza a sentirse bien. Tiempo suficiente para desarrollar el diseño correctamente, hacer revisiones, conseguir materiales y producir sin correr. Ese es el mínimo sano — el que le recomiendo a la mayoría de las parejas que me contactan una vez que tienen confirmado su venue.</p>
+
+    <div class="callout">
+      <div class="callout-icon">⏱</div>
+      <h3>Las variables reales</h3>
+      <p>El tiempo de anticipación no es solo cuestión del calendario. Es sobre la complejidad del diseño, si tu cake incluye florería en wafer paper o elementos esculpidos, y si tengo disponibilidad. Cuanto antes me contactes, más podemos construir juntos — en lugar de trabajar alrededor de limitaciones.</p>
+    </div>
+
+    <div class="section-divider">✦</div>
+
+    <h2>El Reto Del Que Nunca Me Retiro</h2>
+
+    <p>Me formé como chef de competencias. La presión, la precisión y los plazos imposibles son parte de cómo aprendí a trabajar. Hay un cake de tres pisos que me pidieron el día anterior a la entrega — y se hizo. A tiempo. Exactamente como fue diseñado.</p>
+
+    <p>No lo comparto para que pienses que a último momento está bien. Lo comparto porque es contexto honesto: la limitación nunca es mi capacidad. Es mi agenda. Si tengo espacio, encuentro la manera. Si no, te lo digo directamente — y te señalo la alternativa correcta.</p>
+
+    <div class="pullquote">
+      <p>"La limitación nunca es la capacidad. Es la disponibilidad. Contáctame antes de que la fecha desaparezca."</p>
+    </div>
+
+    <div class="section-divider">✦</div>
+
+    <h2>Temporada Alta en República Dominicana</h2>
+
+    <p>Si tu boda cae entre noviembre y enero, el tiempo cambia significativamente. Esa ventana es temporada alta en RD — las bodas de playa en Punta Cana, Cap Cana, La Romana y Samaná se agendan rápido, y mi calendario también.</p>
+
+    <p>Diciembre específicamente empieza a agendarse desde abril y mayo del mismo año. No es exageración — es lo que pasa cada año. Las bodas de playa en enero siguen el mismo patrón.</p>
+
+    <div class="timeline">
+      <div class="timeline-item">
+        <div class="timeline-label">La Ventaja</div>
+        <h3>1 año o más de anticipación</h3>
+        <p>Cuando reservas con esta anticipación, congelo tu precio al momento del depósito — sin ajustes por inflación ni cambios del mercado entre ahora y el día de tu boda. En una economía como la dominicana, eso es una ventaja financiera real que vale la pena planificar.</p>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-label">Ideal</div>
+        <h3>6 meses de anticipación</h3>
+        <p>Libertad creativa total. Florería en wafer paper, elementos esculpidos, estructuras complejas — todo es posible con este tiempo. Aquí construimos sin limitaciones y sin presión.</p>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-label">Recomendado</div>
+        <h3>3 meses de anticipación</h3>
+        <p>El mínimo sano. Tiempo suficiente para desarrollar el concepto correctamente, hacer revisiones de diseño y producir sin correr. La mayoría de las parejas que reservan en esta etapa tienen una visión clara — y la ejecutamos bien.</p>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-label">Mínimo</div>
+        <h3>2 meses de anticipación</h3>
+        <p>Posible — pero enfocado. El concepto tiene que estar definido desde el primer día y no hay espacio para cambiar de dirección. Si esta es tu ventana, contáctame de inmediato y prepárate para moverse rápido.</p>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-label">Temporada Alta</div>
+        <h3>Noviembre – Enero</h3>
+        <p>Reserva con mínimo 4 – 6 meses de anticipación. Las fechas de diciembre y enero se llenan desde la primavera del mismo año. Si esta es tu ventana, no esperes.</p>
+      </div>
+    </div>
+
+    <div class="section-divider">✦</div>
+
+    <h2>¿Qué Pasa Si Me Contactas Tarde?</h2>
+
+    <p>Primero: contáctame de todas formas. Lo peor que puedo decirte es que la fecha está tomada. En el mejor caso, todavía hay espacio y lo hacemos funcionar.</p>
+
+    <p>Si el tiempo es limitado, hay opciones reales. Simplificar el diseño sin simplificar la calidad — una ejecución más limpia que igual lleva tu estética. Reemplazar flores de wafer paper con flores naturales para ganar días de producción. O, si el diseño que tienes en mente es más directo, la línea express — <a href="https://jr.mrcake.lat" style="color:var(--gold);text-decoration:underline;">Jr. by Mr. Cake</a> — existe exactamente para eso. Sin compromiso en calidad, solo un rango diferente de estilos y entrega más rápida.</p>
+
+    <p>Lo que no voy a hacer es tomar una fecha que no pueda servir bien. Si la respuesta es no, te lo digo directamente — e intento señalarte a alguien que pueda entregarte lo que necesitas.</p>
+
+    <div class="callout-grid">
+      <div class="callout">
+        <div class="callout-icon">🌺</div>
+        <h3>Tiempo justo, flores naturales</h3>
+        <p>Cuando el tiempo de producción es limitado, las flores naturales pueden reemplazar los arreglos de wafer paper — recuperando días sin cambiar la dirección estética del diseño.</p>
+      </div>
+      <div class="callout">
+        <div class="callout-icon">⚡</div>
+        <h3>Jr. by Mr. Cake</h3>
+        <p>La línea express — mismos estándares, rango de estilos enfocado, producción más rápida. Para parejas que necesitan calidad sin el tiempo de anticipación de una pieza completamente personalizada.</p>
+      </div>
+    </div>
+
+    <div class="section-divider">✦</div>
+
+    <h2>La Respuesta Corta</h2>
+
+    <p><strong>1 año o más</strong> congela tu precio — una ventaja real en una economía fluctuante. <strong>6 meses</strong> es el ideal — libertad creativa total, sin limitaciones. <strong>3 meses</strong> es el mínimo sano para la mayoría de las parejas. <strong>2 meses</strong> es el piso — posible, pero requiere un concepto claro desde el primer día y cero vacilación.</p>
+
+    <p><strong>¿Temporada alta (nov – ene)?</strong> Contáctame en la primavera — en serio. Esas fechas se van más rápido que cualquier otra ventana del año.</p>
+
+    <p>La variable real no es el número de meses. Es si tenemos tiempo para construir algo juntos — no solo ejecutar algo bajo presión. Cuanto antes me contactes, más es posible.</p>
+
+    <div class="cta-block">
+      <div class="cta-label">¿Lista para empezar?</div>
+      <h2>Verifica tu fecha<br/><em>antes de que se vaya.</em></h2>
+      <p>Cuéntame la fecha de tu boda, el venue y un poco de tu visión. Te digo qué es posible — y de ahí arrancamos.</p>
+      <a href="https://bodas.mrcake.lat" class="cta-btn">Comenzar mi Consulta de Boda</a>
+    </div>
+
+  </div>
+
+</div><!-- /ES -->
+
+
+<!-- Footer -->
+<footer>
+  <strong>Mr. Cake</strong> · Creative Cake Design Studio · Santo Domingo, República Dominicana
+  <div class="footer-links">
+    <a href="https://mrcake.lat">Home</a>
+    <a href="https://mrcake.lat/#wedding-cakes">Wedding Cakes</a>
+    <a href="https://mrcake.lat/celebration">Celebration Cakes</a>
+    <a href="https://instagram.com/mrcake.lat">@mrcake.lat</a>
+    <a href="mailto:frank@mrcake.lat">frank@mrcake.lat</a>
+  </div>
+</footer>
+
+<script>
+  // ── Language detection & switching ──
+  function setLang(lang) {
+    document.body.className = 'lang-' + lang;
+    document.documentElement.lang = lang;
+    document.getElementById('btn-en').classList.toggle('active', lang === 'en');
+    document.getElementById('btn-es').classList.toggle('active', lang === 'es');
+    // Update page title
+    const titleEl = document.querySelector('title');
+    titleEl.textContent = titleEl.getAttribute('data-' + lang);
+    // Persist choice
+    try { localStorage.setItem('mrcake-lang', lang); } catch(e) {}
+  }
+
+  // ── On load: check localStorage first, then browser language ──
+  (function() {
+    let lang = 'en';
+    try {
+      const saved = localStorage.getItem('mrcake-lang');
+      if (saved === 'en' || saved === 'es') {
+        lang = saved;
+      } else {
+        const browserLang = (navigator.language || navigator.userLanguage || 'en').toLowerCase();
+        if (browserLang.startsWith('es')) lang = 'es';
+      }
+    } catch(e) {}
+    setLang(lang);
+  })();
+</script>
+
+</body>
+</html>
