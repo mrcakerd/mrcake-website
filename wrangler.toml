@@ -1,9 +1,0 @@
-name = "mrcake"
-type = "javascript"
-main = "src/index.js"
-
-[env.production]
-routes = [
-  { pattern = "mrcake.lat", zone_name = "mrcake.lat" },
-  { pattern = "mrcake.lat/*", zone_name = "mrcake.lat" }
-]
