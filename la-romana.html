@@ -1,0 +1,884 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="google-site-verification" content="wDoUkPNpV2zLAXHRvaX-w87VLPSoAZkcEMXFOczmAIk" />
+  <title>Wedding Cake La Romana | Mr. Cake Pasteleria Creativa</title>
+  <meta name="description" content="Custom wedding cakes for La Romana destination weddings. Casa de Campo, Altos de Chavon and beyond. Mr. Cake — Santo Domingo, Dominican Republic." />
+  <meta property="og:title" content="Wedding Cake La Romana | Mr. Cake" />
+  <meta property="og:description" content="Luxury custom wedding cakes for destination weddings in La Romana, Dominican Republic." />
+  <meta property="og:image" content="https://mrcake.lat/wedding-02.jpeg" />
+  <meta property="og:url" content="https://mrcake.lat/la-romana" />
+  <link rel="canonical" href="https://mrcake.lat/la-romana" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet" />
+
+  <style>
+    :root {
+      --navy: #0F1F3D;
+      --navy-mid: #2B4A6B;
+      --gold: #C4A97D;
+      --gold-light: #E8D5B0;
+      --cream: #FDF0E3;
+      --cream-dark: #F5E6D3;
+      --white: #FFFFFF;
+      --text-dark: #1A1A2E;
+      --text-mid: #4A4A6A;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Outfit', sans-serif;
+      background: var(--cream);
+      color: var(--text-dark);
+      overflow-x: hidden;
+    }
+
+    /* LANG TOGGLE */
+    /* ── NAV EDITORIAL ── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: grid;
+      grid-template-columns: 1fr auto 1fr;
+      align-items: center;
+      padding: 1.25rem 2rem;
+      transition: background 0.4s ease, box-shadow 0.4s ease;
+    }
+    nav.scrolled {
+      background: rgba(15,31,61,0.96);
+      backdrop-filter: blur(12px);
+      box-shadow: 0 1px 0 rgba(196,169,125,0.12);
+    }
+    .nav-toggle {
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      background: none;
+      border: none;
+      padding: 6px;
+      width: 36px;
+      justify-self: start;
+    }
+    .nav-toggle span {
+      display: block;
+      width: 22px;
+      height: 1px;
+      background: #FFFFFF;
+      transition: 0.4s ease;
+      transform-origin: center;
+    }
+    .nav-toggle.open span:nth-child(1) { transform: translateY(6px) rotate(45deg); }
+    .nav-toggle.open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+    .nav-toggle.open span:nth-child(3) { transform: translateY(-6px) rotate(-45deg); }
+    .nav-logo { justify-self: center; }
+    .nav-logo a { display: block; line-height: 0; }
+    .nav-logo svg { width: 64px; height: auto; transition: opacity 0.4s ease; }
+    .nav-logo svg:hover { opacity: 0.75; }
+    .lang-switcher {
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      justify-self: end;
+    }
+    .lang-btn {
+      background: none;
+      border: none;
+      cursor: pointer;
+      color: rgba(255,255,255,0.4);
+      font-family: 'Outfit', sans-serif;
+      font-size: 0.65rem;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      transition: color 0.4s ease;
+      padding: 0.2rem 0.3rem;
+    }
+    .lang-btn.active { color: #C4A97D; }
+    .lang-divider { color: rgba(255,255,255,0.2); font-size: 0.6rem; }
+    .nav-links { display: none; }
+    .nav-menu {
+      position: fixed;
+      inset: 0;
+      z-index: 99;
+      background: #0F1F3D;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.5s ease;
+    }
+    .nav-menu.open { opacity: 1; pointer-events: all; }
+    .nav-menu-links {
+      list-style: none;
+      text-align: center;
+      width: 100%;
+      padding: 0 2rem;
+    }
+    .nav-menu-links li {
+      border-bottom: 1px solid rgba(196,169,125,0.1);
+      overflow: hidden;
+    }
+    .nav-menu-links li:first-child { border-top: 1px solid rgba(196,169,125,0.1); }
+    .nav-menu-links a {
+      display: block;
+      font-size: clamp(2rem, 6vw, 3.5rem);
+      font-weight: 200;
+      letter-spacing: 0.04em;
+      color: rgba(255,255,255,0.75);
+      padding: 1.25rem 0;
+      text-decoration: none;
+      transform: translateY(30px);
+      opacity: 0;
+      transition: color 0.4s ease, transform 0.5s ease, opacity 0.5s ease, padding 0.3s ease;
+    }
+    .nav-menu.open .nav-menu-links a { transform: translateY(0); opacity: 1; }
+    .nav-menu-links li:nth-child(1) a { transition-delay: 0.1s; }
+    .nav-menu-links li:nth-child(2) a { transition-delay: 0.17s; }
+    .nav-menu-links li:nth-child(3) a { transition-delay: 0.24s; }
+    .nav-menu-links li:nth-child(4) a { transition-delay: 0.31s; }
+    .nav-menu-links li:nth-child(5) a { transition-delay: 0.38s; }
+    .nav-menu-links a:hover { color: #C4A97D; padding-left: 1rem; }
+    .nav-menu-footer {
+      margin-top: 3rem;
+      display: flex;
+      gap: 2rem;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.5s 0.45s ease, transform 0.5s 0.45s ease;
+    }
+    .nav-menu.open .nav-menu-footer { opacity: 1; transform: translateY(0); }
+    .nav-menu-footer a {
+      font-size: 0.65rem;
+      font-weight: 400;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.3);
+      text-decoration: none;
+      transition: color 0.4s ease;
+    }
+    .nav-menu-footer a:hover { color: #C4A97D; }
+
+    /* HERO - full bleed with overlay */
+    .hero {
+      position: relative;
+      height: 100vh;
+      display: flex;
+      align-items: flex-end;
+      padding-bottom: 6rem;
+      overflow: hidden;
+    }
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      background-image: url('wedding-02.jpeg');
+      background-size: cover;
+      background-position: center center;
+      transform: scale(1.05);
+      transition: transform 8s ease;
+    }
+    .hero-bg.loaded { transform: scale(1); }
+    .hero-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        to top,
+        rgba(15,31,61,0.92) 0%,
+        rgba(15,31,61,0.5) 40%,
+        rgba(15,31,61,0.15) 100%
+      );
+    }
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      padding: 0 5rem;
+      max-width: 800px;
+    }
+    .hero-location {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.72rem;
+      font-weight: 500;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 1.5rem;
+    }
+    .hero-location::before {
+      content: '';
+      display: block;
+      width: 2rem;
+      height: 1px;
+      background: var(--gold);
+    }
+    .hero-title {
+      font-family: 'Outfit', sans-serif;
+      font-size: clamp(3rem, 6vw, 5rem);
+      font-weight: 300;
+      line-height: 1.05;
+      color: var(--white);
+      margin-bottom: 1.5rem;
+    }
+    .hero-title em {
+      font-style: italic;
+      color: var(--gold-light);
+      display: block;
+    }
+    .hero-sub {
+      font-size: 1rem;
+      font-weight: 300;
+      line-height: 1.7;
+      color: rgba(255,255,255,0.75);
+      max-width: 480px;
+      margin-bottom: 2.5rem;
+    }
+    .hero-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.75rem;
+      padding: 1rem 2.2rem;
+      background: var(--gold);
+      color: var(--navy);
+      text-decoration: none;
+      font-size: 0.82rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      border-radius: 2px;
+      transition: all 0.25s;
+    }
+    .hero-cta:hover { background: var(--gold-light); transform: translateY(-2px); }
+
+    /* DESTINATION INTRO */
+    .destination-intro {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      min-height: 60vh;
+    }
+    .dest-left {
+      background: var(--navy);
+      padding: 6rem 4rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+    .dest-eyebrow {
+      font-size: 0.7rem;
+      font-weight: 500;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 1.2rem;
+    }
+    .dest-left h2 {
+      font-family: 'Outfit', sans-serif;
+      font-size: 2.5rem;
+      font-weight: 300;
+      color: var(--white);
+      line-height: 1.15;
+      margin-bottom: 1.5rem;
+    }
+    .dest-left h2 em { font-style: italic; color: var(--gold-light); }
+    .dest-left p {
+      font-size: 0.95rem;
+      font-weight: 300;
+      line-height: 1.85;
+      color: rgba(255,255,255,0.7);
+    }
+    .dest-right {
+      overflow: hidden;
+    }
+    .dest-right img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center center;
+      display: block;
+    }
+    .dest-right img:last-child { display: none; }
+
+    /* GALLERY */
+    .gallery { padding: 5rem 3rem; background: var(--cream); }
+    .gallery-header {
+      text-align: center;
+      margin-bottom: 3rem;
+    }
+    .gallery-header h2 {
+      font-family: 'Outfit', sans-serif;
+      font-size: 2.5rem;
+      font-weight: 300;
+      color: var(--navy);
+      margin-bottom: 0.5rem;
+    }
+    .gallery-header p {
+      font-size: 0.88rem;
+      color: var(--text-mid);
+      font-weight: 300;
+      letter-spacing: 0.06em;
+    }
+
+    /* Masonry-style grid */
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      grid-template-rows: 500px 380px 500px;
+      gap: 0.75rem;
+    }
+    .g-item {
+      overflow: hidden;
+      border-radius: 2px;
+      position: relative;
+    }
+    .g-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center center;
+      transition: transform 0.6s ease;
+      display: block;
+    }
+    .g-item:hover img { transform: scale(1.04); }
+
+    /* Layout */
+    .g-item:nth-child(1) { grid-column: 1; grid-row: 1; }
+    .g-item:nth-child(2) { grid-column: 2; grid-row: 1 / 3; }
+    .g-item:nth-child(2) img { object-position: center top; }
+    .g-item:nth-child(3) { grid-column: 3; grid-row: 1; }
+    .g-item:nth-child(4) { grid-column: 1; grid-row: 2; }
+    .g-item:nth-child(5) { grid-column: 3; grid-row: 2; }
+    .g-item:nth-child(6) { grid-column: 1 / 3; grid-row: 3; }
+    .g-item:nth-child(6) img { object-position: center 30%; }
+    .g-item:nth-child(7) { grid-column: 3; grid-row: 3; }
+
+    .g-label {
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      padding: 2rem 1.5rem 1rem;
+      background: linear-gradient(to top, rgba(15,31,61,0.85) 0%, transparent 100%);
+      color: var(--white);
+      font-size: 0.75rem;
+      font-weight: 400;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+    .g-item:hover .g-label { opacity: 1; }
+
+    /* LOGISTICS */
+    .logistics {
+      background: var(--cream-dark);
+      padding: 7rem 5rem;
+    }
+    .logistics h2 {
+      font-family: 'Outfit', sans-serif;
+      font-size: 2.5rem;
+      font-weight: 300;
+      color: var(--navy);
+      text-align: center;
+      margin-bottom: 4rem;
+    }
+    .logistics-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 2rem;
+    }
+    .logistic-step {
+      text-align: center;
+      padding: 2rem 1rem;
+    }
+    .step-num {
+      font-family: 'Outfit', sans-serif;
+      font-size: 3rem;
+      font-weight: 300;
+      color: var(--gold);
+      line-height: 1;
+      margin-bottom: 1rem;
+    }
+    .logistic-step h3 {
+      font-family: 'Outfit', sans-serif;
+      font-size: 1.3rem;
+      font-weight: 400;
+      color: var(--navy);
+      margin-bottom: 0.6rem;
+    }
+    .logistic-step p {
+      font-size: 0.87rem;
+      font-weight: 300;
+      line-height: 1.7;
+      color: var(--text-mid);
+    }
+
+    /* FAQ */
+    .faq {
+      background: var(--navy);
+      padding: 7rem 5rem;
+      display: grid;
+      grid-template-columns: 1fr 2fr;
+      gap: 5rem;
+      align-items: start;
+    }
+    .faq-title h2 {
+      font-family: 'Outfit', sans-serif;
+      font-size: 2.5rem;
+      font-weight: 300;
+      color: var(--white);
+      line-height: 1.15;
+    }
+    .faq-title h2 em { font-style: italic; color: var(--gold-light); }
+    .faq-list { display: flex; flex-direction: column; gap: 0; }
+    .faq-item {
+      border-bottom: 1px solid rgba(196,169,125,0.2);
+      padding: 2rem 0;
+    }
+    .faq-item:first-child { border-top: 1px solid rgba(196,169,125,0.2); }
+    .faq-q {
+      font-size: 1rem;
+      font-weight: 400;
+      color: var(--gold-light);
+      margin-bottom: 0.75rem;
+      font-family: 'Outfit', sans-serif;
+      font-size: 1.15rem;
+    }
+    .faq-a {
+      font-size: 0.9rem;
+      font-weight: 300;
+      line-height: 1.8;
+      color: rgba(255,255,255,0.65);
+    }
+
+    /* CTA */
+    .cta-section {
+      padding: 8rem 5rem;
+      background: var(--cream);
+      text-align: center;
+    }
+    .cta-section h2 {
+      font-family: 'Outfit', sans-serif;
+      font-size: clamp(2.5rem, 4vw, 3.5rem);
+      font-weight: 300;
+      color: var(--navy);
+      line-height: 1.15;
+      margin-bottom: 1.5rem;
+    }
+    .cta-section h2 em { font-style: italic; color: var(--gold); }
+    .cta-section p {
+      font-size: 1rem;
+      font-weight: 300;
+      color: var(--text-mid);
+      max-width: 500px;
+      margin: 0 auto 3rem;
+      line-height: 1.8;
+    }
+    .btn-primary {
+      display: inline-block;
+      padding: 1.1rem 2.8rem;
+      background: var(--navy);
+      color: var(--gold);
+      text-decoration: none;
+      font-size: 0.82rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      border-radius: 2px;
+      transition: all 0.25s;
+    }
+    .btn-primary:hover { background: var(--navy-mid); transform: translateY(-2px); }
+
+    /* OTHER DESTINATIONS */
+    .other-destinations {
+      background: var(--cream-dark);
+      padding: 5rem;
+      text-align: center;
+    }
+    .other-destinations h3 {
+      font-family: 'Outfit', sans-serif;
+      font-size: 1.5rem;
+      font-weight: 300;
+      color: var(--navy);
+      margin-bottom: 2rem;
+    }
+    .dest-pills {
+      display: flex;
+      gap: 0.75rem;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+    .dest-pill {
+      padding: 0.6rem 1.5rem;
+      border: 1px solid rgba(196,169,125,0.5);
+      border-radius: 100px;
+      font-size: 0.8rem;
+      font-weight: 400;
+      letter-spacing: 0.08em;
+      color: var(--navy-mid);
+      text-decoration: none;
+      transition: all 0.25s;
+    }
+    .dest-pill:hover, .dest-pill.current {
+      background: var(--navy);
+      color: var(--gold);
+      border-color: var(--navy);
+    }
+
+    /* FOOTER */
+    footer {
+      background: var(--navy);
+      padding: 3rem 5rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+    .footer-logo {
+      font-family: 'Outfit', sans-serif;
+      font-size: 1.1rem;
+      color: var(--gold);
+      font-weight: 400;
+    }
+    .footer-links { display: flex; gap: 2rem; }
+    .footer-links a {
+      font-size: 0.78rem;
+      color: rgba(255,255,255,0.5);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .footer-links a:hover { color: var(--gold); }
+    .footer-copy { font-size: 0.75rem; color: rgba(255,255,255,0.3); }
+
+    /* ANIMATIONS */
+    .fade-up {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+    .fade-up.visible { opacity: 1; transform: translateY(0); }
+
+    /* RESPONSIVE */
+    @media (max-width: 900px) {
+      .hero-content { padding: 0 2rem; }
+      .destination-intro { grid-template-columns: 1fr; }
+      .dest-right { height: 60vw; grid-template-rows: 1fr; }
+      .dest-right img:last-child { display: none; }
+      .dest-left { padding: 3rem 2rem; }
+      .gallery { padding: 3rem 1rem; }
+      .gallery-grid {
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: auto;
+      }
+      .g-item:nth-child(n) {
+        grid-column: span 1;
+        grid-row: span 1;
+        height: 280px;
+      }
+      .logistics { padding: 4rem 2rem; }
+      .logistics-grid { grid-template-columns: 1fr 1fr; }
+      .faq { grid-template-columns: 1fr; padding: 4rem 2rem; gap: 3rem; }
+      .cta-section { padding: 5rem 2rem; }
+      .other-destinations { padding: 3rem 2rem; }
+      footer { padding: 2rem; flex-direction: column; text-align: center; }
+      .nav-links { display: none; }
+    }
+  
+    .nav-menu-locations {
+      margin-top: 2.5rem;
+      text-align: center;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.5s 0.42s ease, transform 0.5s 0.42s ease;
+    }
+    .nav-menu.open .nav-menu-locations { opacity: 1; transform: translateY(0); }
+    .nav-menu-locations-label {
+      font-size: 0.6rem;
+      font-weight: 500;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.25);
+      display: block;
+      margin-bottom: 0.75rem;
+    }
+    .nav-menu-locations-links {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+    }
+    .nav-menu-locations-links a {
+      font-size: 0.75rem;
+      font-weight: 300;
+      letter-spacing: 0.08em;
+      color: rgba(255,255,255,0.35);
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+    .nav-menu-locations-links a:hover { color: rgba(196,169,125,0.8); }
+    .loc-divider { color: rgba(255,255,255,0.15); font-size: 0.6rem; }
+    .nav-menu-footer {
+      margin-top: 1.5rem;
+      display: flex;
+      gap: 2rem;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.5s 0.52s ease, transform 0.5s 0.52s ease;
+    }
+    .nav-menu.open .nav-menu-footer { opacity: 1; transform: translateY(0); }
+    .nav-menu-footer a {
+      font-size: 0.65rem;
+      font-weight: 400;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.2);
+      text-decoration: none;
+      transition: color 0.4s ease;
+    }
+    .nav-menu-footer a:hover { color: #C4A97D; }
+  </style>
+</head>
+<body>
+
+    <!-- FULLSCREEN MENU -->
+  <div class="nav-menu" id="nav-menu">
+    <ul class="nav-menu-links">
+      <li><a href="https://mrcake.lat#wedding-cakes" onclick="closeMenu()">Wedding Cakes</a></li>
+      <li><a href="https://mrcake.lat/celebration" onclick="closeMenu()">Celebration Cakes</a></li>
+      <li><a href="https://mrcake.lat#about" onclick="closeMenu()">About</a></li>
+      <li><a href="https://mrcake.lat#contact" onclick="closeMenu()">Contact</a></li>
+    </ul>
+    <div class="nav-menu-locations">
+      <span class="nav-menu-locations-label">Destination Weddings</span>
+      <div class="nav-menu-locations-links">
+        <a href="https://mrcake.lat/punta-cana" onclick="closeMenu()">Punta Cana</a>
+        <span class="loc-divider">·</span>
+        <a href="https://mrcake.lat/la-romana" onclick="closeMenu()">La Romana</a>
+        <span class="loc-divider">·</span>
+        <a href="https://mrcake.lat/samana" onclick="closeMenu()">Samaná</a>
+        <span class="loc-divider">·</span>
+        <a href="https://mrcake.lat/jarabacoa" onclick="closeMenu()">Jarabacoa</a>
+      </div>
+    </div>
+    <div class="nav-menu-footer">
+      <a href="https://wa.me/18293684150" target="_blank">WhatsApp</a>
+      <a href="https://instagram.com/mrcake.rd" target="_blank">@mrcake.rd</a>
+      <a href="mailto:frank@mrcake.lat">frank@mrcake.lat</a>
+    </div>
+  </div>
+
+  <!-- NAV -->
+  <nav id="main-nav">
+    <button class="nav-toggle" id="nav-toggle" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+    <div class="nav-logo">
+      <a href="https://mrcake.lat" aria-label="Mr. Cake">
+        <svg width="64" height="64" viewBox="794 -6462 2036 2036" xmlns="http://www.w3.org/2000/svg" style="fill:white;display:block;">
+          <g transform="matrix(1.01654,0,0,1.01765,-2192,-11573.5)">
+            <path d="M3934.06,5852.2L3987.43,5944.65C3923.58,5981.82 3855.91,6000.88 3793.01,6000.88C3605.25,6000.88 3505.18,5852.2 3505.18,5671.12L3505.18,5453.82L3443.23,5591.06L3434.65,5591.06L3373.66,5453.82L3373.66,5947.51L3266.91,5947.51L3266.91,5280.37L3373.66,5280.37L3439.42,5409.03L3505.18,5280.37L3611.92,5280.37L3611.92,5671.12C3611.92,5788.35 3665.3,5894.14 3793.01,5894.14C3837.8,5894.14 3886.41,5879.84 3934.06,5852.2ZM3908.11,5670.17C3948.14,5670.17 3981.5,5702.57 3981.5,5743.55C3981.5,5783.58 3948.14,5815.99 3908.11,5815.99C3867.13,5815.99 3834.73,5783.58 3834.73,5743.55C3834.73,5702.57 3867.13,5670.17 3908.11,5670.17ZM3666.03,5763.1L3666.03,5393.78C3666.03,5330.88 3717.5,5280.37 3780.4,5280.37L3908.11,5280.37L3889.05,5379.48L3808.04,5379.48C3788.98,5379.48 3772.78,5394.73 3772.78,5414.75L3772.78,5763.1L3772.51,5763.1L3772.51,5763.44C3772.51,5792.48 3748.31,5815.99 3719.27,5815.99C3689.54,5815.99 3666.03,5792.48 3666.03,5763.44L3666.03,5763.1ZM3412.73,6037.77C3493.74,6037.77 3559.51,6102.58 3559.51,6183.59L3559.51,6333.22L3457.53,6353.24L3457.53,6179.78C3457.53,6156.9 3438.47,6138.8 3415.59,6138.8C3392.72,6138.8 3373.66,6156.9 3373.66,6179.78L3373.66,6584.83C3373.66,6607.7 3392.72,6625.81 3415.59,6625.81C3438.47,6625.81 3457.53,6607.7 3457.53,6584.83L3457.53,6408.51L3559.51,6388.5L3559.51,6579.11C3559.51,6660.12 3493.74,6724.93 3412.73,6724.93C3332.68,6724.93 3266.91,6660.12 3266.91,6579.11L3266.91,6183.59C3266.91,6102.58 3332.68,6037.77 3412.73,6037.77ZM3602.39,6185.5C3602.39,6088.28 3673.87,6038.72 3745.35,6038.72C3817.78,6038.72 3890.22,6089.24 3890.22,6193.12L3890.22,6586.74L3720.57,6586.74C3654.81,6586.74 3602.39,6534.32 3602.39,6468.56L3602.39,6327.5L3788.24,6286.52L3788.24,6205.51C3788.24,6156.9 3769.18,6138.8 3746.31,6138.8C3723.43,6138.8 3704.37,6156.9 3704.37,6180.73L3704.37,6252.21L3602.39,6272.23L3602.39,6185.5ZM3788.24,6490.48L3788.24,6383.73L3704.37,6404.7L3704.37,6452.35C3704.37,6473.32 3721.53,6490.48 3742.49,6490.48L3788.24,6490.48ZM3888.31,6715.4L3621.45,6715.4L3621.45,6619.14L3888.31,6619.14L3888.31,6715.4ZM4440.14,6596.27C4360.08,6596.27 4294.32,6530.51 4294.32,6449.49L4294.32,6184.54C4294.32,6104.49 4360.08,6038.72 4440.14,6038.72C4521.15,6038.72 4586.91,6104.49 4586.91,6184.54L4586.91,6334.17L4527.82,6345.61L4401.06,6374.2L4401.06,6455.21C4401.06,6478.09 4420.12,6497.15 4442.99,6497.15C4465.87,6497.15 4484.93,6478.09 4484.93,6455.21L4484.93,6409.47L4586.91,6389.45L4586.91,6449.49C4586.91,6530.51 4521.15,6596.27 4440.14,6596.27ZM4401.06,6181.68L4401.06,6276.99L4484.93,6256.98L4484.93,6181.68C4484.93,6158.81 4465.87,6139.75 4442.99,6139.75C4420.12,6139.75 4401.06,6158.81 4401.06,6181.68ZM4558.32,6620.09L4611.69,6712.54C4552.6,6746.85 4487.79,6764.01 4423.93,6764.01C4267.63,6764.01 4128.48,6655.36 4128.48,6490.48L4129.44,6490.48L4129.44,6459.98C4129.44,6439.01 4113.23,6424.72 4093.22,6424.72C4085.6,6424.72 4077.02,6426.62 4069.39,6431.39L4050.33,6442.82L4050.33,6715.4L3943.59,6715.4L3943.59,6049.21L4050.33,6049.21L4050.33,6337.03L4079.88,6316.07C4102.75,6299.86 4114.19,6285.57 4114.19,6261.74L4114.19,6049.21L4220.93,6049.21L4220.93,6265.55C4220.93,6317.97 4197.1,6355.14 4148.5,6385.64C4199.01,6384.69 4236.18,6414.23 4236.18,6460.93L4236.18,6490.48L4235.23,6490.48C4235.23,6595.31 4328.63,6657.26 4424.89,6657.26C4468.73,6657.26 4515.43,6644.87 4558.32,6620.09Z"/>
+          </g>
+        </svg>
+
+      </a>
+    </div>
+    <div class="lang-switcher">
+      <button class="lang-btn " id="btn-es" onclick="setLang('es')">ES</button>
+      <span class="lang-divider">/</span>
+      <button class="lang-btn active" id="btn-en" onclick="setLang('en')">EN</button>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-bg" id="heroBg"></div>
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+      <div class="hero-location" data-en="La Romana · Dominican Republic" data-es="La Romana · República Dominicana">La Romana · Dominican Republic</div>
+      <h1 class="hero-title">
+        <span data-en="Your La Romana wedding cake," data-es="Tu wedding cake en La Romana,">Your La Romana wedding cake,</span>
+        <em data-en="designed for the moment." data-es="diseñado para el momento.">designed for the moment.</em>
+      </h1>
+      <p class="hero-sub" data-en="Luxury custom wedding cakes for destination weddings in La Romana. Designed from concept, coordinated with your planner, delivered on-site." data-es="Wedding cakes de alta gama para bodas de destino en La Romana. Diseñados desde el concepto, coordinados con tu planner, entregados on-site.">Luxury custom wedding cakes for destination weddings in La Romana. Designed from concept, coordinated with your planner, delivered on-site.</p>
+      <a href="https://mrcake.lat" class="hero-cta" data-en="Start your design →" data-es="Comenzar mi diseño →">Start your design →</a>
+    </div>
+  </section>
+
+  <!-- DESTINATION INTRO -->
+  <section class="destination-intro">
+    <div class="dest-left">
+      <p class="dest-eyebrow" data-en="Destination Weddings · La Romana" data-es="Bodas de Destino · La Romana">Destination Weddings · La Romana</p>
+      <h2>
+        <span data-en="La Romana deserves a cake" data-es="La Romana merece un cake">La Romana deserves a cake</span>
+        <em data-en="as extraordinary as the setting." data-es="tan extraordinario como el escenario.">as extraordinary as the setting.</em>
+      </h2>
+      <p data-en="La Romana is where Caribbean exclusivity meets history. Casa de Campo and Altos de Chavon set a standard that your wedding cake should match — and exceed. At Mr. Cake, we travel to your venue, work with your planner, and deliver a cake designed specifically for your day — not pulled from a catalog." data-es="La Romana es donde la exclusividad del Caribe se encuentra con la historia. Casa de Campo y Altos de Chavon marcan un estandar que tu wedding cake debe igualar — y superar. En Mr. Cake viajamos a tu venue, coordinamos con tu planner y entregamos un cake disenado especificamente para tu dia — no sacado de un catalogo.">La Romana is where Caribbean exclusivity meets history. Casa de Campo and Altos de Chavon set a standard that your wedding cake should match — and exceed. At Mr. Cake, we travel to your venue, work with your planner, and deliver a cake designed specifically for your day — not pulled from a catalog.</p>
+    </div>
+    <div class="dest-right">
+      <img src="/images/wedding-03.jpeg" alt="Wedding cake La Romana Casa de Campo" />
+      <img src="/images/wedding-04.jpeg" alt="Wedding cake Dominican Republic" />
+    </div>
+  </section>
+
+  <!-- GALLERY -->
+  <section class="gallery">
+    <div class="gallery-header fade-up">
+      <h2 data-en="Wedding Cake Portfolio" data-es="Portfolio de Wedding Cakes">Wedding Cake Portfolio</h2>
+      <p data-en="Every piece designed from concept — never from a reference." data-es="Cada pieza diseñada desde el concepto — nunca desde una referencia.">Every piece designed from concept — never from a reference.</p>
+    </div>
+    <div class="gallery-grid">
+      <div class="g-item">
+        <img src="/images/wedding-01.jpeg" alt="Destination wedding dessert table Dominican Republic" />
+        <div class="g-label" data-en="Dessert Table · Outdoor" data-es="Mesa de Postres · Al Aire Libre">Dessert Table · Outdoor</div>
+      </div>
+      <div class="g-item">
+        <img src="/images/wedding-02.jpeg" alt="Ivory wedding cake wafer paper flowers" />
+        <div class="g-label" data-en="Ivory · Wafer Paper Floristry" data-es="Ivory · Florería en Wafer Paper">Ivory · Wafer Paper Floristry</div>
+      </div>
+      <div class="g-item">
+        <img src="/images/wedding-06.jpeg" alt="Black luxury wedding cake" />
+        <div class="g-label" data-en="Black · Luxury" data-es="Negro · Lujo">Black · Luxury</div>
+      </div>
+      <div class="g-item">
+        <img src="/images/wedding-04.jpeg" alt="Semi naked wedding cake natural flowers" />
+        <div class="g-label" data-en="Semi-Naked · Natural Flowers" data-es="Semi-Naked · Flores Naturales">Semi-Naked · Natural Flowers</div>
+      </div>
+      <div class="g-item">
+        <img src="/images/wedding-05.jpeg" alt="White ruffle wedding cake" />
+        <div class="g-label" data-en="White Ruffles · Fondant" data-es="Ruffles Blancos · Fondant">White Ruffles · Fondant</div>
+      </div>
+      <div class="g-item">
+        <img src="/images/wedding-03.jpeg" alt="Four tier wedding cake coral peonies" />
+        <div class="g-label" data-en="Floral · Coral Peonies" data-es="Floral · Peonías Coral">Floral · Coral Peonies</div>
+      </div>
+      <div class="g-item">
+        <img src="/images/wedding-07.jpeg" alt="Folk embroidery wedding cake artistic" />
+        <div class="g-label" data-en="Folk Embroidery · Artistic" data-es="Bordado Folk · Artístico">Folk Embroidery · Artistic</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- LOGISTICS -->
+  <section class="logistics">
+    <h2 class="fade-up" data-en="How it works from anywhere in the world." data-es="Cómo funciona desde cualquier parte del mundo.">How it works from anywhere in the world.</h2>
+    <div class="logistics-grid">
+      <div class="logistic-step fade-up">
+        <div class="step-num">01</div>
+        <h3 data-en="First contact" data-es="Primer contacto">First contact</h3>
+        <p data-en="Reach out via email or WhatsApp. Tell us your date, venue, and vision. We respond within 24 hours." data-es="Escríbenos por email o WhatsApp. Cuéntanos tu fecha, venue y visión. Respondemos en 24 horas.">Reach out via email or WhatsApp. Tell us your date, venue, and vision. We respond within 24 hours.</p>
+      </div>
+      <div class="logistic-step fade-up">
+        <div class="step-num">02</div>
+        <h3 data-en="Design consultation" data-es="Consulta de diseño">Design consultation</h3>
+        <p data-en="We design your cake together — from concept, not from a catalog. Video calls available." data-es="Diseñamos tu cake juntos — desde el concepto, no desde un catálogo. Video llamadas disponibles.">We design your cake together — from concept, not from a catalog. Video calls available.</p>
+      </div>
+      <div class="logistic-step fade-up">
+        <div class="step-num">03</div>
+        <h3 data-en="Planner coordination" data-es="Coordinación con tu planner">Planner coordination</h3>
+        <p data-en="We coordinate directly with your wedding planner for logistics, timing, and setup." data-es="Coordinamos directamente con tu wedding planner para logística, timing y montaje.">We coordinate directly with your wedding planner for logistics, timing, and setup.</p>
+      </div>
+      <div class="logistic-step fade-up">
+        <div class="step-num">04</div>
+        <h3 data-en="On-site delivery" data-es="Entrega on-site">On-site delivery</h3>
+        <p data-en="We travel to La Romana and deliver your cake exactly as designed. No surprises." data-es="Viajamos a La Romana y entregamos tu cake exactamente como fue disenado. Sin sorpresas.">We travel to La Romana and deliver your cake exactly as designed. No surprises.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="faq">
+    <div class="faq-title fade-up">
+      <h2>
+        <span data-en="Frequently" data-es="Preguntas">Frequently</span>
+        <em data-en="asked." data-es="frecuentes.">asked.</em>
+      </h2>
+    </div>
+    <div class="faq-list">
+      <div class="faq-item fade-up">
+        <div class="faq-q" data-en="Do you deliver to La Romana?" data-es="Entregan en La Romana?">Do you deliver to La Romana?</div>
+        <div class="faq-a" data-en="Yes. We travel to La Romana, Casa de Campo, Altos de Chavon and all venues in the area. Travel and logistics are coordinated in advance.</div>
+      </div>
+      <div class="faq-item fade-up">
+        <div class="faq-q" data-en="How far in advance should we book?" data-es="¿Con cuánto tiempo debo reservar?">How far in advance should we book?</div>
+        <div class="faq-a" data-en="We recommend booking 3 to 6 months in advance for destination weddings. For complex designs or peak season dates, earlier is better." data-es="Recomendamos reservar con 3 a 6 meses de anticipación para bodas de destino. Para diseños complejos o fechas de temporada alta, entre más antes mejor.">We recommend booking 3 to 6 months in advance for destination weddings. For complex designs or peak season dates, earlier is better.</div>
+      </div>
+      <div class="faq-item fade-up">
+        <div class="faq-q" data-en="Can we do the design process remotely?" data-es="¿Podemos hacer el proceso de diseño de forma remota?">Can we do the design process remotely?</div>
+        <div class="faq-a" data-en="Absolutely. Most of our destination wedding clients design their cake entirely via WhatsApp, email, and video call. We guide you through every decision." data-es="Absolutamente. La mayoría de nuestros clientes de destination weddings diseñan su cake completamente vía WhatsApp, email y video llamada. Te guiamos en cada decisión.">Absolutely. Most of our destination wedding clients design their cake entirely via WhatsApp, email, and video call. We guide you through every decision.</div>
+      </div>
+      <div class="faq-item fade-up">
+        <div class="faq-q" data-en="Do you work with wedding planners?" data-es="¿Trabajan con wedding planners?">Do you work with wedding planners?</div>
+        <div class="faq-a" data-en="Yes. We coordinate directly with your planner for logistics, delivery timing, and setup. Just put us in touch." data-es="Sí. Coordinamos directamente con tu planner para logística, timing de entrega y montaje. Solo ponlos en contacto con nosotros.">Yes. We coordinate directly with your planner for logistics, delivery timing, and setup. Just put us in touch.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta-section">
+    <h2 class="fade-up">
+      <span data-en="Your La Romana wedding cake" data-es="Tu wedding cake en La Romana">Your La Romana wedding cake</span><br>
+      <em data-en="starts with a conversation." data-es="empieza con una conversación.">starts with a conversation.</em>
+    </h2>
+    <p class="fade-up" data-en="Tell us your date, venue, and vision. We'll take care of everything else." data-es="Cuéntanos tu fecha, venue y visión. Nosotros nos encargamos del resto.">Tell us your date, venue, and vision. We'll take care of everything else.</p>
+    <a href="https://mrcake.lat" class="btn-primary fade-up" data-en="See the full experience →" data-es="Ver la experiencia completa →">See the full experience →</a>
+  </section>
+
+  <!-- OTHER DESTINATIONS -->
+  <section class="other-destinations">
+    <h3 class="fade-up" data-en="Also serving these destinations" data-es="También cubrimos estos destinos">Also serving these destinations</h3>
+    
+    <div class="dest-pills">
+      <a href="https://mrcake.lat/punta-cana" class="dest-pill">Punta Cana &amp; Cap Cana</a>
+      <a href="https://mrcake.lat/la-romana" class="dest-pill current">La Romana</a>
+      <a href="https://mrcake.lat/samana" class="dest-pill">Samaná</a>
+      <a href="https://mrcake.lat/jarabacoa" class="dest-pill">Jarabacoa</a>
+      <a href="https://mrcake.lat" class="dest-pill">Santo Domingo</a>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-logo">Mr. Cake Pastelería Creativa</div>
+    <div class="footer-links">
+      <a href="https://instagram.com/mrcake.rd">@mrcake.rd</a>
+      <a href="https://mrcake.lat">mrcake.lat</a>
+      <a href="mailto:hola@mrcake.lat">hola@mrcake.lat</a>
+    </div>
+    <div class="footer-copy">© 2026 Mr. Cake · Santo Domingo, RD</div>
+  </footer>
+
+  <script>
+    function setLang(lang) {
+      document.querySelectorAll('[data-en]').forEach(el => {
+        const text = el.getAttribute(`data-${lang}`);
+        if (text) el.innerHTML = text;
+      });
+      document.getElementById('btn-en').classList.toggle('active', lang === 'en');
+      document.getElementById('btn-es').classList.toggle('active', lang === 'es');
+      document.documentElement.lang = lang;
+      localStorage.setItem('mrcake-lang', lang);
+    }
+
+    const savedLang = localStorage.getItem('mrcake-lang') || 'en';
+    setLang(savedLang);
+
+    // Hero parallax bg
+    const heroBg = document.getElementById('heroBg');
+    setTimeout(() => heroBg.classList.add('loaded'), 100);
+
+    // Scroll animations
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) entry.target.classList.add('visible');
+      });
+    }, { threshold: 0.1 });
+    document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+  </script>
+</body>
+</html>
