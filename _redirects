@@ -5,27 +5,27 @@
 /bodas/     /bodas/index.html      200
 
 # Blog principal
-/BLOG       /BLOG/index.html       200
-/BLOG/      /BLOG/index.html       200
+/blog       /blog/index.html       200
+/blog/      /blog/index.html       200
 
-# Artículos del blog (cada uno con su carpeta/index.html)
-/blog/destination-wedding-cake-dominican-republic    /BLOG/destination-wedding-cake-dominican-republic/index.html    200
-/blog/destination-wedding-cake-dominican-republic/   /BLOG/destination-wedding-cake-dominican-republic/index.html    200
+# Artículos del blog
+/blog/destination-wedding-cake-dominican-republic    /blog/destination-wedding-cake-dominican-republic/index.html    200
+/blog/destination-wedding-cake-dominican-republic/   /blog/destination-wedding-cake-dominican-republic/index.html    200
 
-/blog/how-far-in-advance-book-wedding-cake-dominican-republic    /BLOG/how-far-in-advance-book-wedding-cake-dominican-republic/index.html    200
-/blog/how-far-in-advance-book-wedding-cake-dominican-republic/   /BLOG/how-far-in-advance-book-wedding-cake-dominican-republic/index.html    200
+/blog/how-far-in-advance-book-wedding-cake-dominican-republic    /blog/how-far-in-advance-book-wedding-cake-dominican-republic/index.html    200
+/blog/how-far-in-advance-book-wedding-cake-dominican-republic/   /blog/how-far-in-advance-book-wedding-cake-dominican-republic/index.html    200
 
-/blog/what-is-a-display-cake-beach-wedding    /BLOG/what-is-a-display-cake-beach-wedding/index.html    200
-/blog/what-is-a-display-cake-beach-wedding/   /BLOG/what-is-a-display-cake-beach-wedding/index.html    200
+/blog/what-is-a-display-cake-beach-wedding    /blog/what-is-a-display-cake-beach-wedding/index.html    200
+/blog/what-is-a-display-cake-beach-wedding/   /blog/what-is-a-display-cake-beach-wedding/index.html    200
 
-/blog/wedding-cake-flavors-tropical-weddings    /BLOG/wedding-cake-flavors-tropical-weddings/index.html    200
-/blog/wedding-cake-flavors-tropical-weddings/   /BLOG/wedding-cake-flavors-tropical-weddings/index.html    200
+/blog/wedding-cake-flavors-tropical-weddings    /blog/wedding-cake-flavors-tropical-weddings/index.html    200
+/blog/wedding-cake-flavors-tropical-weddings/   /blog/wedding-cake-flavors-tropical-weddings/index.html    200
 
-/blog/language-of-flowers-wedding-cake    /BLOG/language-of-flowers-wedding-cake/index.html    200
-/blog/language-of-flowers-wedding-cake/   /BLOG/language-of-flowers-wedding-cake/index.html    200
+/blog/language-of-flowers-wedding-cake    /blog/language-of-flowers-wedding-cake/index.html    200
+/blog/language-of-flowers-wedding-cake/   /blog/language-of-flowers-wedding-cake/index.html    200
 
-/blog/natural-flowers-vs-wafer-paper-wedding-cakes    /BLOG/natural-flowers-vs-wafer-paper-wedding-cakes/index.html    200
-/blog/natural-flowers-vs-wafer-paper-wedding-cakes/   /BLOG/natural-flowers-vs-wafer-paper-wedding-cakes/index.html    200
+/blog/natural-flowers-vs-wafer-paper-wedding-cakes    /blog/natural-flowers-vs-wafer-paper-wedding-cakes/index.html    200
+/blog/natural-flowers-vs-wafer-paper-wedding-cakes/   /blog/natural-flowers-vs-wafer-paper-wedding-cakes/index.html    200
 
 # Catalog
 /Catalog    /Catalog/index.html    200
