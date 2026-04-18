@@ -1,7 +1,0 @@
-/catalog /catalog/index.html 200
-/celebration /celebration/index.html 200
-/punta-cana /punta-cana/index.html 200
-/la-romana /la-romana/index.html 200
-/samana /samana/index.html 200
-/jarabacoa /jarabacoa/index.html 200
-/blog/* /blog/:splat 200
