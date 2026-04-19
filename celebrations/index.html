@@ -1,0 +1,1308 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Celebration Cake — Mr. Cake Pastelería Creativa</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@200;300;400;500;600&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --navy: #0F1F3D;
+      --navy-mid: #2B4A6B;
+      --gold: #C4A97D;
+      --gold-light: #E8D5B0;
+      --cream: #FDF0E3;
+      --cream-mid: #F5E6D0;
+      --white: #FFFFFF;
+      --gray: #8A8A8A;
+      --gray-light: #E8E8E8;
+      --error: #C0392B;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Outfit', sans-serif;
+      background-color: var(--cream);
+      color: var(--navy);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* ── Header ── */
+    .site-header {
+      background: var(--navy);
+      padding: 18px 32px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .site-header svg { height: 36px; width: auto; }
+
+    /* ── Hero ── */
+    .hero {
+      background: var(--navy);
+      color: var(--cream);
+      text-align: center;
+      padding: 56px 24px 48px;
+    }
+
+    .hero-label {
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 16px;
+    }
+
+    .hero h1 {
+      font-size: clamp(28px, 5vw, 44px);
+      font-weight: 300;
+      line-height: 1.2;
+      max-width: 640px;
+      margin: 0 auto 16px;
+    }
+
+    .hero h1 em {
+      font-style: italic;
+      color: var(--gold-light);
+    }
+
+    .hero p {
+      font-size: 15px;
+      font-weight: 300;
+      color: rgba(253,240,227,0.75);
+      max-width: 480px;
+      margin: 0 auto;
+      line-height: 1.6;
+    }
+
+    /* ── Progress ── */
+    .progress-wrapper {
+      background: var(--navy);
+      padding: 0 24px 28px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0;
+    }
+
+    .step-dot {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      border: 1.5px solid rgba(196,169,125,0.3);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 11px;
+      font-weight: 500;
+      color: rgba(196,169,125,0.4);
+      transition: all 0.3s ease;
+      flex-shrink: 0;
+    }
+
+    .step-dot.active {
+      border-color: var(--gold);
+      color: var(--gold);
+      background: rgba(196,169,125,0.1);
+    }
+
+    .step-dot.done {
+      border-color: var(--gold);
+      background: var(--gold);
+      color: var(--navy);
+    }
+
+    .step-line {
+      height: 1px;
+      width: 40px;
+      background: rgba(196,169,125,0.2);
+      flex-shrink: 0;
+      transition: background 0.3s ease;
+    }
+
+    .step-line.done { background: var(--gold); }
+
+    /* ── Form container ── */
+    .form-container {
+      flex: 1;
+      max-width: 680px;
+      width: 100%;
+      margin: 0 auto;
+      padding: 0 20px 80px;
+    }
+
+    /* ── Step panels ── */
+    .step-panel {
+      display: none;
+      animation: fadeSlideIn 0.4s ease;
+    }
+
+    .step-panel.active { display: block; }
+
+    @keyframes fadeSlideIn {
+      from { opacity: 0; transform: translateY(16px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .step-header {
+      padding: 40px 0 28px;
+      border-bottom: 1px solid var(--cream-mid);
+      margin-bottom: 32px;
+    }
+
+    .step-number {
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 10px;
+    }
+
+    .step-title {
+      font-size: clamp(22px, 4vw, 30px);
+      font-weight: 300;
+      line-height: 1.2;
+      color: var(--navy);
+    }
+
+    .step-subtitle {
+      font-size: 14px;
+      color: var(--gray);
+      margin-top: 8px;
+      font-weight: 300;
+    }
+
+    /* ── Fields ── */
+    .field-group {
+      margin-bottom: 24px;
+    }
+
+    .field-group label {
+      display: block;
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--navy);
+      margin-bottom: 8px;
+      letter-spacing: 0.01em;
+    }
+
+    .field-group label .req { color: var(--gold); margin-left: 2px; }
+    .field-group label .opt {
+      font-size: 11px;
+      font-weight: 400;
+      color: var(--gray);
+      margin-left: 6px;
+      letter-spacing: 0;
+    }
+
+    .field-group input,
+    .field-group select,
+    .field-group textarea {
+      width: 100%;
+      padding: 13px 16px;
+      font-family: 'Outfit', sans-serif;
+      font-size: 15px;
+      font-weight: 300;
+      color: var(--navy);
+      background: var(--white);
+      border: 1.5px solid var(--cream-mid);
+      border-radius: 8px;
+      outline: none;
+      transition: border-color 0.2s;
+      appearance: none;
+      -webkit-appearance: none;
+    }
+
+    .field-group input:focus,
+    .field-group select:focus,
+    .field-group textarea:focus {
+      border-color: var(--gold);
+    }
+
+    .field-group textarea { resize: vertical; min-height: 96px; }
+
+    .field-group .error-msg {
+      font-size: 12px;
+      color: var(--error);
+      margin-top: 5px;
+      display: none;
+    }
+
+    .field-group.has-error input,
+    .field-group.has-error select,
+    .field-group.has-error textarea {
+      border-color: var(--error);
+    }
+
+    .field-group.has-error .error-msg { display: block; }
+
+    .field-hint {
+      font-size: 12px;
+      color: var(--gray);
+      margin-top: 6px;
+      font-weight: 300;
+      font-style: italic;
+      line-height: 1.5;
+    }
+
+    /* ── Select wrapper ── */
+    .select-wrapper {
+      position: relative;
+    }
+
+    .select-wrapper::after {
+      content: '';
+      position: absolute;
+      right: 16px;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 0;
+      height: 0;
+      border-left: 5px solid transparent;
+      border-right: 5px solid transparent;
+      border-top: 5px solid var(--gray);
+      pointer-events: none;
+    }
+
+    /* ── Radio cards ── */
+    .radio-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+    }
+
+    .radio-grid.single-col { grid-template-columns: 1fr; }
+
+    .radio-card {
+      position: relative;
+      cursor: pointer;
+    }
+
+    .radio-card input[type="radio"] {
+      position: absolute;
+      opacity: 0;
+      width: 0;
+      height: 0;
+    }
+
+    .radio-card-label {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      padding: 14px 16px;
+      background: var(--white);
+      border: 1.5px solid var(--cream-mid);
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 0.2s;
+      font-size: 14px;
+      font-weight: 400;
+      color: var(--navy);
+      line-height: 1.4;
+    }
+
+    .radio-card input:checked + .radio-card-label {
+      border-color: var(--gold);
+      background: rgba(196,169,125,0.06);
+    }
+
+    .radio-dot {
+      width: 16px;
+      height: 16px;
+      min-width: 16px;
+      border-radius: 50%;
+      border: 1.5px solid var(--cream-mid);
+      margin-top: 1px;
+      transition: all 0.2s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .radio-card input:checked + .radio-card-label .radio-dot {
+      border-color: var(--gold);
+      background: var(--gold);
+    }
+
+    .radio-card input:checked + .radio-card-label .radio-dot::after {
+      content: '';
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: var(--white);
+    }
+
+    .radio-text { flex: 1; }
+    .radio-text strong { display: block; font-weight: 500; font-size: 14px; }
+    .radio-text span { font-size: 12px; color: var(--gray); font-weight: 300; }
+
+    /* ── Rescue buttons ── */
+    .rescue-block {
+      margin: 28px 0 8px;
+      padding: 20px;
+      background: rgba(196,169,125,0.07);
+      border: 1px solid var(--gold-light);
+      border-radius: 10px;
+    }
+
+    .rescue-block p {
+      font-size: 12px;
+      color: var(--gray);
+      margin-bottom: 12px;
+      text-align: center;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      font-weight: 500;
+    }
+
+    .rescue-buttons {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+    }
+
+    .rescue-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 11px 14px;
+      background: var(--white);
+      border: 1.5px solid var(--cream-mid);
+      border-radius: 7px;
+      text-decoration: none;
+      color: var(--navy);
+      font-family: 'Outfit', sans-serif;
+      font-size: 13px;
+      font-weight: 400;
+      cursor: pointer;
+      transition: all 0.2s;
+      text-align: center;
+      line-height: 1.3;
+    }
+
+    .rescue-btn:hover {
+      border-color: var(--gold);
+      background: rgba(196,169,125,0.05);
+    }
+
+    .rescue-btn .icon { font-size: 16px; flex-shrink: 0; }
+
+    /* ── Conditonal reveal ── */
+    .conditional-field {
+      display: none;
+      margin-top: 12px;
+      animation: fadeSlideIn 0.25s ease;
+    }
+
+    .conditional-field.visible { display: block; }
+
+    /* ── Scenographic note ── */
+    .sceno-note {
+      margin-top: 10px;
+      padding: 12px 14px;
+      background: rgba(196,169,125,0.08);
+      border-left: 3px solid var(--gold);
+      border-radius: 0 6px 6px 0;
+      font-size: 12px;
+      color: var(--navy-mid);
+      font-weight: 300;
+      line-height: 1.6;
+    }
+
+    /* ── File upload ── */
+    .upload-zone {
+      border: 1.5px dashed var(--cream-mid);
+      border-radius: 8px;
+      padding: 28px 20px;
+      text-align: center;
+      background: var(--white);
+      cursor: pointer;
+      transition: all 0.2s;
+      position: relative;
+    }
+
+    .upload-zone:hover, .upload-zone.drag-over {
+      border-color: var(--gold);
+      background: rgba(196,169,125,0.04);
+    }
+
+    .upload-zone input[type="file"] {
+      position: absolute;
+      inset: 0;
+      opacity: 0;
+      cursor: pointer;
+      width: 100%;
+      height: 100%;
+      padding: 0;
+      border: none;
+    }
+
+    .upload-icon { font-size: 24px; margin-bottom: 8px; }
+    .upload-label { font-size: 14px; font-weight: 400; color: var(--navy); margin-bottom: 4px; }
+    .upload-hint { font-size: 12px; color: var(--gray); font-weight: 300; }
+
+    .file-preview {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 12px;
+    }
+
+    .file-chip {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 10px;
+      background: rgba(196,169,125,0.1);
+      border: 1px solid var(--gold-light);
+      border-radius: 20px;
+      font-size: 12px;
+      color: var(--navy);
+    }
+
+    .file-chip button {
+      background: none;
+      border: none;
+      cursor: pointer;
+      color: var(--gray);
+      font-size: 14px;
+      line-height: 1;
+      padding: 0;
+    }
+
+    /* ── Contact method ── */
+    .contact-method-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 8px;
+    }
+
+    /* ── Navigation ── */
+    .step-nav {
+      display: flex;
+      gap: 12px;
+      margin-top: 36px;
+      padding-top: 28px;
+      border-top: 1px solid var(--cream-mid);
+    }
+
+    .btn-back {
+      flex: 0 0 auto;
+      padding: 14px 24px;
+      background: none;
+      border: 1.5px solid var(--cream-mid);
+      border-radius: 8px;
+      font-family: 'Outfit', sans-serif;
+      font-size: 14px;
+      font-weight: 400;
+      color: var(--gray);
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .btn-back:hover { border-color: var(--navy); color: var(--navy); }
+
+    .btn-next {
+      flex: 1;
+      padding: 15px 28px;
+      background: var(--navy);
+      border: none;
+      border-radius: 8px;
+      font-family: 'Outfit', sans-serif;
+      font-size: 15px;
+      font-weight: 500;
+      color: var(--cream);
+      cursor: pointer;
+      transition: all 0.2s;
+      letter-spacing: 0.01em;
+    }
+
+    .btn-next:hover { background: var(--navy-mid); }
+
+    .btn-submit {
+      flex: 1;
+      padding: 15px 28px;
+      background: var(--gold);
+      border: none;
+      border-radius: 8px;
+      font-family: 'Outfit', sans-serif;
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--navy);
+      cursor: pointer;
+      transition: all 0.2s;
+      letter-spacing: 0.01em;
+    }
+
+    .btn-submit:hover { background: var(--gold-light); }
+
+    /* ── Confirmation ── */
+    .confirmation {
+      display: none;
+      text-align: center;
+      padding: 64px 24px;
+      animation: fadeSlideIn 0.5s ease;
+    }
+
+    .confirmation.active { display: block; }
+
+    .confirmation-icon {
+      width: 64px;
+      height: 64px;
+      background: rgba(196,169,125,0.15);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 24px;
+      font-size: 28px;
+    }
+
+    .confirmation h2 {
+      font-size: 28px;
+      font-weight: 300;
+      color: var(--navy);
+      margin-bottom: 12px;
+    }
+
+    .confirmation p {
+      font-size: 15px;
+      color: var(--gray);
+      font-weight: 300;
+      line-height: 1.6;
+      max-width: 400px;
+      margin: 0 auto;
+    }
+
+    /* ── Divider ── */
+    .divider {
+      height: 1px;
+      background: var(--cream-mid);
+      margin: 28px 0;
+    }
+
+    /* ── Responsive ── */
+    @media (max-width: 520px) {
+      .radio-grid { grid-template-columns: 1fr; }
+      .rescue-buttons { grid-template-columns: 1fr; }
+      .contact-method-grid { grid-template-columns: 1fr; }
+      .hero { padding: 40px 20px 36px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- Header -->
+<header class="site-header">
+  <a href="https://mrcake.lat">
+    <svg width="120" height="38" viewBox="0 0 1681 524" xmlns="http://www.w3.org/2000/svg" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;">
+      <g transform="matrix(1,0,0,1,-4195.91,-3643.81)">
+        <path d="M4695.35,4056.15L4735.3,4122.81C4687.5,4149.61 4636.84,4163.36 4589.75,4163.36C4449.2,4163.36 4374.28,4056.15 4374.28,3925.58L4374.28,3768.89L4327.9,3867.85L4321.48,3867.85L4275.82,3768.89L4275.82,4124.88L4195.91,4124.88L4195.91,3643.81L4275.82,3643.81L4325.05,3736.59L4374.28,3643.81L4454.19,3643.81L4454.19,3925.58C4454.19,4010.11 4494.15,4086.39 4589.75,4086.39C4623.28,4086.39 4659.67,4076.08 4695.35,4056.15ZM4675.92,3924.89C4705.89,3924.89 4730.86,3948.26 4730.86,3977.81C4730.86,4006.67 4705.89,4030.04 4675.92,4030.04C4645.24,4030.04 4620.99,4006.67 4620.99,3977.81C4620.99,3948.26 4645.24,3924.89 4675.92,3924.89ZM4494.7,3991.9L4494.7,3725.6C4494.7,3680.24 4533.23,3643.81 4580.32,3643.81L4675.92,3643.81L4661.65,3715.29L4601.01,3715.29C4586.74,3715.29 4574.61,3726.28 4574.61,3740.71L4574.61,3991.9L4574.4,3991.9L4574.41,3992.15C4574.41,4013.09 4556.29,4030.04 4534.55,4030.04C4512.3,4030.04 4494.7,4013.09 4494.7,3992.15L4494.7,3991.9ZM4978.42,3643.81C5039.06,3643.81 5088.29,3690.55 5088.29,3748.96L5088.29,3856.86L5011.95,3871.29L5011.95,3746.21C5011.95,3729.72 4997.68,3716.66 4980.56,3716.66C4963.43,3716.66 4949.16,3729.72 4949.16,3746.21L4949.16,4038.28C4949.16,4054.78 4963.43,4067.84 4980.56,4067.84C4997.68,4067.84 5011.95,4054.78 5011.95,4038.28L5011.95,3911.15L5088.29,3896.72L5088.29,4034.16C5088.29,4092.58 5039.06,4139.31 4978.42,4139.31C4918.48,4139.31 4869.25,4092.58 4869.25,4034.16L4869.25,3748.96C4869.25,3690.55 4918.48,3643.81 4978.42,3643.81ZM5120.4,3750.34C5120.4,3680.24 5173.91,3644.5 5227.42,3644.5C5281.65,3644.5 5335.87,3680.93 5335.87,3755.83L5335.87,4039.66L5208.87,4039.66C5159.64,4039.66 5120.4,4001.86 5120.4,3954.44L5120.4,3852.73L5259.53,3823.18L5259.53,3764.77C5259.53,3729.72 5245.26,3716.66 5228.14,3716.66C5211.01,3716.66 5196.74,3729.72 5196.74,3746.9L5196.74,3798.44L5120.4,3812.87L5120.4,3750.34ZM5259.53,3970.25L5259.53,3893.28L5196.74,3908.4L5196.74,3942.76C5196.74,3957.88 5209.59,3970.25 5225.28,3970.25L5259.53,3970.25ZM5334.44,4132.44L5134.67,4132.44L5134.67,4063.02L5334.44,4063.02L5334.44,4132.44ZM5747.55,4046.53C5687.62,4046.53 5638.39,3999.11 5638.39,3940.7L5638.39,3749.65C5638.39,3691.92 5687.62,3644.5 5747.55,3644.5C5808.2,3644.5 5857.43,3691.92 5857.43,3749.65L5857.43,3857.54L5813.19,3865.79L5718.3,3886.41L5718.3,3944.82C5718.3,3961.31 5732.57,3975.06 5749.69,3975.06C5766.82,3975.06 5781.08,3961.31 5781.08,3944.82L5781.08,3911.83L5857.43,3897.4L5857.43,3940.7C5857.43,3999.11 5808.2,4046.53 5747.55,4046.53ZM5718.3,3747.59L5718.3,3816.31L5781.08,3801.88L5781.08,3747.59C5781.08,3731.09 5766.82,3717.35 5749.69,3717.35C5732.57,3717.35 5718.3,3731.09 5718.3,3747.59ZM5836.02,4063.71L5875.98,4130.37C5831.74,4155.11 5783.23,4167.48 5735.42,4167.48C5618.41,4167.48 5514.24,4089.14 5514.24,3970.25L5514.95,3970.25L5514.95,3948.26C5514.95,3933.14 5502.83,3922.83 5487.84,3922.83C5482.14,3922.83 5475.71,3924.2 5470.01,3927.64L5455.74,3935.89L5455.74,4132.44L5375.83,4132.44L5375.83,3652.06L5455.74,3652.06L5455.74,3859.6L5477.85,3844.49C5494.98,3832.8 5503.54,3822.49 5503.54,3805.31L5503.54,3652.06L5583.45,3652.06L5583.45,3808.06C5583.45,3845.86 5565.61,3872.66 5529.23,3894.65C5567.04,3893.97 5594.86,3915.27 5594.86,3948.94L5594.86,3970.25L5594.15,3970.25C5594.15,4045.84 5664.07,4090.51 5736.14,4090.51C5768.95,4090.51 5803.92,4081.58 5836.02,4063.71Z" style="fill:white;"/>
+      </g>
+    </svg>
+  </a>
+</header>
+
+<!-- Hero -->
+<div class="hero">
+  <div class="hero-label">Celebration Cakes · Mr. Cake</div>
+  <h1>Tu cake empieza<br/><em>con una conversación.</em></h1>
+  <p>Cuéntanos qué están celebrando y tu visión. Construiremos juntos una pieza diseñada desde cero para este momento.</p>
+</div>
+
+<!-- Progress -->
+<div class="progress-wrapper">
+  <div class="step-dot active" id="dot-1">1</div>
+  <div class="step-line" id="line-1"></div>
+  <div class="step-dot" id="dot-2">2</div>
+  <div class="step-line" id="line-2"></div>
+  <div class="step-dot" id="dot-3">3</div>
+  <div class="step-line" id="line-3"></div>
+  <div class="step-dot" id="dot-4">4</div>
+  <div class="step-line" id="line-4"></div>
+  <div class="step-dot" id="dot-5">5</div>
+</div>
+
+<!-- Form -->
+<div class="form-container">
+
+  <!-- ── PASO 1 ── -->
+  <div class="step-panel active" id="step-1">
+    <div class="step-header">
+      <div class="step-number">Paso 01 de 05</div>
+      <h2 class="step-title">La ocasión</h2>
+      <p class="step-subtitle">Cuéntanos qué estamos celebrando.</p>
+    </div>
+
+    <div class="field-group" id="fg-nombre">
+      <label>Tu nombre <span class="req">*</span></label>
+      <input type="text" id="nombre" placeholder="¿Cómo te llamamos?"/>
+      <div class="error-msg">Por favor ingresa tu nombre.</div>
+    </div>
+
+    <div class="field-group" id="fg-ocasion">
+      <label>¿Qué están celebrando? <span class="req">*</span></label>
+      <div class="radio-grid">
+        <label class="radio-card">
+          <input type="radio" name="ocasion" value="Cumpleaños"/>
+          <div class="radio-card-label">
+            <span class="radio-dot"></span>
+            <span class="radio-text">Cumpleaños</span>
+          </div>
+        </label>
+        <label class="radio-card">
+          <input type="radio" name="ocasion" value="Quinceañera"/>
+          <div class="radio-card-label">
+            <span class="radio-dot"></span>
+            <span class="radio-text">Quinceañera</span>
+          </div>
+        </label>
+        <label class="radio-card">
+          <input type="radio" name="ocasion" value="Graduación"/>
+          <div class="radio-card-label">
+            <span class="radio-dot"></span>
+            <span class="radio-text">Graduación</span>
+          </div>
+        </label>
+        <label class="radio-card">
+          <input type="radio" name="ocasion" value="Baby Shower"/>
+          <div class="radio-card-label">
+            <span class="radio-dot"></span>
+            <span class="radio-text">Baby Shower</span>
+          </div>
+        </label>
+        <label class="radio-card">
+          <input type="radio" name="ocasion" value="Bautizo / Primera comunión"/>
+          <div class="radio-card-label">
+            <span class="radio-dot"></span>
+            <span class="radio-text">Bautizo / Primera comunión</span>
+          </div>
+        </label>
+        <label class="radio-card">
+          <input type="radio" name="ocasion" value="Aniversario"/>
+          <div class="radio-card-label">
+            <span class="radio-dot"></span>
+            <span class="radio-text">Aniversario</span>
+          </div>
+        </label>
+        <label class="radio-card" style="grid-column: 1 / -1;">
+          <input type="radio" name="ocasion" value="Otra celebración"/>
+          <div class="radio-card-label">
+            <span class="radio-dot"></span>
+            <span class="radio-text">Otra celebración</span>
+          </div>
+        </label>
+      </div>
+      <div class="error-msg">Por favor selecciona la ocasión.</div>
+    </div>
+
+    <div class="field-group">
+      <label>¿Para quién es el cake? <span class="opt">opcional</span></label>
+      <input type="text" id="homenajeado" placeholder="Nombre de la persona que celebra"/>
+    </div>
+
+    <div class="field-group" id="fg-fecha">
+      <label>Fecha del evento <span class="req">*</span></label>
+      <input type="date" id="fecha-evento"/>
+      <div class="error-msg">Por favor selecciona la fecha.</div>
+    </div>
+
+    <div class="field-group" id="fg-lugar">
+      <label>¿Dónde es el evento? <span class="req">*</span></label>
+      <input type="text" id="lugar" placeholder="Venue o ciudad"/>
+      <div class="error-msg">Por favor indica el lugar.</div>
+    </div>
+
+    <!-- Botones de rescate -->
+    <div class="rescue-block">
+      <p>¿Buscas algo diferente?</p>
+      <div class="rescue-buttons">
+        <a href="https://mrcake.lat" class="rescue-btn">
+          <span class="icon">💍</span>
+          <span>Quiero un cake para mi boda</span>
+        </a>
+        <a href="https://jr.mrcake.lat" class="rescue-btn">
+          <span class="icon">⚡</span>
+          <span>Busco algo express y sencillo</span>
+        </a>
+      </div>
+    </div>
+
+    <div class="step-nav">
+      <button class="btn-next" onclick="nextStep(1)">Continuar →</button>
+    </div>
+  </div>
+
+  <!-- ── PASO 2 ── -->
+  <div class="step-panel" id="step-2">
+    <div class="step-header">
+      <div class="step-number">Paso 02 de 05</div>
+      <h2 class="step-title">Tu visión</h2>
+      <p class="step-subtitle">Aquí empieza el cake.</p>
+    </div>
+
+    <div class="field-group" id="fg-concepto">
+      <label>¿Qué concepto o tema tienes en mente? <span class="req">*</span></label>
+      <textarea id="concepto" placeholder="Cuéntanos la idea — un personaje, una estética, un universo, una emoción…"></textarea>
+      <div class="error-msg">Cuéntanos tu concepto para poder diseñar juntos.</div>
+    </div>
+
+    <div class="field-group" id="fg-escenico">
+      <label>¿Qué tipo de cake necesitas? <span class="req">*</span></label>
+      <div class="radio-grid single-col">
+        <label class="radio-card">
+          <input type="radio" name="escenico" value="Todo comestible"/>
+          <div class="radio-card-label">
+            <span class="radio-dot"></span>
+            <span class="radio-text">
+              <strong>Todo comestible</strong>
+              <span>Un solo cake para todo el evento</span>
+            </span>
+          </div>
+        </label>
+        <label class="radio-card">
+          <input type="radio" name="escenico" value="Solo escenográfico"/>
+          <div class="radio-card-label">
+            <span class="radio-dot"></span>
+            <span class="radio-text">
+              <strong>Solo escenográfico</strong>
+              <span>Para exhibición — no se consume</span>
+            </span>
+          </div>
+        </label>
+        <label class="radio-card">
+          <input type="radio" name="escenico" value="Escenográfico y otro para partir"/>
+          <div class="radio-card-label">
+            <span class="radio-dot"></span>
+            <span class="radio-text">
+              <strong>Escenográfico y otro para partir</strong>
+              <span>Uno de exhibición + uno de servicio para los invitados</span>
+            </span>
+          </div>
+        </label>
+        <label class="radio-card">
+          <input type="radio" name="escenico" value="Solo una parte escenográfica"/>
+          <div class="radio-card-label">
+            <span class="radio-dot"></span>
+            <span class="radio-text">
+              <strong>Solo una parte escenográfica</strong>
+              <span>Combinación — parte para exhibir, parte comestible</span>
+            </span>
+          </div>
+        </label>
+      </div>
+      <div class="sceno-note">
+        <strong>¿Qué es un cake escenográfico?</strong> Es una pieza construida para exhibirse durante horas sin riesgo de deterioro — ideal para eventos largos, cakes con estructuras elaboradas o cuando quieres máximo impacto visual toda la noche.
+      </div>
+      <div class="error-msg">Por favor selecciona el tipo de cake.</div>
+    </div>
+
+    <div class="field-group" id="fg-no-faltar">
+      <label>¿Qué no me puede faltar en este cake? <span class="req">*</span></label>
+      <textarea id="no-faltar" placeholder="El detalle que lo hace único para ti — un color, un elemento, una sensación…"></textarea>
+      <div class="error-msg">Cuéntanos qué es lo más importante para ti.</div>
+    </div>
+
+    <div class="field-group" id="fg-invitados">
+      <label>¿Cuántas personas va a servir aproximadamente? <span class="req">*</span></label>
+      <div class="select-wrapper">
+        <select id="invitados">
+          <option value="">Selecciona un rango</option>
+          <option value="Hasta 20 personas">Hasta 20 personas</option>
+          <option value="20 – 40 personas">20 – 40 personas</option>
+          <option value="40 – 80 personas">40 – 80 personas</option>
+          <option value="80 – 150 personas">80 – 150 personas</option>
+          <option value="Más de 150 personas">Más de 150 personas</option>
+          <option value="Solo escenográfico — no se sirve">Solo escenográfico — no se sirve</option>
+        </select>
+      </div>
+      <div class="error-msg">Por favor selecciona un rango de invitados.</div>
+    </div>
+
+    <div class="field-group">
+      <label>¿Están trabajando con un event planner o coordinador? <span class="opt">opcional</span></label>
+      <div class="radio-grid">
+        <label class="radio-card">
+          <input type="radio" name="planner" value="Sí" id="planner-si"/>
+          <div class="radio-card-label">
+            <span class="radio-dot"></span>
+            <span class="radio-text">Sí, tengo planner</span>
+          </div>
+        </label>
+        <label class="radio-card">
+          <input type="radio" name="planner" value="No"/>
+          <div class="radio-card-label">
+            <span class="radio-dot"></span>
+            <span class="radio-text">No, coordinamos directamente</span>
+          </div>
+        </label>
+      </div>
+      <div class="conditional-field" id="planner-name-field">
+        <input type="text" id="planner-nombre" placeholder="Nombre del planner o agencia"/>
+      </div>
+    </div>
+
+    <div class="step-nav">
+      <button class="btn-back" onclick="prevStep(2)">← Atrás</button>
+      <button class="btn-next" onclick="nextStep(2)">Continuar →</button>
+    </div>
+  </div>
+
+  <!-- ── PASO 3 ── -->
+  <div class="step-panel" id="step-3">
+    <div class="step-header">
+      <div class="step-number">Paso 03 de 05</div>
+      <h2 class="step-title">Lo que ya sabes</h2>
+      <p class="step-subtitle">Sin presión — esto lo afinamos juntos.</p>
+    </div>
+
+    <div style="padding: 16px 18px; background: rgba(196,169,125,0.08); border-radius: 8px; margin-bottom: 28px; border-left: 3px solid var(--gold);">
+      <p style="font-size: 13px; font-weight: 400; color: var(--navy); line-height: 1.6;">
+        <strong>Mr. Cake no trabaja con catálogo.</strong> Cada pieza la construimos juntos desde el concepto. Lo que ves en televisión — aquí lo hacemos real.
+      </p>
+    </div>
+
+    <div class="field-group">
+      <label>¿Tienes algún sabor o relleno en mente? <span class="opt">opcional</span></label>
+      <textarea id="sabores" rows="3" placeholder="Ej. «Me encanta el chocolate con dulce de leche» o «algo tropical, quizás mango y coco…»"></textarea>
+      <p class="field-hint">¿No encuentras lo que buscas? Nos encanta un reto — cuéntanos.</p>
+    </div>
+
+    <div class="divider"></div>
+
+    <div class="field-group">
+      <label>¿Tienes un presupuesto en mente? <span class="opt">opcional</span></label>
+      <input type="text" id="presupuesto" placeholder="Puedes escribir un número o dejarlo para conversarlo juntos"/>
+    </div>
+
+    <div class="step-nav">
+      <button class="btn-back" onclick="prevStep(3)">← Atrás</button>
+      <button class="btn-next" onclick="nextStep(3)">Continuar →</button>
+    </div>
+  </div>
+
+  <!-- ── PASO 4 ── -->
+  <div class="step-panel" id="step-4">
+    <div class="step-header">
+      <div class="step-number">Paso 04 de 05</div>
+      <h2 class="step-title">El diseño</h2>
+      <p class="step-subtitle">No para copiar — para entender tu mundo.</p>
+    </div>
+
+    <div class="field-group" id="fg-pisos">
+      <label>¿Cuántos pisos imaginas para este cake? <span class="req">*</span></label>
+      <div class="radio-grid">
+        <label class="radio-card">
+          <input type="radio" name="pisos" value="1 piso"/>
+          <div class="radio-card-label">
+            <span class="radio-dot"></span>
+            <span class="radio-text">1 piso</span>
+          </div>
+        </label>
+        <label class="radio-card">
+          <input type="radio" name="pisos" value="2 pisos"/>
+          <div class="radio-card-label">
+            <span class="radio-dot"></span>
+            <span class="radio-text">2 pisos</span>
+          </div>
+        </label>
+        <label class="radio-card">
+          <input type="radio" name="pisos" value="3 pisos"/>
+          <div class="radio-card-label">
+            <span class="radio-dot"></span>
+            <span class="radio-text">3 pisos</span>
+          </div>
+        </label>
+        <label class="radio-card">
+          <input type="radio" name="pisos" value="4 o más pisos"/>
+          <div class="radio-card-label">
+            <span class="radio-dot"></span>
+            <span class="radio-text">4 o más</span>
+          </div>
+        </label>
+        <label class="radio-card" style="grid-column: 1 / -1;">
+          <input type="radio" name="pisos" value="Me guío por el presupuesto"/>
+          <div class="radio-card-label">
+            <span class="radio-dot"></span>
+            <span class="radio-text">Me guío por el presupuesto</span>
+          </div>
+        </label>
+      </div>
+      <div class="error-msg">Por favor selecciona una opción.</div>
+    </div>
+
+    <div class="field-group">
+      <label>¿Hay colores que no pueden faltar? <span class="opt">opcional</span></label>
+      <input type="text" id="colores" placeholder="Ej. «dorado, blanco roto y burdeos» o «los colores del team de fútbol»"/>
+    </div>
+
+    <div class="field-group">
+      <label>Referencias visuales <span class="opt">hasta 3 fotos · opcional</span></label>
+      <div class="upload-zone" id="upload-zone">
+        <input type="file" id="file-input" accept="image/*" multiple/>
+        <div class="upload-icon">📎</div>
+        <div class="upload-label">Arrastra tus fotos aquí o toca para seleccionar</div>
+        <div class="upload-hint">Colores, estilos o elementos que te inspiran — no tiene que ser un cake.</div>
+      </div>
+      <div class="file-preview" id="file-preview"></div>
+    </div>
+
+    <div class="step-nav">
+      <button class="btn-back" onclick="prevStep(4)">← Atrás</button>
+      <button class="btn-next" onclick="nextStep(4)">Continuar →</button>
+    </div>
+  </div>
+
+  <!-- ── PASO 5 ── -->
+  <div class="step-panel" id="step-5">
+    <div class="step-header">
+      <div class="step-number">Paso 05 de 05</div>
+      <h2 class="step-title">¿Cómo te encontramos?</h2>
+      <p class="step-subtitle">Ya casi terminamos.</p>
+    </div>
+
+    <div class="field-group" id="fg-email">
+      <label>Email <span class="req">*</span></label>
+      <input type="email" id="email" placeholder="tu@email.com"/>
+      <div class="error-msg">Por favor ingresa un email válido.</div>
+    </div>
+
+    <div class="field-group" id="fg-telefono">
+      <label>WhatsApp / Teléfono <span class="req">*</span></label>
+      <input type="tel" id="telefono" placeholder="+1 829 000 0000"/>
+      <div class="error-msg">Por favor ingresa tu número de contacto.</div>
+    </div>
+
+    <div class="field-group" id="fg-contacto-metodo">
+      <label>¿Cuál es la mejor forma de contactarte? <span class="req">*</span></label>
+      <div class="contact-method-grid">
+        <label class="radio-card">
+          <input type="radio" name="contacto-metodo" value="WhatsApp"/>
+          <div class="radio-card-label">
+            <span class="radio-dot"></span>
+            <span class="radio-text">WhatsApp</span>
+          </div>
+        </label>
+        <label class="radio-card">
+          <input type="radio" name="contacto-metodo" value="Email"/>
+          <div class="radio-card-label">
+            <span class="radio-dot"></span>
+            <span class="radio-text">Email</span>
+          </div>
+        </label>
+        <label class="radio-card">
+          <input type="radio" name="contacto-metodo" value="Cualquiera"/>
+          <div class="radio-card-label">
+            <span class="radio-dot"></span>
+            <span class="radio-text">Cualquiera</span>
+          </div>
+        </label>
+      </div>
+      <div class="error-msg">Por favor selecciona tu método de contacto preferido.</div>
+    </div>
+
+    <div class="field-group">
+      <label>¿Cómo nos conociste? <span class="opt">opcional</span></label>
+      <div class="select-wrapper">
+        <select id="como-conocio">
+          <option value="">Selecciona una opción</option>
+          <option value="Instagram">Instagram</option>
+          <option value="Referido de un amigo o familiar">Referido de un amigo o familiar</option>
+          <option value="Google">Google</option>
+          <option value="TikTok">TikTok</option>
+          <option value="Pinterest">Pinterest</option>
+          <option value="Planner / coordinador de eventos">Planner / coordinador de eventos</option>
+          <option value="Otro">Otro</option>
+        </select>
+      </div>
+    </div>
+
+    <!-- CloudFlare Workers Form (Hidden - for field mapping) -->
+    <form id="celebration-form-hidden" method="POST" action="https://mrcake.lat/api/email" style="display:none;">
+      <input type="hidden" name="form_type" value="celebration"/>
+    </form>
+
+    <div class="step-nav">
+      <button class="btn-back" onclick="prevStep(5)">← Atrás</button>
+      <button class="btn-submit" onclick="submitForm()">Enviar consulta</button>
+    </div>
+  </div>
+
+  <!-- ── Confirmación ── -->
+  <div class="confirmation" id="confirmation">
+    <div class="confirmation-icon">🎂</div>
+    <h2>Recibido.</h2>
+    <p>Te escribimos en menos de 48 horas para comenzar a diseñar juntos.</p>
+    <div style="display:flex;flex-direction:column;gap:12px;margin-top:28px;align-items:center;">
+      <a href="https://mrcake.lat" style="display:inline-block;padding:12px 28px;border-radius:6px;border:1px solid rgba(196,169,125,0.4);background:#fff;font-family:'Outfit',sans-serif;font-size:14px;font-weight:500;color:#2B4A6B;text-decoration:none;">← Volver a mrcake.lat</a>
+      <a href="https://www.instagram.com/mrcake.rd" target="_blank" style="display:inline-block;padding:12px 28px;border-radius:6px;border:none;background:#0F1F3D;font-family:'Outfit',sans-serif;font-size:14px;font-weight:500;color:#C4A97D;text-decoration:none;">Síguenos en @mrcake.rd →</a>
+    </div>
+  </div>
+
+</div><!-- /form-container -->
+
+<script>
+  let currentStep = 1;
+  const totalSteps = 5;
+  const selectedFiles = [];
+
+  // ── Navigation ──
+  function goToStep(step) {
+    document.getElementById('step-' + currentStep).classList.remove('active');
+    document.getElementById('dot-' + currentStep).classList.remove('active');
+
+    if (step > currentStep) {
+      document.getElementById('dot-' + currentStep).classList.add('done');
+      if (currentStep < totalSteps) {
+        document.getElementById('line-' + currentStep).classList.add('done');
+      }
+    } else {
+      document.getElementById('dot-' + currentStep).classList.remove('done');
+      if (currentStep <= totalSteps) {
+        document.getElementById('line-' + currentStep)?.classList.remove('done');
+      }
+    }
+
+    currentStep = step;
+    document.getElementById('step-' + currentStep).classList.add('active');
+    document.getElementById('dot-' + currentStep).classList.add('active');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  function nextStep(from) {
+    if (!validateStep(from)) return;
+    if (from < totalSteps) goToStep(from + 1);
+  }
+
+  function prevStep(from) {
+    if (from > 1) goToStep(from - 1);
+  }
+
+  // ── Validation ──
+  function validateStep(step) {
+    let valid = true;
+
+    if (step === 1) {
+      valid = validateField('nombre', 'fg-nombre') && valid;
+      valid = validateRadio('ocasion', 'fg-ocasion') && valid;
+      valid = validateField('fecha-evento', 'fg-fecha') && valid;
+      valid = validateField('lugar', 'fg-lugar') && valid;
+    }
+
+    if (step === 2) {
+      valid = validateField('concepto', 'fg-concepto') && valid;
+      valid = validateRadio('escenico', 'fg-escenico') && valid;
+      valid = validateField('no-faltar', 'fg-no-faltar') && valid;
+      valid = validateSelect('invitados', 'fg-invitados') && valid;
+    }
+
+    if (step === 4) {
+      valid = validateRadio('pisos', 'fg-pisos') && valid;
+    }
+
+    if (step === 5) {
+      valid = validateEmail('email', 'fg-email') && valid;
+      valid = validateField('telefono', 'fg-telefono') && valid;
+      valid = validateRadio('contacto-metodo', 'fg-contacto-metodo') && valid;
+    }
+
+    return valid;
+  }
+
+  function validateField(id, groupId) {
+    const el = document.getElementById(id);
+    const group = document.getElementById(groupId);
+    if (!el || !el.value.trim()) {
+      group?.classList.add('has-error');
+      return false;
+    }
+    group?.classList.remove('has-error');
+    return true;
+  }
+
+  function validateSelect(id, groupId) {
+    const el = document.getElementById(id);
+    const group = document.getElementById(groupId);
+    if (!el || !el.value) {
+      group?.classList.add('has-error');
+      return false;
+    }
+    group?.classList.remove('has-error');
+    return true;
+  }
+
+  function validateRadio(name, groupId) {
+    const checked = document.querySelector('input[name="' + name + '"]:checked');
+    const group = document.getElementById(groupId);
+    if (!checked) {
+      group?.classList.add('has-error');
+      return false;
+    }
+    group?.classList.remove('has-error');
+    return true;
+  }
+
+  function validateEmail(id, groupId) {
+    const el = document.getElementById(id);
+    const group = document.getElementById(groupId);
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!el || !emailRegex.test(el.value.trim())) {
+      group?.classList.add('has-error');
+      return false;
+    }
+    group?.classList.remove('has-error');
+    return true;
+  }
+
+  // Clear error on input
+  document.querySelectorAll('input, select, textarea').forEach(el => {
+    el.addEventListener('input', () => {
+      el.closest('.field-group')?.classList.remove('has-error');
+    });
+  });
+
+  // ── Planner conditional ──
+  document.getElementById('planner-si').addEventListener('change', function() {
+    document.getElementById('planner-name-field').classList.add('visible');
+  });
+
+  document.querySelectorAll('input[name="planner"]').forEach(radio => {
+    radio.addEventListener('change', function() {
+      if (this.value !== 'Sí') {
+        document.getElementById('planner-name-field').classList.remove('visible');
+      } else {
+        document.getElementById('planner-name-field').classList.add('visible');
+      }
+    });
+  });
+
+  // ── File upload ──
+  const fileInput = document.getElementById('file-input');
+  const filePreview = document.getElementById('file-preview');
+  const uploadZone = document.getElementById('upload-zone');
+
+  fileInput.addEventListener('change', handleFiles);
+
+  uploadZone.addEventListener('dragover', e => {
+    e.preventDefault();
+    uploadZone.classList.add('drag-over');
+  });
+
+  uploadZone.addEventListener('dragleave', () => {
+    uploadZone.classList.remove('drag-over');
+  });
+
+  uploadZone.addEventListener('drop', e => {
+    e.preventDefault();
+    uploadZone.classList.remove('drag-over');
+    const files = Array.from(e.dataTransfer.files).filter(f => f.type.startsWith('image/'));
+    addFiles(files);
+  });
+
+  function handleFiles(e) {
+    addFiles(Array.from(e.target.files));
+  }
+
+  function addFiles(files) {
+    files.forEach(file => {
+      if (selectedFiles.length >= 3) return;
+      if (selectedFiles.find(f => f.name === file.name)) return;
+      selectedFiles.push(file);
+      renderFileChip(file);
+    });
+  }
+
+  function renderFileChip(file) {
+    const chip = document.createElement('div');
+    chip.className = 'file-chip';
+    chip.dataset.name = file.name;
+    chip.innerHTML = '📷 ' + file.name.substring(0, 20) + (file.name.length > 20 ? '…' : '') +
+      '<button type="button" onclick="removeFile(\'' + file.name + '\')">×</button>';
+    filePreview.appendChild(chip);
+  }
+
+  function removeFile(name) {
+    const idx = selectedFiles.findIndex(f => f.name === name);
+    if (idx > -1) selectedFiles.splice(idx, 1);
+    const chip = filePreview.querySelector('[data-name="' + name + '"]');
+    if (chip) chip.remove();
+  }
+
+  // ── Submit ──
+  async function submitForm() {
+    if (!validateStep(5)) return;
+
+    const getRadio = (name) => {
+      const el = document.querySelector('input[name="' + name + '"]:checked');
+      return el ? el.value : '';
+    };
+
+    const formData = new FormData();
+    formData.append('form_type', 'celebration');
+    formData.append('name', document.getElementById('nombre').value);
+    formData.append('email', document.getElementById('email').value);
+    formData.append('phone', document.getElementById('telefono').value);
+    
+    // Compilar la visión/concepto del cake
+    const vision = `
+Ocasión: ${getRadio('ocasion')}
+Homenajeado/a: ${document.getElementById('homenajeado').value}
+Fecha: ${document.getElementById('fecha-evento').value}
+Lugar: ${document.getElementById('lugar').value}
+Concepto: ${document.getElementById('concepto').value}
+Escénico: ${getRadio('escenico')}
+Lo que no puede faltar: ${document.getElementById('no-faltar').value}
+Invitados: ${document.getElementById('invitados').value}
+Pisos: ${getRadio('pisos')}
+Colores: ${document.getElementById('colores').value}
+    `;
+    
+    formData.append('vision', vision);
+    
+    // Mensaje adicional con sabores y presupuesto
+    const message = `
+Sabores/Referencia: ${document.getElementById('sabores').value}
+Presupuesto: ${document.getElementById('presupuesto').value}
+Cómo nos conoció: ${document.getElementById('como-conocio').value}
+Contacto preferido: ${getRadio('contacto-metodo')}
+    `;
+    
+    formData.append('message', message);
+
+    try {
+      const response = await fetch('https://mrcake.lat/api/email', { 
+        method: 'POST', 
+        body: formData 
+      });
+      
+      if (!response.ok) {
+        console.error('Error en el envío');
+      }
+    } catch(e) {
+      console.error('Error:', e);
+    }
+
+    // Show confirmation
+    document.getElementById('step-5').classList.remove('active');
+    document.getElementById('dot-5').classList.remove('active');
+    document.getElementById('dot-5').classList.add('done');
+    document.getElementById('confirmation').classList.add('active');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+</script>
+</body>
+</html>
