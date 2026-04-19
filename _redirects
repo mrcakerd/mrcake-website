@@ -4,6 +4,10 @@
 /bodas      /bodas/index.html      200
 /bodas/     /bodas/index.html      200
 
+# Celebration form (con S)
+/celebrations   /celebrations/index.html   200
+/celebrations/  /celebrations/index.html   200
+
 # Blog principal
 /blog       /blog/index.html       200
 /blog/      /blog/index.html       200
@@ -30,10 +34,6 @@
 # Catalog
 /Catalog    /Catalog/index.html    200
 /Catalog/   /Catalog/index.html    200
-
-# Celebration
-/celebration   /celebration.html   200
-/celebration/  /celebration.html   200
 
 # SPA fallback
 /*    /index.html   200
