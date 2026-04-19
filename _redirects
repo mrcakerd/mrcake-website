@@ -32,8 +32,8 @@
 /Catalog/   /Catalog/index.html    200
 
 # Celebration
-/celebration   /celebration/index.html   200
-/celebration/  /celebration/index.html   200
+/celebration   /celebration.html   200
+/celebration/  /celebration.html   200
 
 # SPA fallback
 /*    /index.html   200
