@@ -35,8 +35,5 @@
 /Catalog    /Catalog/index.html    200
 /Catalog/   /Catalog/index.html    200
 
-/nuevo-cliente    /nuevo-cliente/mr-cake-form.html    200
-/nuevo-cliente/   /nuevo-cliente/mr-cake-form.html    200
-
 # SPA fallback
 /*    /index.html   200
