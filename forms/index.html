@@ -1,0 +1,746 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mr. Cake — Cotización</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@200;300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        :root { --navy: #0F1F3D; --gold: #C4A97D; --dusty-blue: #96B1D0; --white: #FFFFFF; }
+        html, body { width: 100%; font-family: 'Outfit', sans-serif; background: var(--white); color: var(--navy); }
+        body { display: flex; justify-content: center; padding: 20px; min-height: 100vh; align-items: center; }
+        .form-container { width: 100%; max-width: 600px; background: var(--white); border-radius: 12px; box-shadow: 0 10px 40px rgba(15,31,61,0.08); }
+        .form-content { padding: 60px 40px 0 40px; }
+        .form-footer { padding: 40px; display: flex; gap: 12px; }
+        .form-section { display: none; }
+        .form-section.active { display: block; animation: fadeIn 0.3s ease; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+        .section-title { font-size: 22px; font-weight: 500; color: var(--navy); margin-bottom: 8px; }
+        .section-description { font-size: 13px; color: var(--dusty-blue); margin-bottom: 24px; line-height: 1.6; }
+        .form-group { margin-bottom: 24px; }
+        .form-group > label { display: block; font-size: 15px; font-weight: 400; color: var(--navy); margin-bottom: 10px; }
+        .form-group input[type="text"],
+        .form-group input[type="email"],
+        .form-group input[type="tel"],
+        .form-group input[type="number"],
+        .form-group input[type="date"],
+        .form-group textarea { width: 100%; padding: 12px 14px; border: 1.5px solid #E8DCC8; border-radius: 8px; font-family: 'Outfit', sans-serif; font-size: 14px; color: var(--navy); background: var(--white); }
+        .form-group input:focus, .form-group textarea:focus { outline: none; border-color: var(--gold); box-shadow: 0 0 0 3px rgba(196,169,125,0.1); }
+        .form-group textarea { resize: vertical; min-height: 100px; }
+        .radio-group { display: flex; flex-direction: column; gap: 10px; }
+        .radio-option { display: flex; align-items: center; padding: 12px; border-radius: 8px; cursor: pointer; border: 1.5px solid transparent; }
+        .radio-option:hover { background: rgba(196,169,125,0.05); border-color: var(--gold); }
+        .radio-option input[type="radio"] { width: 18px; height: 18px; margin-right: 12px; cursor: pointer; accent-color: var(--gold); flex-shrink: 0; }
+        .radio-option span { font-size: 14px; color: var(--navy); }
+        /* CHECKBOXES */
+        .check-group { display: flex; flex-direction: column; gap: 10px; }
+        .check-option { display: flex; align-items: center; padding: 12px; border-radius: 8px; cursor: pointer; border: 1.5px solid transparent; }
+        .check-option:hover { background: rgba(196,169,125,0.05); border-color: var(--gold); }
+        .check-option input[type="checkbox"] { width: 18px; height: 18px; margin-right: 12px; cursor: pointer; accent-color: var(--gold); flex-shrink: 0; }
+        .check-option span { font-size: 14px; color: var(--navy); }
+        .form-header-bar { display: flex; align-items: center; padding: 20px 40px; border-bottom: 1px solid #F0E8DC; }
+        .form-header-bar svg { width: 36px; height: 36px; }
+        @media (max-width: 640px) { .form-header-bar { padding: 16px 24px; } }
+        .info-box { background: rgba(196,169,125,0.08); border: 1px solid var(--gold); border-radius: 8px; padding: 14px; font-size: 13px; color: var(--navy); line-height: 1.6; margin-bottom: 16px; }
+        button { padding: 14px 24px; border: none; border-radius: 8px; font-family: 'Outfit', sans-serif; font-size: 14px; font-weight: 500; cursor: pointer; flex: 1; }
+        .btn-back { background: transparent; color: var(--dusty-blue); border: 1.5px solid #E8DCC8; }
+        .btn-next { background: var(--gold); color: var(--white); flex: 2; }
+        .btn-next:hover:not(:disabled) { background: #B8956F; }
+        .btn-next:disabled { opacity: 0.5; cursor: not-allowed; }
+        .success-screen { text-align: center; padding-bottom: 20px; }
+        .success-icon { font-size: 60px; margin-bottom: 20px; }
+        .success-title { font-size: 24px; font-weight: 600; color: var(--navy); margin-bottom: 16px; }
+        .success-text { font-size: 14px; color: var(--navy); line-height: 1.6; margin-bottom: 12px; }
+        .success-steps { background: rgba(196,169,125,0.08); border-radius: 8px; padding: 20px; text-align: left; margin: 24px 0; }
+        .success-step { display: flex; margin-bottom: 10px; font-size: 13px; color: var(--navy); }
+        .success-step:last-child { margin-bottom: 0; }
+        .success-step-num { font-weight: 600; margin-right: 10px; min-width: 24px; }
+        .contact-info { font-size: 13px; color: var(--dusty-blue); line-height: 1.8; }
+        .hidden { display: none !important; }
+        @media (max-width: 640px) {
+            .form-content { padding: 40px 24px 0 24px; }
+            .form-footer { padding: 24px; }
+        }
+    </style>
+</head>
+<body>
+<div class="form-container">
+    <!-- LOGO HEADER -->
+    <div style="padding: 20px 40px; border-bottom: 1px solid #F0E8DC;">
+        <svg width="32" height="32" viewBox="0 0 2003 2001" xmlns="http://www.w3.org/2000/svg" style="display:block;">
+            <g transform="matrix(1,0,0,1,-2896.67,-5055.39)"><g transform="matrix(0.983733,0,0,0.982658,2114.88,11406.1)"><g transform="matrix(1.01654,0,0,1.01765,-2192,-11573.5)"><path d="M3934.06,5852.2L3987.43,5944.65C3923.58,5981.82 3855.91,6000.88 3793.01,6000.88C3605.25,6000.88 3505.18,5852.2 3505.18,5671.12L3505.18,5453.82L3443.23,5591.06L3434.65,5591.06L3373.66,5453.82L3373.66,5947.51L3266.91,5947.51L3266.91,5280.37L3373.66,5280.37L3439.42,5409.03L3505.18,5280.37L3611.92,5280.37L3611.92,5671.12C3611.92,5788.35 3665.3,5894.14 3793.01,5894.14C3837.8,5894.14 3886.41,5879.84 3934.06,5852.2ZM3908.11,5670.17C3948.14,5670.17 3981.5,5702.57 3981.5,5743.55C3981.5,5783.58 3948.14,5815.99 3908.11,5815.99C3867.13,5815.99 3834.73,5783.58 3834.73,5743.55C3834.73,5702.57 3867.13,5670.17 3908.11,5670.17ZM3666.03,5763.1L3666.03,5393.78C3666.03,5330.88 3717.5,5280.37 3780.4,5280.37L3908.11,5280.37L3889.05,5379.48L3808.04,5379.48C3788.98,5379.48 3772.78,5394.73 3772.78,5414.75L3772.78,5763.1L3772.51,5763.1L3772.51,5763.44C3772.51,5792.48 3748.31,5815.99 3719.27,5815.99C3689.54,5815.99 3666.03,5792.48 3666.03,5763.44L3666.03,5763.1ZM3412.73,6037.77C3493.74,6037.77 3559.51,6102.58 3559.51,6183.59L3559.51,6333.22L3457.53,6353.24L3457.53,6179.78C3457.53,6156.9 3438.47,6138.8 3415.59,6138.8C3392.72,6138.8 3373.66,6156.9 3373.66,6179.78L3373.66,6584.83C3373.66,6607.7 3392.72,6625.81 3415.59,6625.81C3438.47,6625.81 3457.53,6607.7 3457.53,6584.83L3457.53,6408.51L3559.51,6388.5L3559.51,6579.11C3559.51,6660.12 3493.74,6724.93 3412.73,6724.93C3332.68,6724.93 3266.91,6660.12 3266.91,6579.11L3266.91,6183.59C3266.91,6102.58 3332.68,6037.77 3412.73,6037.77ZM3602.39,6185.5C3602.39,6088.28 3673.87,6038.72 3745.35,6038.72C3817.78,6038.72 3890.22,6089.24 3890.22,6193.12L3890.22,6586.74L3720.57,6586.74C3654.81,6586.74 3602.39,6534.32 3602.39,6468.56L3602.39,6327.5L3788.24,6286.52L3788.24,6205.51C3788.24,6156.9 3769.18,6138.8 3746.31,6138.8C3723.43,6138.8 3704.37,6156.9 3704.37,6180.73L3704.37,6252.21L3602.39,6272.23L3602.39,6185.5ZM3788.24,6490.48L3788.24,6383.73L3704.37,6404.7L3704.37,6452.35C3704.37,6473.32 3721.53,6490.48 3742.49,6490.48L3788.24,6490.48ZM3888.31,6715.4L3621.45,6715.4L3621.45,6619.14L3888.31,6619.14L3888.31,6715.4ZM4440.14,6596.27C4360.08,6596.27 4294.32,6530.51 4294.32,6449.49L4294.32,6184.54C4294.32,6104.49 4360.08,6038.72 4440.14,6038.72C4521.15,6038.72 4586.91,6104.49 4586.91,6184.54L4586.91,6334.17L4527.82,6345.61L4401.06,6374.2L4401.06,6455.21C4401.06,6478.09 4420.12,6497.15 4442.99,6497.15C4465.87,6497.15 4484.93,6478.09 4484.93,6455.21L4484.93,6409.47L4586.91,6389.45L4586.91,6449.49C4586.91,6530.51 4521.15,6596.27 4440.14,6596.27ZM4401.06,6181.68L4401.06,6276.99L4484.93,6256.98L4484.93,6181.68C4484.93,6158.81 4465.87,6139.75 4442.99,6139.75C4420.12,6139.75 4401.06,6158.81 4401.06,6181.68ZM4558.32,6620.09L4611.69,6712.54C4552.6,6746.85 4487.79,6764.01 4423.93,6764.01C4267.63,6764.01 4128.48,6655.36 4128.48,6490.48L4129.44,6490.48L4129.44,6459.98C4129.44,6439.01 4113.23,6424.72 4093.22,6424.72C4085.6,6424.72 4077.02,6426.62 4069.39,6431.39L4050.33,6442.82L4050.33,6715.4L3943.59,6715.4L3943.59,6049.21L4050.33,6049.21L4050.33,6337.03L4079.88,6316.07C4102.75,6299.86 4114.19,6285.57 4114.19,6261.74L4114.19,6049.21L4220.93,6049.21L4220.93,6265.55C4220.93,6317.97 4197.1,6355.14 4148.5,6385.64C4199.01,6384.69 4236.18,6414.23 4236.18,6460.93L4236.18,6490.48L4235.23,6490.48C4235.23,6595.31 4328.63,6657.26 4424.89,6657.26C4468.73,6657.26 4515.43,6644.87 4558.32,6620.09Z" style="fill:#0F1F3D;"/></g></g></g>
+        </svg>
+    </div>
+    <div class="form-content">
+
+        <!-- S1: GREETING -->
+        <div class="form-section active" id="s-greeting">
+            <div style="text-align:center; margin-bottom: 40px;">
+                <h1 style="font-size:32px; font-weight:600; color:var(--navy); margin-bottom:20px;">Hola! 👋</h1>
+                <p style="font-size:16px; color:var(--navy); margin-bottom:16px; line-height:1.6; font-weight:300;">Bienvenido a Mr. Cake.</p>
+                <p style="font-size:16px; color:var(--navy); margin-bottom:16px; line-height:1.6; font-weight:300;">Aquí cada pieza se diseña desde cero, basada en tu visión.</p>
+                <p style="font-size:16px; color:var(--navy); margin-bottom:16px; line-height:1.6; font-weight:300;">Tu concepto + nuestro expertise = tu cake perfecto.</p>
+                <p style="font-size:16px; color:var(--navy); margin-bottom:16px; line-height:1.6; font-weight:300;">Tómate 5 minutos. Cada respuesta nos acerca más.</p>
+                <p style="font-size:16px; color:var(--navy); font-weight:500;">¡Vamos!</p>
+            </div>
+        </div>
+
+        <!-- S2: PROCESO -->
+        <div class="form-section" id="s-process">
+            <h2 class="section-title">Así es nuestro proceso 🎂</h2><br>
+            <p style="font-size:14px; line-height:1.8; color:var(--dusty-blue); margin-bottom:16px;"><strong style="color:var(--navy);">1️⃣ COTIZACIÓN</strong><br>Con la información de este formulario preparamos una propuesta personalizada.</p>
+            <p style="font-size:14px; line-height:1.8; color:var(--dusty-blue); margin-bottom:16px;"><strong style="color:var(--navy);">2️⃣ RESERVA</strong><br>Si te gusta la propuesta, pagas 50% depósito. Confirmas la fecha.</p>
+            <p style="font-size:14px; line-height:1.8; color:var(--dusty-blue); margin-bottom:16px;"><strong style="color:var(--navy);">3️⃣ DISEÑO DIGITAL</strong><br>Frank elabora una propuesta visual para confirmar todo antes de producir.</p>
+            <p style="font-size:14px; line-height:1.8; color:var(--dusty-blue);"><strong style="color:var(--navy);">4️⃣ ENTREGA</strong><br>Preparamos todo para que tu cake llegue a lucirse en tu evento.</p><br>
+        </div>
+
+        <!-- S3: NOMBRE -->
+        <div class="form-section" id="s-name">
+            <div class="form-group">
+                <label>¿Con quién tenemos el gusto de trabajar hoy?</label>
+                <input type="text" id="f-name" required placeholder="Tu nombre y apellido">
+                <div class="form-note">Así sabemos cómo llamarte 😊</div>
+            </div>
+        </div>
+
+        <!-- S4: TIPO DE EVENTO -->
+        <div class="form-section" id="s-eventType">
+            <div class="form-group">
+                <label>¿Qué tipo de evento es?</label>
+                <div class="radio-group">
+                    <label class="radio-option"><input type="radio" name="eventType" value="Boda"><span>Boda</span></label>
+                    <label class="radio-option"><input type="radio" name="eventType" value="Quinceañera"><span>Quinceañera</span></label>
+                    <label class="radio-option"><input type="radio" name="eventType" value="Cumpleaños adulto"><span>Cumpleaños adulto</span></label>
+                    <label class="radio-option"><input type="radio" name="eventType" value="Cumpleaños infantil"><span>Cumpleaños infantil</span></label>
+                    <label class="radio-option"><input type="radio" name="eventType" value="Aniversario"><span>Aniversario</span></label>
+                    <label class="radio-option"><input type="radio" name="eventType" value="Otro"><span>Otro</span></label>
+                </div>
+                <div class="form-note">Cada evento tiene su propia energía. Nos ayuda a entender el vibe.</div>
+            </div>
+        </div>
+
+        <!-- S5: FECHA -->
+        <div class="form-section" id="s-eventDate">
+            <div class="form-group">
+                <label>¿Cuándo es tu evento?</label>
+                <input type="date" id="f-eventDate" required>
+                <div id="timeline-note" class="form-note"></div>
+                <div id="time-warning" class="info-box hidden"></div>
+            </div>
+        </div>
+
+        <!-- S6: CANTIDAD -->
+        <div class="form-section" id="s-guestCount">
+            <div class="form-group">
+                <label>¿Cuántas personas comerían del cake?</label>
+                <input type="number" id="f-guestCount" min="1" required>
+                <div class="section-description" style="margin-top:8px;">En mi estilo de Pastelería, cotizamos por diseño, rendimiento y sabor. Por lo que no cotizamos por libra.</div>
+            </div>
+        </div>
+
+        <!-- S7: ZONA -->
+        <div class="form-section" id="s-deliveryZone">
+            <div class="form-group">
+                <label>¿En qué zona entregaremos?</label>
+                <div class="radio-group">
+                    <label class="radio-option"><input type="radio" name="deliveryZone" value="Distrito Nacional"><span>Distrito Nacional (Incluido)</span></label>
+                    <label class="radio-option"><input type="radio" name="deliveryZone" value="Punta Cana"><span>Punta Cana</span></label>
+                    <label class="radio-option"><input type="radio" name="deliveryZone" value="La Romana"><span>La Romana</span></label>
+                    <label class="radio-option"><input type="radio" name="deliveryZone" value="Samaná"><span>Samaná</span></label>
+                    <label class="radio-option"><input type="radio" name="deliveryZone" value="Jarabacoa"><span>Jarabacoa</span></label>
+                    <label class="radio-option"><input type="radio" name="deliveryZone" value="Otra"><span>Otra (especificar)</span></label>
+                </div>
+                <div class="form-note">Otras zonas: el travel de Frank se agrega al presupuesto.</div>
+            </div>
+        </div>
+
+        <!-- S8: EMAIL -->
+        <div class="form-section" id="s-email">
+            <div class="form-group">
+                <label>¿Cuál es tu email?</label>
+                <input type="email" id="f-email" required placeholder="tu@email.com">
+                <div class="form-note">Frank usará esto para contactarte. NO para marketing.</div>
+            </div>
+        </div>
+
+        <!-- S9: DISEÑO EDUCATIVO -->
+        <div class="form-section" id="s-designEdu">
+            <h2 class="section-title">Cómo trabajamos 🎨</h2><br>
+            <p class="section-description" style="color: #5a6a7e;">Cada cake se diseña según tus requerimientos.</p>
+            <p class="section-description" style="color: #5a6a7e;">Tu concepto es el punto de partida. Frank lo lleva a un lugar que quizás no habías imaginado.</p>
+            <div id="boda-degustation-note" class="hidden" style="margin-top: 16px; background: rgba(196,169,125,0.10); border-left: 3px solid var(--gold); border-radius: 6px; padding: 14px 16px;">
+                <p style="font-size: 13px; font-weight: 600; color: var(--navy); letter-spacing: 0.03em;">TU COTIZACIÓN INCLUYE DEGUSTACIÓN DE SABORES AL HACER TU RESERVA CON MR. CAKE.</p>
+            </div>
+        </div>
+
+        <!-- S10: CONCEPTO -->
+        <div class="form-section" id="s-concept">
+            <div class="form-group">
+                <label>¿Tienes un concepto o visión en mente?</label>
+                <textarea id="f-concept" placeholder="Ej: Tropical chic con flores de wafer. Minimalista pero impactante..."></textarea>
+                <div class="form-note"><strong>OPCIONAL.</strong> Podemos descubrirlo juntos.</div>
+            </div>
+        </div>
+
+        <!-- S11: REFERENCIAS + CHECKBOXES CONDICIONALES -->
+        <div class="form-section" id="s-references">
+            <div class="form-group">
+                <label>¿Tienes referencias o inspiración?</label>
+                <div class="info-box">
+                    <strong>Envía imágenes por WhatsApp:</strong><br>
+                    Si tienes fotos o referencias, mándalas por WhatsApp a Frank (+1 829 368 4150). Mucho más fácil. 😊
+                </div>
+            </div>
+            <div class="form-group">
+                <label>¿Qué elementos quieres incluir en tu cake?</label>
+                <div class="check-group">
+                    <label class="check-option">
+                        <input type="checkbox" id="want-flores">
+                        <span>🌸 Flores (wafer paper o azúcar)</span>
+                    </label>
+                    <label class="check-option">
+                        <input type="checkbox" id="want-modelados">
+                        <span>🎨 Modelados 3D</span>
+                    </label>
+                </div>
+                <div class="form-note">Selecciona los que apliquen — te pediremos más detalles después.</div>
+            </div>
+        </div>
+
+        <!-- S12: SABORES EDUCATIVO -->
+        <div class="form-section" id="s-flavorEdu">
+            <h2 class="section-title">El sabor es tan importante 🤤</h2><br>
+            <p class="section-description">Los sabores que ves, los hemos trabajado bien.</p>
+            <p class="section-description">¿Qué te llama?</p>
+        </div>
+
+        <!-- S13: BIZCOCHO -->
+        <div class="form-section" id="s-cake">
+            <div class="form-group">
+                <label>¿Qué sabor de bizcocho?</label>
+                <div class="radio-group">
+                    <label class="radio-option"><input type="radio" name="cake" value="Vainilla clásica"><span>Vainilla clásica</span></label>
+                    <label class="radio-option"><input type="radio" name="cake" value="Chocolate intenso"><span>Chocolate intenso</span></label>
+                    <label class="radio-option"><input type="radio" name="cake" value="Limón fresco"><span>Limón fresco</span></label>
+                    <label class="radio-option"><input type="radio" name="cake" value="Coco tropical"><span>Coco tropical</span></label>
+                    <label class="radio-option"><input type="radio" name="cake" value="Café"><span>Café</span></label>
+                    <label class="radio-option"><input type="radio" name="cake" value="Mármol"><span>Mármol (Vainilla + Chocolate)</span></label>
+                    <label class="radio-option"><input type="radio" name="cake" value="Zanahoria"><span>Zanahoria</span></label>
+                    <label class="radio-option"><input type="radio" name="cake" value="Pistacho"><span>Pistacho</span></label>
+                    <label class="radio-option"><input type="radio" name="cake" value="Otro"><span>¿No ves el tuyo? Cuéntame</span></label>
+                    <label class="radio-option"><input type="radio" name="cake" value="Sorprenderme"><span>Sorprenderme</span></label>
+                </div>
+                <div class="form-note"><strong>OPCIONAL.</strong> Frank elige algo espectacular si no tienes preferencia.</div>
+            </div>
+            <div id="cake-custom" class="hidden">
+                <div class="form-group">
+                    <label>¿Cuál bizcocho?</label>
+                    <textarea id="f-cakeCustom"></textarea>
+                </div>
+            </div>
+        </div>
+
+        <!-- S14: RELLENO -->
+        <div class="form-section" id="s-filling">
+            <div class="form-group">
+                <label>¿Qué relleno?</label>
+                <div class="radio-group">
+                    <label class="radio-option"><input type="radio" name="filling" value="Dulce de leche"><span>Dulce de leche</span></label>
+                    <label class="radio-option"><input type="radio" name="filling" value="Chocolate"><span>Chocolate</span></label>
+                    <label class="radio-option"><input type="radio" name="filling" value="Chocolate blanco"><span>Chocolate blanco</span></label>
+                    <label class="radio-option"><input type="radio" name="filling" value="Caramelo salado"><span>Caramelo salado</span></label>
+                    <label class="radio-option"><input type="radio" name="filling" value="Nutella"><span>Nutella</span></label>
+                    <label class="radio-option"><input type="radio" name="filling" value="Chinola"><span>Chinola (Passion fruit)</span></label>
+                    <label class="radio-option"><input type="radio" name="filling" value="Limón"><span>Limón</span></label>
+                    <label class="radio-option"><input type="radio" name="filling" value="Piña"><span>Piña</span></label>
+                    <label class="radio-option"><input type="radio" name="filling" value="Guayaba"><span>Guayaba</span></label>
+                    <label class="radio-option"><input type="radio" name="filling" value="Mango"><span>Mango</span></label>
+                    <label class="radio-option"><input type="radio" name="filling" value="Fresa"><span>Fresa</span></label>
+                    <label class="radio-option"><input type="radio" name="filling" value="Cereza"><span>Cereza</span></label>
+                    <label class="radio-option"><input type="radio" name="filling" value="Queso crema"><span>Queso crema</span></label>
+                    <label class="radio-option"><input type="radio" name="filling" value="Premium"><span>Combinación premium (Baileys, Pistacho, etc.)</span></label>
+                    <label class="radio-option"><input type="radio" name="filling" value="Otro"><span>Otro (especificar)</span></label>
+                </div>
+                <div class="form-note">Los rellenos premium tienen un costo variable.</div>
+            </div>
+            <div id="filling-custom" class="hidden">
+                <div class="form-group">
+                    <label>¿Cuál relleno?</label>
+                    <textarea id="f-fillingCustom"></textarea>
+                </div>
+            </div>
+        </div>
+
+        <!-- S15: ALERGIAS -->
+        <div class="form-section" id="s-allergies">
+            <div class="form-group">
+                <label>¿Alergias o restricciones?</label>
+                <div class="radio-group">
+                    <label class="radio-option"><input type="radio" name="allergies" value="Ninguna"><span>Ninguna</span></label>
+                    <label class="radio-option"><input type="radio" name="allergies" value="Frutos secos"><span>Frutos secos</span></label>
+                    <label class="radio-option"><input type="radio" name="allergies" value="Gluten"><span>Gluten</span></label>
+                    <label class="radio-option"><input type="radio" name="allergies" value="Lácteos"><span>Lácteos</span></label>
+                    <label class="radio-option"><input type="radio" name="allergies" value="Huevo"><span>Huevo</span></label>
+                    <label class="radio-option"><input type="radio" name="allergies" value="Otro"><span>Otro / Varias (especificar)</span></label>
+                </div>
+            </div>
+            <div id="allergies-custom" class="hidden">
+                <div class="form-group">
+                    <label>Especifica cuáles</label>
+                    <textarea id="f-allergiesCustom"></textarea>
+                </div>
+            </div>
+        </div>
+
+        <!-- S16: WHATSAPP -->
+        <div class="form-section" id="s-whatsapp">
+            <div class="form-group">
+                <label>¿Cuál es tu WhatsApp?</label>
+                <input type="tel" id="f-whatsapp" required placeholder="+1 XXX XXX XXXX">
+                <div class="form-note">Frank te contactará por acá en 24h para enviarte la cotización.</div>
+            </div>
+        </div>
+
+        <!-- S17: PLANNER (Boda / Quinceañera) -->
+        <div class="form-section" id="s-planner">
+            <div class="form-group">
+                <label>¿Tienes planner de bodas/eventos?</label>
+                <div class="radio-group">
+                    <label class="radio-option"><input type="radio" name="planner" value="Sí"><span>Sí, tengo planner</span></label>
+                    <label class="radio-option"><input type="radio" name="planner" value="No"><span>No, lo manejo directamente</span></label>
+                </div>
+            </div>
+            <div id="planner-contact" class="hidden">
+                <div class="form-group">
+                    <label>Nombre y empresa del planner</label>
+                    <input type="text" id="f-plannerName" placeholder="Ej: María López — Bodas del Caribe">
+                </div>
+            </div>
+        </div>
+
+        <!-- S18: FLORES EDU -->
+        <div class="form-section" id="s-floresEdu">
+            <h2 class="section-title">Las flores en tu cake 🌸</h2><br>
+            <p class="section-description">Usamos flores de wafer (duran más, no se marchitan) o flores de azúcar (comestibles). Ambas lucen increíble.</p>
+        </div>
+
+        <!-- S19: FLORES -->
+        <div class="form-section" id="s-flores">
+            <div class="form-group">
+                <label>¿Qué flores te gustaría?</label>
+                <textarea id="f-flores" placeholder="Ej: Rosas, peonías, dalias, claveles..."></textarea>
+                <div class="form-note">Frank elige según el diseño si no tienes preferencia específica.</div>
+            </div>
+        </div>
+
+        <!-- S20: MODELADOS EDU -->
+        <div class="form-section" id="s-modeladosEdu">
+            <h2 class="section-title">Modelados 3D 🎨</h2><br>
+            <p class="section-description">Figuras, esculturas, personajes — todo hecho a mano.</p>
+            <p class="section-description">¿Qué tienes en mente?</p>
+        </div>
+
+        <!-- S21: MODELADOS -->
+        <div class="form-section" id="s-modelados">
+            <div class="form-group">
+                <label>¿Qué modelados quieres?</label>
+                <textarea id="f-modeladosDetail" placeholder="Ej: Novios, animales, figuras temáticas..."></textarea>
+                <div class="form-note">Requieren mínimo 5 días de producción.</div>
+            </div>
+        </div>
+
+        <!-- S22: PERSONAJES (Cumple infantil) -->
+        <div class="form-section" id="s-personajes">
+            <div class="form-group">
+                <label>¿Qué personajes le encantan?</label>
+                <textarea id="f-personajes" placeholder="Ej: Dinosaurios, Princesas Disney, Superhéroes..."></textarea>
+                <div class="form-note">Los personajes hacen que cada cake sea único.</div>
+            </div>
+        </div>
+
+        <!-- S23: QUÉ LE ENCANTA (Cumple adulto) -->
+        <div class="form-section" id="s-loves">
+            <div class="form-group">
+                <label>¿Qué le encanta? (Para modelados temáticos)</label>
+                <textarea id="f-loves" placeholder="Ej: Anime, Fútbol, Marvel, Música, Gaming..."></textarea>
+                <div class="form-note">Frank puede crear modelados basados en lo que le gusta.</div>
+            </div>
+        </div>
+
+        <!-- S24: MUST HAVE -->
+        <div class="form-section" id="s-mustHave">
+            <div class="form-group">
+                <label>¿Algo que NO PUEDE FALTAR?</label>
+                <textarea id="f-mustHave" placeholder="Ej: Un mensaje especial, un color, un detalle..."></textarea>
+                <div class="form-note"><strong>OPCIONAL.</strong> Frank lo toma muy en serio.</div>
+            </div>
+        </div>
+
+        <!-- S25: TOPPER (NO aplica para Boda) -->
+        <div class="form-section" id="s-topper">
+            <div class="form-group">
+                <label>¿Cake topper?</label>
+                <div class="radio-group">
+                    <label class="radio-option"><input type="radio" name="topper" value="No"><span>No</span></label>
+                    <label class="radio-option"><input type="radio" name="topper" value="Nombre sencillo"><span>Sí, nombre sencillo</span></label>
+                    <label class="radio-option"><input type="radio" name="topper" value="Personalizado"><span>Sí, personalizado</span></label>
+                    <label class="radio-option"><input type="radio" name="topper" value="Impreso"><span>Sí, impreso</span></label>
+                </div>
+            </div>
+            <div id="topper-detail" class="hidden">
+                <div class="form-group">
+                    <label>¿Qué debería decir?</label>
+                    <input type="text" id="f-topperText" placeholder="Ej: Feliz Cumple María...">
+                </div>
+            </div>
+        </div>
+
+        <!-- S26: PRESUPUESTO EDU -->
+        <div class="form-section" id="s-presupuestoEdu">
+            <h2 class="section-title">El presupuesto 💰</h2><br>
+            <p class="section-description">Cada elemento que elegiste tiene un costo. Frank te dará una propuesta personalizada.</p>
+            <p class="section-description">¿Tienes un rango en mente? (opcional)</p>
+        </div>
+
+        <!-- S27: PRESUPUESTO -->
+        <div class="form-section" id="s-presupuesto">
+            <div class="form-group">
+                <label>¿Tienes un presupuesto en mente?</label>
+                <input type="text" id="f-presupuesto" placeholder="RD$50,000 | USD$1,000 | Sin idea aún">
+                <div class="form-note"><strong>OPCIONAL.</strong> Frank sabe si ajustar opciones o proponer alternativas.</div>
+            </div>
+        </div>
+
+
+        <!-- S-RESUMEN: CONFIRMAR ANTES DE ENVIAR -->
+        <div class="form-section" id="s-resumen">
+            <div class="success-screen">
+                <h2 class="success-title" style="font-size:20px;">¡Gracias por la información!</h2>
+                <p class="success-text">Nos hace mucha ilusión poderte ayudar a tener el cake que tanto deseas. Confirma por favor que toda la información importante está aquí:</p>
+                <div id="resumen-body" style="text-align:left; margin-top:20px; font-size:13px; line-height:2; color:var(--navy);"></div>
+            </div>
+        </div>
+
+        <!-- S28: ÉXITO -->
+        <div class="form-section" id="s-success">
+            <div class="success-screen">
+                <div class="success-icon">✨</div>
+                <h2 class="success-title">¡Lo Recibimos!</h2>
+                <p class="success-text">Hola <strong><span id="success-name"></span></strong> 👋</p>
+                <p class="success-text">En 24hs o menos te contactaremos por WhatsApp para enviarte la cotización y dar el primer paso a tu cake increíble.</p>
+                <div style="margin-top:20px;">
+                    <p style="font-size:28px; margin-bottom:12px;">❤️</p>
+                    <p style="font-size:13px; color:var(--navy); line-height:1.8;">No te olvides de seguirnos en redes sociales como <strong>@mrcake.rd</strong> y visitar nuestro website con más información para tu cake increíble:<br><strong>mrcake.lat</strong></p>
+                </div>
+                <div class="contact-info" style="margin-top:16px;">
+                    📱 +1 829 368 4150<br>
+                    📧 <span id="success-email">frank@mrcake.lat</span><br><br>
+                    <strong>¡Nos vemos pronto! 🍰</strong>
+                </div>
+            </div>
+        </div>
+
+    </div><!-- /form-content -->
+
+    <div class="form-footer">
+        <button class="btn-back hidden" id="btn-back">← Atrás</button>
+        <button class="btn-next" id="btn-next">Siguiente →</button>
+    </div>
+</div>
+
+<script>
+// =============================================
+// CONSTRUIR FLUJO DINÁMICO
+// =============================================
+function buildFlow(eventType) {
+    const wantFlores = document.getElementById('want-flores')?.checked;
+    const wantModelados = document.getElementById('want-modelados')?.checked;
+
+    // Base siempre igual
+    const base = ['greeting','process','name','eventType','eventDate','guestCount','deliveryZone','email','designEdu','concept','references','flavorEdu','cake','filling','allergies','whatsapp'];
+
+    let dynamic = [];
+
+    if (eventType === 'Boda') {
+        dynamic.push('planner');
+        if (wantFlores) { dynamic.push('floresEdu'); dynamic.push('flores'); }
+        if (wantModelados) { dynamic.push('modeladosEdu'); dynamic.push('modelados'); }
+        dynamic.push('mustHave');
+        dynamic.push('presupuestoEdu','presupuesto','resumen','success');
+
+    } else if (eventType === 'Quinceañera') {
+        dynamic.push('planner');
+        if (wantFlores) { dynamic.push('floresEdu'); dynamic.push('flores'); }
+        if (wantModelados) { dynamic.push('modeladosEdu'); dynamic.push('modelados'); }
+        dynamic.push('mustHave','topper','presupuestoEdu','presupuesto','resumen','success');
+
+    } else if (eventType === 'Cumpleaños adulto') {
+        if (wantFlores) { dynamic.push('floresEdu'); dynamic.push('flores'); }
+        if (wantModelados) { dynamic.push('modeladosEdu'); dynamic.push('loves'); }
+        dynamic.push('mustHave','topper','presupuestoEdu','presupuesto','resumen','success');
+
+    } else if (eventType === 'Cumpleaños infantil') {
+        dynamic.push('modeladosEdu','personajes','mustHave','topper','presupuestoEdu','presupuesto','resumen','success');
+
+    } else {
+        // Aniversario / Otro
+        if (wantModelados) { dynamic.push('modeladosEdu'); dynamic.push('modelados'); }
+        dynamic.push('mustHave','topper','presupuestoEdu','presupuesto','resumen','success');
+    }
+
+    return [...base, ...dynamic];
+}
+
+// =============================================
+// ESTADO
+// =============================================
+let currentIndex = 0;
+let currentFlow = ['greeting','process','name','eventType'];
+const formData = {};
+
+function getEventType() {
+    return document.querySelector('input[name="eventType"]:checked')?.value || null;
+}
+
+// =============================================
+// MOSTRAR SECCIÓN
+// =============================================
+function showCurrent() {
+    document.querySelectorAll('.form-section').forEach(el => el.classList.remove('active'));
+    const sectionId = 's-' + currentFlow[currentIndex];
+    const el = document.getElementById(sectionId);
+    if (el) el.classList.add('active');
+
+    const btnBack = document.getElementById('btn-back');
+    currentIndex === 0 ? btnBack.classList.add('hidden') : btnBack.classList.remove('hidden');
+
+    const isLast = currentIndex === currentFlow.length - 1;
+    document.getElementById('btn-next').textContent = isLast ? '¡Enviar!' : 'Siguiente →';
+
+    validateCurrent();
+    window.scrollTo(0, 0);
+}
+
+// =============================================
+// VALIDAR
+// =============================================
+function validateCurrent() {
+    const key = currentFlow[currentIndex];
+    const required = { 'name': 'f-name', 'eventDate': 'f-eventDate', 'guestCount': 'f-guestCount', 'email': 'f-email', 'whatsapp': 'f-whatsapp' };
+    const requiredRadio = ['eventType','deliveryZone'];
+    let valid = true;
+
+    if (required[key]) {
+        valid = !!document.getElementById(required[key])?.value.trim();
+    } else if (requiredRadio.includes(key)) {
+        valid = !!document.querySelector(`input[name="${key}"]:checked`);
+    }
+
+    document.getElementById('btn-next').disabled = !valid;
+}
+
+// =============================================
+// GUARDAR DATOS
+// =============================================
+function saveCurrentData() {
+    const key = currentFlow[currentIndex];
+    const el = document.getElementById('s-' + key);
+    if (!el) return;
+    el.querySelectorAll('input:not([type="radio"]):not([type="checkbox"]), textarea').forEach(i => {
+        if (i.id) formData[i.id] = i.value;
+    });
+    el.querySelectorAll('input[type="radio"]:checked').forEach(i => {
+        formData[i.name] = i.value;
+    });
+    el.querySelectorAll('input[type="checkbox"]').forEach(i => {
+        formData[i.id] = i.checked;
+    });
+}
+
+// =============================================
+// CONDICIONALES FECHA
+// =============================================
+function handleDateConditionals() {
+    const dateVal = document.getElementById('f-eventDate')?.value;
+    if (!dateVal) return;
+    const eventType = getEventType() || '';
+    const days = Math.floor((new Date(dateVal) - new Date()) / 86400000);
+    document.getElementById('timeline-note').textContent = eventType === 'Boda'
+        ? 'Para bodas: lead time de 3-6 meses.'
+        : 'Para celebraciones: recomendamos mínimo 15 días.';
+    const w = document.getElementById('time-warning');
+    if (days < 5) {
+        w.textContent = 'Tenemos poco tiempo, así que nos enfocaremos en lo que podemos hacer espectacular: diseño, drip, texturizado, efectos visuales. Frank tiene soluciones rápidas que lucen increíble.';
+        w.classList.remove('hidden');
+    } else {
+        w.classList.add('hidden');
+    }
+}
+
+// =============================================
+// RESUMEN DE RESPUESTAS
+// =============================================
+function buildResumen() {
+    const et = formData['eventType'] || '';
+    const rows = [
+        ['Nombre', formData['f-name']],
+        ['Tipo de evento', et],
+        ['Fecha', formData['f-eventDate']],
+        ['Invitados', formData['f-guestCount']],
+        ['Zona de entrega', formData['deliveryZone']],
+        ['Email', formData['f-email']],
+        ['WhatsApp', formData['f-whatsapp']],
+        ['Concepto', formData['f-concept']],
+        ['Flores', formData['want-flores'] ? 'Sí' : 'No'],
+        ['Modelados', formData['want-modelados'] ? 'Sí' : 'No'],
+        ['Bizcocho', formData['cake']],
+        ['Relleno', formData['filling']],
+        ['Alergias', formData['allergies']],
+        ['Planner', formData['planner']],
+        ['Nombre planner', formData['f-plannerName']],
+        ['Flores deseadas', formData['f-flores']],
+        ['Modelados detalle', formData['f-modeladosDetail']],
+        ['Personajes', formData['f-personajes']],
+        ['Qué le encanta', formData['f-loves']],
+        ['Must have', formData['f-mustHave']],
+        ['Topper', formData['topper']],
+        ['Texto topper', formData['f-topperText']],
+        ['Presupuesto', formData['f-presupuesto']],
+    ];
+    const html = rows
+        .filter(([,v]) => v && String(v).trim() !== '' && v !== false)
+        .map(([k,v]) => `<div style="display:flex;gap:8px;padding:6px 0;border-bottom:1px solid #F0E8DC;">
+            <span style="font-weight:600;min-width:140px;color:var(--navy);">${k}</span>
+            <span style="color:#5a6a7e;">${v}</span>
+        </div>`).join('');
+    document.getElementById('resumen-body').innerHTML = html;
+}
+
+// =============================================
+// PANTALLA ÉXITO
+// =============================================
+function buildSuccess() {
+    const et = formData['eventType'] || '';
+    document.getElementById('success-name').textContent = formData['f-name'] || '';
+    document.getElementById('success-email').textContent = et === 'Boda' ? 'frank@mrcake.lat' : 'hola@mrcake.lat';
+}
+
+// =============================================
+// NAVEGACIÓN
+// =============================================
+document.getElementById('btn-next').addEventListener('click', () => {
+    if (document.getElementById('btn-next').disabled) return;
+    saveCurrentData();
+
+    // Al salir de eventType, construir flujo completo
+    if (currentFlow[currentIndex] === 'eventType') {
+        currentFlow = buildFlow(getEventType());
+        // Mostrar/ocultar nota de degustación en Cómo Trabajamos
+        const degNote = document.getElementById('boda-degustation-note');
+        if (degNote) {
+            getEventType() === 'Boda' ? degNote.classList.remove('hidden') : degNote.classList.add('hidden');
+        }
+    }
+
+    // Al salir de references, reconstruir flujo con checkboxes
+    if (currentFlow[currentIndex] === 'references') {
+        currentFlow = buildFlow(getEventType());
+    }
+
+    // Estamos EN el resumen → confirmar y enviar → ir a success
+    if (currentFlow[currentIndex] === 'resumen') {
+        document.querySelector('.form-footer').classList.add('hidden');
+        buildSuccess();
+        document.querySelectorAll('.form-section').forEach(el => el.classList.remove('active'));
+        document.getElementById('s-success').classList.add('active');
+        window.scrollTo(0, 0);
+
+        // =============================================
+        // WEBHOOK → MAKE.COM
+        // =============================================
+        const WEBHOOK_URL = 'https://hook.us2.make.com/31efwgx5d2zwcfj9svij7kmo73vyvpnf';
+
+        const payload = {
+            nombre:            formData['f-name'] || '',
+            email:             formData['f-email'] || '',
+            whatsapp:          formData['f-whatsapp'] || '',
+            tipo_evento:       formData['eventType'] || '',
+            fecha_evento:      formData['f-eventDate'] || '',
+            invitados:         formData['f-guestCount'] || '',
+            zona_entrega:      formData['deliveryZone'] || '',
+            concepto:          formData['f-concept'] || '',
+            quiere_flores:     formData['want-flores'] ? 'Sí' : 'No',
+            quiere_modelados:  formData['want-modelados'] ? 'Sí' : 'No',
+            bizcocho:          formData['cake'] || '',
+            bizcocho_custom:   formData['f-cakeCustom'] || '',
+            relleno:           formData['filling'] || '',
+            relleno_custom:    formData['f-fillingCustom'] || '',
+            alergias:          formData['allergies'] || '',
+            alergias_custom:   formData['f-allergiesCustom'] || '',
+            planner:           formData['planner'] || '',
+            nombre_planner:    formData['f-plannerName'] || '',
+            flores_detalle:    formData['f-flores'] || '',
+            modelados_detalle: formData['f-modeladosDetail'] || '',
+            personajes:        formData['f-personajes'] || '',
+            que_le_encanta:    formData['f-loves'] || '',
+            must_have:         formData['f-mustHave'] || '',
+            topper:            formData['topper'] || '',
+            topper_texto:      formData['f-topperText'] || '',
+            presupuesto:       formData['f-presupuesto'] || '',
+            email_destino:     formData['eventType'] === 'Boda' ? 'frank@mrcake.lat' : 'hola@mrcake.lat',
+            timestamp:         new Date().toISOString()
+        };
+
+        fetch(WEBHOOK_URL, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(payload)
+        }).catch(err => console.warn('Webhook error (no crítico):', err));
+
+        return;
+    }
+
+    // Si el siguiente paso es 'resumen', avanzar y prepararlo
+    if (currentFlow[currentIndex + 1] === 'resumen') {
+        currentIndex++;
+        buildResumen();
+        showCurrent();
+        document.getElementById('btn-next').textContent = 'Confirmar y Enviar ✓';
+        return;
+    }
+
+    currentIndex++;
+    showCurrent();
+});
+
+document.getElementById('btn-back').addEventListener('click', () => {
+    if (currentIndex > 0) { currentIndex--; showCurrent(); }
+});
+
+// =============================================
+// CONDICIONALES EN VIVO
+// =============================================
+document.addEventListener('change', e => {
+    const n = e.target.name;
+    const v = e.target.value;
+    if (n === 'cake') document.getElementById('cake-custom').classList.toggle('hidden', v !== 'Otro');
+    if (n === 'filling') document.getElementById('filling-custom').classList.toggle('hidden', v !== 'Otro');
+    if (n === 'allergies') document.getElementById('allergies-custom').classList.toggle('hidden', v !== 'Otro');
+    if (n === 'planner') document.getElementById('planner-contact').classList.toggle('hidden', v !== 'Sí');
+    if (n === 'topper') document.getElementById('topper-detail').classList.toggle('hidden', v === 'No');
+    validateCurrent();
+});
+
+document.addEventListener('input', () => validateCurrent());
+document.getElementById('f-eventDate')?.addEventListener('change', handleDateConditionals);
+
+// =============================================
+// INIT
+// =============================================
+showCurrent();
+</script>
+</body>
+</html>
